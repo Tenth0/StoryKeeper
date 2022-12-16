@@ -9,6 +9,5 @@ use Inertia\Inertia;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return Inertia::render('hello-world');
-});
+Route::get('/', function () {return Inertia::render('hello-world');})->name('hello');
+Route::get('/pages', function () {return Inertia::render('index');})->name('hello2');

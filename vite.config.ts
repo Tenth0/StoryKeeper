@@ -3,9 +3,15 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+    server: {
+        hmr: true,
+        watch: {
+            usePolling: true
+        }
+    },
     plugins: [
         laravel({
-            input: ['resources/ts/app.tsx'],
+            input: ['resources/js/app.tsx'],
             refresh: true,
         }),
         react()
