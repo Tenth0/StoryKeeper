@@ -17,7 +17,12 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'is_done' => $this->faker->boolean(),
+            'title' => $this->faker->realText(rand(15,40)),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'end_time' => $this->faker->dateTime(),
+            'limit' => $this->faker->dayOfMonth()
         ];
     }
 }

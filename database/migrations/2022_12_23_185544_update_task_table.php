@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('', function (Blueprint $table) {
-            $table->dateTime('end_time');
-            $table->integer('limit');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dateTime('end_time')->change(); 
         });
+
     }
 
     /**
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::table('tasks', function (Blueprint $table) {
+            //
+        });
     }
 };
