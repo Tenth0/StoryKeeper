@@ -1,9 +1,11 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
+import Navbar from '@/components/navbar';
 
 const index = () => {
   return (
     <>
+      <Navbar />
       <Form.Floating className="mb-3">
         <Form.Control
           id="floatingInputCustom"
