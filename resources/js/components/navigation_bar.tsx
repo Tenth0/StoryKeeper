@@ -7,11 +7,11 @@ const NavigationBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
     <Container>
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+      <Navbar.Brand href="/">Navbar</Navbar.Brand>
       <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
+        <Nav.Link href="/">一覧画面</Nav.Link>
+        <Nav.Link href="/add_item">追加画面</Nav.Link>
+        <Nav.Link href="#pricing">カテゴリー一覧</Nav.Link>
       </Nav>
     </Container>
   </Navbar>
