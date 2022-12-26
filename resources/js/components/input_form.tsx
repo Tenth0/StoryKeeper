@@ -7,7 +7,7 @@ const InputForm:React.FC = () => {
   return (
     <Row className="g-2">
       <Col md>
-        <FloatingLabel controlId="floatingInputGrid" label="Text">
+        <FloatingLabel controlId="floatingInputGrid" label="タイトル">
           <Form.Control type="text" placeholder="example:漫画、アニメ" />
         </FloatingLabel>
       </Col>
