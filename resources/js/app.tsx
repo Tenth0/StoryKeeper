@@ -7,6 +7,8 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+    
+const container:any = document.getElementById("app")
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -16,7 +18,7 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.tsx")
         ),
     setup({ el, App, props }) {
-        createRoot(document.getElementById("app")).render(
+        createRoot(container).render(
             <App {...props} />
         );
     },
