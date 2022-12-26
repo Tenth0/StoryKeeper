@@ -1,50 +1,16 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form';
-import Navbar from '@/components/navbar';
+import InputForm from '@/components/input_form';
+import NavigationBar from '@/components/navigation_bar';
+import PaginationBar from '@/components/pagination_bar';
+import Cards from '@/components/cards';
 
 const index = () => {
   return (
     <>
-      <Navbar />
-      <Form.Floating className="mb-3">
-        <Form.Control
-          id="floatingInputCustom"
-          type="email"
-          placeholder="name@example.com"
-        />
-        <label htmlFor="floatingInputCustom">Email address</label>
-      </Form.Floating>
-      <Form.Floating>
-        <Form.Control
-          id="floatingPasswordCustom"
-          type="password"
-          placeholder="Password"
-        />
-        <label htmlFor="floatingPasswordCustom">Password</label>
-      </Form.Floating>
-    </>
-  );
-}
-
-const inputText = () => {
-  return (
-    <>
-      <Form.Floating className="mb-3">
-        <Form.Control
-          id="floatingInputCustom"
-          type="email"
-          placeholder="name@example.com"
-        />
-        <label htmlFor="floatingInputCustom">Email address</label>
-      </Form.Floating>
-      <Form.Floating>
-        <Form.Control
-          id="floatingPasswordCustom"
-          type="password"
-          placeholder="Password"
-        />
-        <label htmlFor="floatingPasswordCustom">Password</label>
-      </Form.Floating>
+      <NavigationBar />
+      <InputForm />
+      <Cards />
+      <PaginationBar />
     </>
   );
 }
