@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import { render } from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
@@ -16,7 +16,9 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.tsx")
         ),
     setup({ el, App, props }) {
-        return render(<App {...props} />, el);
+        createRoot(document.getElementById("app")).render(
+            <App {...props} />
+        );
     },
 });
 
