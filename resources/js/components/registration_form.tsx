@@ -2,7 +2,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import InputGroup from "react-bootstrap/InputGroup";
+import Button from 'react-bootstrap/Button';
 
 const RegistrationForm = () => {
     return (
@@ -55,6 +55,9 @@ const RegistrationForm = () => {
                     <Form.Label>Example textarea</Form.Label>
                     <Form.Control as="textarea" rows={3} />
                 </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         </>
     );
