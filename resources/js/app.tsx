@@ -4,9 +4,12 @@ import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { createRoot } from 'react-dom/client';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+    
+const container:any = document.getElementById("app")
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -16,7 +19,9 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.tsx")
         ),
     setup({ el, App, props }) {
-        return render(<App {...props} />, el);
+        createRoot(container).render(
+            <App {...props} />
+        );
     },
 });
 
