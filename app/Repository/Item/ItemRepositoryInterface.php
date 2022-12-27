@@ -7,8 +7,11 @@ use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Http\Resources\ItemResource;
 use Inertia\Inertia;
+use App\Repository\BaseRepositoryInterface;
+use App\Utils;
+use Illuminate\Support\Facades\DB;
 
-interface ItemRepositoryInterface extends BaseRepositoryInterface
+interface ItemRepositoryInterface extends BaseRepositoryInterface 
 {
     /**
      * Display a listing of the resource.
@@ -24,20 +27,8 @@ interface ItemRepositoryInterface extends BaseRepositoryInterface
      */
     public function create();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreItemRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreItemRequest $request);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Item  $Item
-     * @return \Illuminate\Http\Response
-     */
     public function show(Item $Item);
 
     /**
