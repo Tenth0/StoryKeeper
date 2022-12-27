@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->date('read_time')->nullable();
             $table->integer('order');
+            $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
         });
 
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('color');
+            $table->timestamps();
         });
     }
 

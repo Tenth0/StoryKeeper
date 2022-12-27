@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+    protected $table = 'items';
+    public $primaryKey = 'id';
+    protected $fillable = [
+        'title',
+        'category_id',
+        'filename',
+        'read_time',
+        'order',
+        'comment'
+    ];
+
+    /**
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany(Category::class, 'id', 'category_id');
+    }
 }

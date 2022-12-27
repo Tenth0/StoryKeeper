@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dateTime('end_time')->change(); 
+        Schema::table('items', function (Blueprint $table) {
+            $table->timestamps();
         });
-
+        Schema::table('categories', function (Blueprint $table) {
+            $table->timestamps();
+        });
     }
 
     /**
@@ -26,7 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
+        Schema::table('table', function (Blueprint $table) {
             //
         });
     }
