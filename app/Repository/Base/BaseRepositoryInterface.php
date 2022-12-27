@@ -2,59 +2,52 @@
 
 namespace App\Repository;
 
-interface BaseRepositoryInterface {
+use App\Models\Category;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
+
+interface CategoryRepositoryInterface
+{
+    /**
+     * Get all records.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function all();
 
     /**
-     * Display a listing of the resource.
+     * Find a record by its primary key.
      *
-     * @return \Illuminate\Http\Response
+     * @param  mixed  $id
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function index();
+    public function find($id, $columns = ['*']);
 
     /**
-     * Show the form for creating a new resource.
+     * Create a new record.
      *
-     * @return \Illuminate\Http\Response
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function create();
+    public function create(array $attributes);
 
     /**
-     * Store a newly created resource in storage.
+     * Update a record by its primary key.
      *
-     * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  mixed  $id
+     * @param  array  $attributes
+     * @param  array  $options
+     * @return int
      */
-    public function store(StoreCategoryRequest $request);
+    public function update($id, array $attributes, array $options = []);
 
     /**
-     * Display the specified resource.
+     * Delete a record by its primary key.
      *
-     * @param  \App\Models\Category  $Category
-     * @return \Illuminate\Http\Response
+     * @param  mixed  $id
+     * @return int
      */
-    public function show(Category $Category);
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $Category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $Category);
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
-     * @param  \App\Models\Category  $Category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCategoryRequest $request, Category $Category);
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $Category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $Category);
+    public function delete($id);
 }

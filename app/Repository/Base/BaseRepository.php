@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-abstract class BaseRepository implements BaseRepositoryInterface {
-
+abstract class CategoryRepository implements CategoryRepositoryInterface
+{
     protected $model;
 
     public function __construct()
@@ -20,22 +20,22 @@ abstract class BaseRepository implements BaseRepositoryInterface {
         );
     }
 
-    public function getAll()
+    public function all()
     {
         return $this->model->all();
     }
 
-    public function find($id)
+    public function find($id, $columns = ['*'])
     {
-        return $this->model->find($id);
+        return $this->model->find($id, $columns);
     }
 
-    public function create($attributes = [])
+    public function create(array $attributes)
     {
         return $this->model->create($attributes);
     }
 
-    public function update($id, $attributes = [])
+    public function update($id, array $attributes, array $options = [])
     {
         $result = $this->find($id);
         if ($result) {
