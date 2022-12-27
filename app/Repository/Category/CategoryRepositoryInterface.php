@@ -1,3 +1,11 @@
 <?php
 
-use App\Repository\BaseRepositoryInterface;
+namespace App\Repository\Category;
+
+use App\Repository\Base\BaseRepositoryInterface;
+
+interface CategoryRepositoryInterface extends BaseRepositoryInterface {
+
+    public function list($searchQuery);
+
+}

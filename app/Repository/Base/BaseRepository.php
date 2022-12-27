@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-abstract class CategoryRepository implements CategoryRepositoryInterface
+abstract class BaseRepository implements BaseRepositoryInterface
 {
     protected $model;
 

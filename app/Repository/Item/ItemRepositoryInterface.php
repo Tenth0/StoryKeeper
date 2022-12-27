@@ -7,7 +7,7 @@ use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Http\Resources\ItemResource;
 use Inertia\Inertia;
-use App\Repository\BaseRepositoryInterface;
+use App\Repository\Base\BaseRepositoryInterface;
 use App\Utils;
 use Illuminate\Support\Facades\DB;
 

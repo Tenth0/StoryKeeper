@@ -2,12 +2,7 @@
 
 namespace App\Repository;
 
-use App\Models\Category;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-use App\Http\Resources\CategoryResource;
-
-interface CategoryRepositoryInterface
+interface BaseRepositoryInterface
 {
     /**
      * Get all records.
