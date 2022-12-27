@@ -14,11 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->timestamps();
             $table->boolean('is_delete')->default(false);
         });
         Schema::table('categories', function (Blueprint $table) {
-            $table->timestamps();
             $table->boolean('is_delete')->default(false);
         });
     }
