@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repository\Item;
 
 use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
@@ -8,34 +8,21 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Http\Resources\ItemResource;
 use Inertia\Inertia;
 
-class ItemController extends Controller
+interface ItemRepositoryInterface extends BaseRepositoryInterface
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories = Item::all();
-        $CategoriesResource = ItemResource::collection($categories);
-        return $CategoriesResource;
-        /*
-        return Inertia::render('/',[
-            'categories' => Item::all()
-        ]);
-        */
-    }
+    public function index();
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('index');
-    }
+    public function create();
 
     /**
      * Store a newly created resource in storage.
@@ -43,10 +30,7 @@ class ItemController extends Controller
      * @param  \App\Http\Requests\StoreItemRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreItemRequest $request)
-    {
-        //
-    }
+    public function store(StoreItemRequest $request);
 
     /**
      * Display the specified resource.
@@ -54,10 +38,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $Item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $Item)
-    {
-        //
-    }
+    public function show(Item $Item);
 
     /**
      * Show the form for editing the specified resource.
@@ -65,10 +46,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $Item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $Item)
-    {
-        //
-    }
+    public function edit(Item $Item);
 
     /**
      * Update the specified resource in storage.
@@ -77,10 +55,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $Item
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateItemRequest $request, Item $Item)
-    {
-        //
-    }
+    public function update(UpdateItemRequest $request, Item $Item);
 
     /**
      * Remove the specified resource from storage.
@@ -88,8 +63,5 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $Item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $Item)
-    {
-        //
-    }
+    public function destroy(Item $Item);
 }
