@@ -19,15 +19,18 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $data = $this->model
         ->select('*');
+    
         /*
         if (!empty($searchQuery['search_text'])) {
             $searchText = Utils::replaceTextSearch($searchQuery['search_text']);
-            $data = $data->where('Category_CTG', 'LIKE', '%' . $searchText . '%');
+            $data = $data->where('title', 'LIKE', '%' . $searchText . '%');
         }
+
         if (!empty($searchQuery['price_category'])) {
             $data = $data->where('Category_KUJ_CTG' , '=' , $searchQuery['price_category']);
         }
         */
+
         return $data->orderBy('order')->get();
     }
 

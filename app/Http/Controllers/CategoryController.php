@@ -23,11 +23,12 @@ class CategoryController extends Controller
     {
         $searchQuery = [
             'search_text' => is_null($request->search_text) ? null : $request->search_text,
+            'select_category' => is_null($request->category) ? null : $request->category,
         ];
 
         $categories = Category::all();
         return Inertia::render('/',[
-            'categories' => CategoryResource::collection($categories),
+            'categories' => $this->CategoryService->list($searchQuery),
         ]);
     }
 }

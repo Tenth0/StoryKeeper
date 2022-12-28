@@ -21,13 +21,16 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        $categories = Item::all();
-        $CategoriesResource = ItemResource::collection($categories);
-        return $CategoriesResource;
-        /*
+        $Items = Item::all();
+        $ItemsResource = ItemResource::collection($Items);
+
+        $searchQuery = [
+            'search_text' => is_null($request->search_text) ? null : $request->search_text,
+            'select_category' => is_null($request->category) ? null : $request->category,
+        ];
+        
         return Inertia::render('/',[
-            'categories' => Item::all()
+            'Items' => $this->CategoryService->list($searchQuery),
         ]);
-        */
     }
 }
