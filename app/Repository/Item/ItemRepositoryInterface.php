@@ -13,5 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 interface ItemRepositoryInterface extends BaseRepositoryInterface 
 {
-    
+    public function list($searchQuery);
+
+    public function updateData(array $data, $id);
 }

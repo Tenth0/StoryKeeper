@@ -8,8 +8,7 @@ import { createRoot } from 'react-dom/client';
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
     
-const container:any = document.getElementById("app")
-
+const container = document.getElementById("app")!
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) =>

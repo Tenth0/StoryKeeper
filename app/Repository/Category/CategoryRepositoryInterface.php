@@ -8,4 +8,5 @@ interface CategoryRepositoryInterface extends BaseRepositoryInterface {
 
     public function list($searchQuery);
 
+    public function updateData(array $data, $id);
 }

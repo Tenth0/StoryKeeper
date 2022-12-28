@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-// <Card.Img variant="top" src="../images/black.png" />
 const Cards = () => {
     return (
         <Row xs={1} md={2} className="g-4">
@@ -11,6 +10,7 @@ const Cards = () => {
             <Col>
               <Card>
                 <Card.Body>
+                  <Card.Img variant="top" src="/black.png"/>
                   <Card.Title>タイトル</Card.Title>
                   <Card.Text>
                     長いコメント

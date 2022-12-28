@@ -9,6 +9,7 @@ use App\Repository\Item\ItemRepositoryInterface;
 use App\Repository\Base\BaseRepositoryInterface;
 use App\Repository\Base\BaseRepository;
 use Barryvdh\Debugbar\ServiceProvider;
+use Inertia\Inertia;
 
 class RepositoryProvider extends ServiceProvider
 {
