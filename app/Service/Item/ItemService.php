@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Service\Category;
+namespace App\Service\Item;
 
 use App\Models\Item;
 use App\Models\Category;
-use App\Repository\Item\ItemRepositoryInterface;
 use App\Repository\Category\CategoryRepositoryInterface;
+use App\Repository\Item\ItemRepositoryInterface;
 use App\Utils;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -13,7 +13,7 @@ use PDOException;
 use Log;
 
 
-class CategoryService implements CategoryServiceInterface {
+class ItemService implements ItemServiceInterface {
 
     private $ItemRepo;
 
