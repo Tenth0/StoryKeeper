@@ -21,9 +21,6 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
-        $Items = Item::all();
-        $ItemsResource = ItemResource::collection($Items);
-
         $searchQuery = [
             'search_text' => is_null($request->search_text) ? null : $request->search_text,
             'select_category' => is_null($request->category) ? null : $request->category,

@@ -26,7 +26,6 @@ class CategoryController extends Controller
             'select_category' => is_null($request->category) ? null : $request->category,
         ];
 
-        $categories = Category::all();
         return Inertia::render('/',[
             'categories' => $this->CategoryService->list($searchQuery),
         ]);
