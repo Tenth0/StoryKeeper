@@ -17,7 +17,11 @@ class ItemResource extends JsonResource
         return [
             'id' =>$this->id,
             'title' =>$this->title,
-            'color' =>$this->color,
+            'category_id' =>$this->category_id,
+            'filename' =>$this->filename,
+            'comment' =>$this->comment,
+            'read_time' =>$this->read_time,
+            'order' =>$this->order,
             'is_delete' =>$this->is_delete,
         ];
     }
