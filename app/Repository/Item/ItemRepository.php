@@ -19,15 +19,12 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
     {
         $data = $this->model
         ->select('*');
-        /*
         if (!empty($searchQuery['search_text'])) {
-            $searchText = Utils::replaceTextSearch($searchQuery['search_text']);
-            $data = $data->where('Item_CTG', 'LIKE', '%' . $searchText . '%');
+            $data = $data->where('title', 'LIKE', '%' . $searchQuery['search_text'] . '%');
         }
-        if (!empty($searchQuery['price_Item'])) {
-            $data = $data->where('Item_KUJ_CTG' , '=' , $searchQuery['price_Item']);
+        if (!empty($searchQuery['select_category'])) {
+            $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
         }
-        */
         return $data->orderBy('order')->get();
     }
 
