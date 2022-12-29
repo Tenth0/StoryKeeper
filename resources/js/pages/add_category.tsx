@@ -1,12 +1,12 @@
 import React from 'react'
 import NavigationBar from '@/components/navigation_bar'
-import RegistrationForm from '@/components/registration_form'
+import CategoryList from '@/components/category_list';
 
 const AddCategory:React.FC = () => {
   return (
     <>
         <NavigationBar />
-        <RegistrationForm />
+        <CategoryList />
     </>
   );
 }
