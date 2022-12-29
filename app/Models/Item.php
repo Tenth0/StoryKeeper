@@ -36,7 +36,7 @@ class Item extends Model
         ]);
     }
 
-    public function UpdateUnit( $id , $request)
+    public function UpdateItem( $id , $request)
     {
         return self::where('id', '=', $id )->update([
             'created_at' => date("Ymd"),
