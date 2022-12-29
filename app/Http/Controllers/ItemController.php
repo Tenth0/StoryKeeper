@@ -9,6 +9,7 @@ use App\Http\Resources\ItemResource;
 use App\Service\Item\ItemServiceInterface;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class ItemController extends Controller
 {
