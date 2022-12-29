@@ -10,7 +10,7 @@ use App\Utils;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use PDOException;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 
 class ItemService implements ItemServiceInterface {
@@ -32,6 +32,7 @@ class ItemService implements ItemServiceInterface {
         $this->CategoryRepo = $CategoryRepo;
     }
     public function list($searchQuery){
+        Log::debug(1);
         return $this->ItemRepo->list($searchQuery);
     }
 }
