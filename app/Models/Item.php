@@ -23,6 +23,32 @@ class Item extends Model
         'comment'
     ];
 
+    public function InsertItem($request)
+    {
+        return self::create([
+            'created_at' => date('Ymd'),
+            'updated_at' => date('Ymd'),
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'filename' => $request->filename,
+            'comment' => $request->comment,
+            'read_time' => $request->read_time,
+        ]);
+    }
+
+    public function UpdateUnit( $id , $request)
+    {
+        return self::where('id', '=', $id )->update([
+            'created_at' => date("Ymd"),
+            'updated_at' => date("His"),
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'filename' => $request->filename,
+            'comment' => $request->comment,
+            'read_time' => $request->read_time,
+        ]);
+    }
+
     /**
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
