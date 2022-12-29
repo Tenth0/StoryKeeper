@@ -2,7 +2,7 @@
 
 namespace App\Repository\Category;
 
-use App\Repository\Category;
+use App\Models\Category;
 use App\Repository\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +29,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         }
         */
 
-        return $data->get();
+        return $data;
     }
 
     public function updateData(array $data, $id)

@@ -22,11 +22,11 @@ class ItemService implements ItemServiceInterface {
 
     public function __construct(
         ItemRepositoryInterface $ItemRepo,
-        // CategoryRepositoryInterface $CategoryRepo
+        CategoryRepositoryInterface $CategoryRepo
     )
     {
         $this->ItemRepo = $ItemRepo;
-        // $this->CategoryRepo = $CategoryRepo;
+        $this->CategoryRepo = $CategoryRepo;
     }
     public function list($searchQuery){
         $data =  $this->ItemRepo->list($searchQuery);
