@@ -6,9 +6,9 @@ use App\Repository\Category\CategoryRepository;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Item\ItemRepository;
 use App\Repository\Item\ItemRepositoryInterface;
-use App\Repository\Base\BaseRepositoryInterface;
-use App\Repository\Base\BaseRepository;
-use Barryvdh\Debugbar\ServiceProvider;
+use App\Repository\BaseRepositoryInterface;
+use App\Repository\BaseRepository;
+use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
 class RepositoryProvider extends ServiceProvider
@@ -23,6 +23,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->singleton(BaseRepositoryInterface::class, BaseRepository::class);
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->singleton(ItemRepositoryInterface::class, ItemRepository::class);
+        // $this->app->singleton(BaseRepositoryInterface::class, BaseRepository::class);
+        // $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+        // $this->app->singleton(ItemRepositoryInterface::class, ItemRepository::class);
     }
 
     /**

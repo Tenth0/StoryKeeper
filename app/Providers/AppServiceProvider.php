@@ -7,6 +7,10 @@ use App\Service\Item\ItemService;
 use App\Service\Item\ItemServiceInterface;
 use App\Service\Category\CategoryService;
 use App\Service\Category\CategoryServiceInterface;
+use \App\Repository\Item\ItemRepository;
+use \App\Repository\Item\ItemRepositoryInterface;
+use \App\Repository\Category\CategoryRepository;
+use \App\Repository\Category\CategoryRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(ItemServiceInterface::class, ItemService::class);
         $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
+        $this->app->bind(ItemRepositoryInterface::class, ItemRepository::class);
+        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
     }
 
     /**

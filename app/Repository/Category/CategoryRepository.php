@@ -2,11 +2,9 @@
 
 namespace App\Repository\Category;
 
-
+use App\Repository\Category;
 use App\Repository\BaseRepository;
-use App\Utils;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\Exception;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface {
 
@@ -31,23 +29,23 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         }
         */
 
-        return $data->orderBy('order')->get();
+        return $data->get();
     }
 
     public function updateData(array $data, $id)
     {
-        $Category = $this->find($id);
-        unset($data['_token']);
-        if (!$Category) {
-            return null;
-        }
-        foreach ($data as $key => $value) {
-            $Category[$key] = $value;
-        }
-
-        $Category->plusSave();
-
-        return $Category;
+        // $Category = $this->find($id);
+        // unset($data['_token']);
+        // if (!$Category) {
+        //     return null;
+        // }
+        // foreach ($data as $key => $value) {
+        //     $Category[$key] = $value;
+        // }
+// 
+        // $Category->plusSave();
+// 
+        // return $Category;
     }
 
 }

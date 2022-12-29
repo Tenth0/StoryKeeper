@@ -27,7 +27,7 @@ class ItemController extends Controller
             'select_category' => is_null($request->category) ? null : $request->category,
         ];
         
-        return Inertia::render('/',[
+        return Inertia::render('index',[
             'Items' => $this->ItemService->list($searchQuery),
         ]);
     }

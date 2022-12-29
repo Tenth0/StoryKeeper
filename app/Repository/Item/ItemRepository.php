@@ -2,11 +2,9 @@
 
 namespace App\Repository\Item;
 
-
+use App\Models\Item;
 use App\Repository\BaseRepository;
-// use App\Utils;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\Exception;
 
 class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
@@ -17,19 +15,20 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
     public function list($searchQuery)
     {
-        $data = $this->model
-        ->select('*');
-        if (!empty($searchQuery['search_text'])) {
-            $data = $data->where('title', 'LIKE', '%' . $searchQuery['search_text'] . '%');
-        }
-        if (!empty($searchQuery['select_category'])) {
-            $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
-        }
-        return $data->orderBy('order')->get();
+        $data = $this->model->select('*');
+        // if (!empty($searchQuery['search_text'])) {
+        //     $data = $data->where('title', 'LIKE', '%' . $searchQuery['search_text'] . '%');
+        // }
+        // if (!empty($searchQuery['select_category'])) {
+        //     $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
+        // }
+        // return $data->orderBy('order')->get();
+        return $data;
     }
 
     public function updateData(array $data, $id)
     {
+        /*
         $Item = $this->find($id);
         unset($data['_token']);
         if (!$Item) {
@@ -42,6 +41,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         $Item->plusSave();
 
         return $Item;
+        */
     }
 
 }

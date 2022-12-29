@@ -6,10 +6,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Item\ItemRepositoryInterface;
-use App\Utils;
 use Illuminate\Support\Facades\DB;
-use PDO;
-use PDOException;
 use Illuminate\Support\Facades\Log;
 
 
@@ -25,14 +22,14 @@ class ItemService implements ItemServiceInterface {
 
     public function __construct(
         ItemRepositoryInterface $ItemRepo,
-        CategoryRepositoryInterface $CategoryRepo
+        // CategoryRepositoryInterface $CategoryRepo
     )
     {
         $this->ItemRepo = $ItemRepo;
-        $this->CategoryRepo = $CategoryRepo;
+        // $this->CategoryRepo = $CategoryRepo;
     }
     public function list($searchQuery){
-        Log::debug(1);
-        return $this->ItemRepo->list($searchQuery);
+        $data =  $this->ItemRepo->list($searchQuery);
+        return $data;
     }
 }
