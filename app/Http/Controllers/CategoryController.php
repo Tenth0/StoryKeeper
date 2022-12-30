@@ -30,4 +30,9 @@ class CategoryController extends Controller
             'categories' => $this->CategoryService->list($searchQuery),
         ]);
     }
+
+    public function addCategory(Request $request)
+    {
+        
+    }
 }

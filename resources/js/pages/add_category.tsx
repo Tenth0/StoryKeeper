@@ -1,14 +1,9 @@
 import React from 'react'
-import NavigationBar from '@/components/navigation_bar'
-import CategoryList from '@/components/category_list';
 
-const AddCategory:React.FC = () => {
+const AddCategory = () => {
   return (
-    <>
-        <NavigationBar />
-        <CategoryList />
-    </>
-  );
+    <div>AddCategory</div>
+  )
 }
 
 export default AddCategory
