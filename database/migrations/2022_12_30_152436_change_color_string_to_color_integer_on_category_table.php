@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('color')->change();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
