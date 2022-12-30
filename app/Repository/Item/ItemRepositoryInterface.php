@@ -8,5 +8,7 @@ interface ItemRepositoryInterface extends BaseRepositoryInterface
 {
     public function list($searchQuery);
 
+    public function addItem($request);
+
     public function updateData(array $data, $id);
 }

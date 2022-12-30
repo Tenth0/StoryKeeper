@@ -13,5 +13,5 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [ItemController::class,'index'])->name('index');
 Route::get('/add_item', [ItemController::class,'addItem'])->name('addItem');
-Route::get('/api/add_item', [ItemController::class,'create'])->name('create');
+Route::get('/api/add_item', [ItemController::class,'store'])->name('create');
 Route::get('/category_table', function () {return Inertia::render('category_table');})->name('categoryTable');

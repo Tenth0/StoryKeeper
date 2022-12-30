@@ -47,6 +47,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->ItemService->addItem($request);
+        return redirect()->route('addItem')->with("create_success", __("Create success"));
     }
     
     public function update($id, UpdateItemRequest $request)
