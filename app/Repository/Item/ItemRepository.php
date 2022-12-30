@@ -52,8 +52,6 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
             'filename' => 'nullable|string',
             'comment' => 'nullable|string',
             'read_time' => 'nullable|date',
-            'created_at' => 'required',
-            'updated_at' => 'required',
         ]);
 
         $item = Item::create($validatedItem);
