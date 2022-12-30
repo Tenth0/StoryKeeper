@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\ItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Http\Resources\ItemResource;
 use App\Service\Item\ItemServiceInterface;
@@ -30,5 +30,11 @@ class ItemController extends Controller
         return Inertia::render('index',[
             'Items' => $this->ItemService->list($searchQuery),
         ]);
+    }
+
+    public function create(ItemRequest $request)
+    {
+        $insertItem = Item::InsertItem($request);
+        return redirect()->route('index');
     }
 }
