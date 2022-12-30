@@ -43,5 +43,17 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         return $Item;
         */
     }
-
+    public function InsertItem($request)
+    {
+        // // リクエストからデータを取得
+        // $data = $request->only(['title', 'body']);
+        // // 新しい投稿を作成して保存
+        // $Item = new Item();
+        // $Item->title = $data['title'];
+        // $Item->body = $data['body'];
+        // $Item->save();
+        // 
+        // // 保存された投稿の情報をリクエストのレスポンスとして返す
+        // return response()->json($Item, 201);
+    }   
 }

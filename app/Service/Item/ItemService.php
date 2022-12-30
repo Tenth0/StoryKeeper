@@ -32,4 +32,10 @@ class ItemService implements ItemServiceInterface {
         $data =  $this->ItemRepo->list($searchQuery);
         return $data;
     }
+
+    public function addItem($request)
+    {
+        $data = $this->ItemRepo->InsertItem($request);
+
+    }
 }
