@@ -1,38 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { BsFillTrashFill } from "react-icons/bs";
 
 const CategoryList:React.FC = () => {
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+
+    const CategoryModal:React.FC  = () => {
+        return (
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                キャンセル
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                削除
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )
+    }
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>#</th>
-          <th>Title</th>
-          <th>Color</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td width={"5%"}>1</td>
-          <td width={"5%"}>ゴミ箱</td>
-          <td>Mark</td>
-          <td>Otto</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>ゴミ箱</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>ゴミ箱</td>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
+      <>
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>#</th>
+              <th>タイトル</th>
+              <th>カラー</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td width={"5%"}>1</td>
+              <td width={"5%"}><Button variant="secondary" onClick={handleShow}><BsFillTrashFill /></Button></td>
+              <td>Mark</td>
+              <td>Otto</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td width={"5%"}><Button variant="secondary" onClick={handleShow}><BsFillTrashFill /></Button></td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td width={"5%"}><Button variant="secondary" onClick={handleShow}><BsFillTrashFill /></Button></td>
+              <td>Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </Table>
+        <CategoryModal />
+    </>
   )
 }
 

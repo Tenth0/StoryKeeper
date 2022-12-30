@@ -10,8 +10,8 @@ const AddCategory = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="info" onClick={handleShow}>
-                カテゴリーを追加する
+            <Button variant="primary" onClick={handleShow}>
+                カテゴリー追加
             </Button>
 
             <Modal show={show} onHide={handleClose}>
