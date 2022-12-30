@@ -32,12 +32,6 @@ class ItemController extends Controller
         ]);
     }
 
-
-    public function addItem()
-    {
-        return Inertia::render('add_item');
-    }
-
     public function create(ItemRequest $request)
     {
         $insertItem = Item::InsertItem($request);

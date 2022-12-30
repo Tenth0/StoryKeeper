@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        return Inertia::render('/',[
+        return Inertia::render('category_table',[
             'categories' => $this->CategoryService->list(),
         ]);
     }
