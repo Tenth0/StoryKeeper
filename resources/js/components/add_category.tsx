@@ -25,7 +25,7 @@ const AddCategory = () => {
             color: ( color as HTMLSelectElement).value,
         }
     
-        axios.post('/api/add_category',categoryData)
+        axios.post('/category_table/insert_category',categoryData)
         .then(res => console.log(res.data))
         .catch((error) => console.error(error))
         handleClose();
