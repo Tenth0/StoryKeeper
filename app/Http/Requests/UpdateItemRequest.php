@@ -13,7 +13,7 @@ class UpdateItemRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,27 @@ class UpdateItemRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        //新規登録か更新かでコードの重複判定を分ける
+        if( empty( $this->id ) === TRUE ){
+            //新規
+            return [
+                'id' =>'nullable|max:10|unique:items,id',
+                'title' => 'required|string',
+                'category_id' => 'required|integer',
+                'filename' => 'nullable|string',
+                'comment' => 'nullable|string',
+                'read_time' => 'nullable|date',
+            ];
+          } else {
+            //更新（自身のレコードIDはバリデーションチェック時に除外指定）
+            return [
+                'id'       => ['nullable', 'max:10', 'unique:items,id,'.$this->id],
+                'title' => 'required|string',
+                'category_id' => 'required|integer',
+                'filename' => 'nullable|string',
+                'comment' => 'nullable|string',
+                'read_time' => 'nullable|date',
+            ];
+          }
     }
 }
