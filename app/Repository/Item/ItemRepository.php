@@ -43,17 +43,22 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         return $Item;
         */
     }
-    public function InsertItem($request)
+    public function addItem($request)
     {
-        // // リクエストからデータを取得
-        // $data = $request->only(['title', 'body']);
-        // // 新しい投稿を作成して保存
-        // $Item = new Item();
-        // $Item->title = $data['title'];
-        // $Item->body = $data['body'];
-        // $Item->save();
-        // 
-        // // 保存された投稿の情報をリクエストのレスポンスとして返す
-        // return response()->json($Item, 201);
+
+        $validatedItem = $request->validate([
+            'title' => 'required|string',
+            'category_id' => 'required|integer',
+            'filename' => 'nullable|string',
+            'comment' => 'nullable|string',
+            'read_time' => 'nullable|date',
+            'created_at' => 'required',
+            'updated_at' => 'required',
+        ]);
+
+        $item = Item::create($validatedItem);
+
+        $item->save();
+        return response()->json($item, 201);
     }   
 }
