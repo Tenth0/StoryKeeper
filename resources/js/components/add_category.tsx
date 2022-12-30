@@ -31,15 +31,17 @@ const AddCategory = () => {
                                 autoFocus
                             />
                         </Form.Group>
-                        <Form.Label htmlFor="exampleColorInput">
-                            色
-                        </Form.Label>
-                        <Form.Control
-                            type="color"
-                            id="exampleColorInput"
-                            defaultValue="#563d7c"
-                            title="Choose your color"
-                        />
+                        <Form.Label htmlFor="selectColor">色</Form.Label>
+                        <Form.Select id="selectColor">
+                            <option value="Light">白</option>
+                            <option value="Dark">黒</option>
+                            <option value="Secondary">灰</option>
+                            <option value="Primary">青</option>
+                            <option value="Info">水</option>
+                            <option value="Success">緑</option>
+                            <option value="Danger">黄</option>
+                            <option value="Warning">赤</option>
+                        </Form.Select>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
