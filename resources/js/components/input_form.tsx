@@ -17,10 +17,11 @@ const InputForm:React.FC = () => {
           label="カテゴリー"
         >
           <Form.Select aria-label="Floating label select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option></option>
+            <option value="1">漫画</option>
+            <option value="2">アニメ</option>
+            <option value="3">お菓子</option>
+            <option value="3">ごはん屋さん</option>
           </Form.Select>
         </FloatingLabel>
       </Col>
