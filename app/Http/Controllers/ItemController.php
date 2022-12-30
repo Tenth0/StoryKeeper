@@ -32,21 +32,21 @@ class ItemController extends Controller
         ]);
     }
 
-    public function addItem()
+    public function insertItem()
     {
-        return Inertia::render('add_item');
+        return Inertia::render('insert_item');
     }
 
     public function create(ItemRequest $request)
     {
         $insertItem = Item::InsertItem($request);
-        return redirect()->route('addItem');
+        return redirect()->route('insertItem');
     }
 
     public function store(Request $request)
     {
-        $this->ItemService->addItem($request);
-        return redirect()->route('addItem')->with("create_success", __("Create success"));
+        $this->ItemService->insertItem($request);
+        return redirect()->route('insertItem')->with("create_success", __("Create success"));
     }
     
     public function update($id, UpdateItemRequest $request)

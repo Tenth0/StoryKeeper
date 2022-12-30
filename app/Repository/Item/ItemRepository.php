@@ -48,7 +48,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
         $validatedItem = $request->validate([
             'title' => 'required|string',
-            'category_id' => 'required|integer',
+            'category_id' => 'nullable|integer',
             'filename' => 'nullable|string',
             'comment' => 'nullable|string',
             'read_time' => 'nullable|date',

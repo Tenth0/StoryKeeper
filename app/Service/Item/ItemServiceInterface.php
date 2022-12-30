@@ -7,5 +7,5 @@ use App\Models\Item;
 interface ItemServiceInterface {
     public function list($searchQuery);
     
-    public function addItem($request);
+    public function insertItem($request);
 }

@@ -15,13 +15,12 @@ const AddCategory = () => {
 
         const title = event.currentTarget.title;
         const color = event.currentTarget.color;
-        // if(!title || !color ) { return }
 
         const categoryData = {
             title: (title as any).value,
             color: (color as HTMLSelectElement).value,
         };
-        alert(categoryData);
+        
         axios
             .post("/category_table/insert_category", categoryData)
             .then((res) => console.log(res.data))

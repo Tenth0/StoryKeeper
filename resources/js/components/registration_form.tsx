@@ -17,15 +17,15 @@ const RegistrationForm = () => {
         const comment = event.currentTarget.comment;
 
         const itemData = {
-            filename: (filename as any).value,
+            filename: (filename as HTMLInputElement).value,
             title: (title as any).value,
             category: (category as HTMLSelectElement).value,
-            read_time: (read_time as any).value,
-            comment: (comment as any).value,
+            read_time: (read_time as HTMLInputElement).value,
+            comment: (comment as HTMLTextAreaElement).value,
         };
-        alert(itemData);
+        console.log(itemData)
         axios
-            .post("/item_table/insert_item", itemData)
+            .post("/api/insert_item", itemData)
             .then((res) => console.log(res.data))
             .catch((error) => console.error(error));
     };
@@ -50,6 +50,7 @@ const RegistrationForm = () => {
                             type="text"
                             name="title"
                             placeholder="タイトルを入力してください"
+                            autoFocus
                         />
                     </Col>
                 </Form.Group>
@@ -59,7 +60,7 @@ const RegistrationForm = () => {
                     </Form.Label>
                     <Col sm="10">
                         <Form.Select aria-label="カテゴリー" name="category">
-                            <option key="0" value=""></option>
+                            <option key="0" value="0"></option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>

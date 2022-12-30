@@ -28,11 +28,11 @@ class Item extends Model
         return self::create([
             'created_at' => date('Ymd'),
             'updated_at' => date('Ymd'),
+            'filename' => $request->filename,
             'title' => $request->title,
             'category_id' => $request->category_id,
-            'filename' => $request->filename,
-            'comment' => $request->comment,
             'read_time' => $request->read_time,
+            'comment' => $request->comment,
         ]);
     }
 
