@@ -13,7 +13,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return Category::class;
     }
 
-    public function list($searchQuery)
+    public function list()
     {
         $data = $this->model
         ->select('*');

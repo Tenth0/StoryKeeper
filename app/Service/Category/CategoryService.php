@@ -28,7 +28,7 @@ class CategoryService implements CategoryServiceInterface {
         $this->CategoryRepo = $CategoryRepo;
     }
 
-    public function list($searchQuery) {
-        return $this->CategoryRepo->list($searchQuery);
+    public function list() {
+        return $this->CategoryRepo->list();
     }
 }
