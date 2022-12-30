@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\UpdateItemRequest;
-use App\Http\Resources\ItemResource;
 use App\Service\Item\ItemServiceInterface;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Log;
 
 class ItemController extends Controller
 {

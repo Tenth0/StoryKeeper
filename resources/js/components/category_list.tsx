@@ -31,7 +31,7 @@ const CategoryList:React.FC = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>#</th>
+              <th>削除</th>
               <th>タイトル</th>
               <th>カラー</th>
             </tr>

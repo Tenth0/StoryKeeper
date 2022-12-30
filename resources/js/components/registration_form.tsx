@@ -7,7 +7,6 @@ import axios from "axios";
 
 const RegistrationForm = () => {
     const titleRef = useRef<HTMLInputElement>(null);
-    const categoryRef = useRef<HTMLSelectElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);
     const fileRef = useRef<HTMLInputElement>(null);
@@ -24,7 +23,6 @@ const RegistrationForm = () => {
             comment: commentRef.current?.value || '',
         }
         itemData['category_id'] = Number(itemData['category_id'])
-        console.log(itemData)
         axios
             .post("/api/insert_item", itemData)
             .then((res) => console.log(res.data))
