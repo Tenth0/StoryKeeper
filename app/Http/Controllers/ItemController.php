@@ -41,6 +41,12 @@ class ItemController extends Controller
     public function update($id, UpdateItemRequest $request)
     {
         $updateUnit = Item::UpdateItem($id, $request);
-        return redirect()->route('unit_list')->with("create_success", __("Create success"));
+        return redirect()->route('index')->with("create_success", __("Create success"));
+    }
+
+    public function delete($id)
+    {
+        Item::where('id', '=', $id)->delete();
+        return redirect()->route('index')->with("create_success", __("Create success"));
     }
 }
