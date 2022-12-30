@@ -44,10 +44,10 @@ const AddCategory = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        キャンセル
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
-                        Save Changes
+                        追加
                     </Button>
                 </Modal.Footer>
             </Modal>
