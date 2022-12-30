@@ -2,12 +2,35 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+
 
 const AddCategory = () => {
     const [show, setShow] = useState(false);
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    
+        const title = event.currentTarget.title;
+        const color = event.currentTarget.color;
+        if(title === null || color === null ) {
+            return
+        }
+    
+        const categoryData = {
+            title: (title as any).value,
+            color: ( color as HTMLSelectElement).value,
+        }
+    
+        axios.post('/api/add_category',categoryData)
+        .then(res => console.log(res.data))
+        .catch((error) => console.error(error))
+        handleClose();
+    }
+
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
@@ -19,7 +42,7 @@ const AddCategory = () => {
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group
                             className="mb-3"
                             controlId="exampleForm.ControlInput1"
@@ -27,12 +50,13 @@ const AddCategory = () => {
                             <Form.Label>カテゴリー</Form.Label>
                             <Form.Control
                                 type="text"
+                                name="title"
                                 placeholder="カテゴリー名を入力してください"
                                 autoFocus
                             />
                         </Form.Group>
                         <Form.Label htmlFor="selectColor">色</Form.Label>
-                        <Form.Select id="selectColor">
+                        <Form.Select id="selectColor" name="color">
                             <option value="Light">白</option>
                             <option value="Dark">黒</option>
                             <option value="Secondary">灰</option>
