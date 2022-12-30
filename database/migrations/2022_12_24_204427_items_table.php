@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('filename')->nullable();
             $table->text('comment')->nullable();
             $table->date('read_time')->nullable();
-            $table->integer('order');
+            $table->integer('order')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
         });
