@@ -37,4 +37,10 @@ class ItemController extends Controller
         $insertItem = Item::InsertItem($request);
         return redirect()->route('index');
     }
+    
+    public function update($id, UpdateItemRequest $request)
+    {
+        $updateUnit = Item::UpdateItem($id, $request);
+        return redirect()->route('unit_list')->with("create_success", __("Create success"));
+    }
 }
