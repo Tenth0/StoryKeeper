@@ -53,7 +53,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
         $validatedCategory = $request->validate([
             'title' => 'required|string',
-            'color' => 'required|integer',
+            'color' => 'required|string',
             'created_at' => 'required',
             'updated_at' => 'required',
         ]);

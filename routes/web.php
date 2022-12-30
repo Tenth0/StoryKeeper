@@ -13,6 +13,6 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [ItemController::class,'index'])->name('index');
 Route::get('/add_item', [ItemController::class,'addItem'])->name('addItem');
-Route::get('/api/add_item', [ItemController::class,'store'])->name('createItem');
+Route::post('/api/add_item', [ItemController::class,'store'])->name('createItem');
 Route::get('/category_table', [CategoryController::class,'index'])->name('categoryTable');
-Route::get('/category_table/insert_category', [CategoryController::class,'create'])->name('insert_category');
+Route::post('/category_table/insert_category', [CategoryController::class,'insertCategory'])->name('insert_category');

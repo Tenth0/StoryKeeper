@@ -4,32 +4,29 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-
 const AddCategory = () => {
     const [show, setShow] = useState(false);
-    
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-    
+
         const title = event.currentTarget.title;
         const color = event.currentTarget.color;
-        if(title === null || color === null ) {
-            return
-        }
-    
+        // if(!title || !color ) { return }
+
         const categoryData = {
             title: (title as any).value,
-            color: ( color as HTMLSelectElement).value,
-        }
-    
-        axios.post('/category_table/insert_category',categoryData)
-        .then(res => console.log(res.data))
-        .catch((error) => console.error(error))
-        handleClose();
-    }
+            color: (color as HTMLSelectElement).value,
+        };
+        alert(categoryData);
+        axios
+            .post("/category_table/insert_category", categoryData)
+            .then((res) => console.log(res.data))
+            .catch((error) => console.error(error));
+    };
 
     return (
         <>
@@ -66,16 +63,18 @@ const AddCategory = () => {
                             <option value="Danger">黄</option>
                             <option value="Warning">赤</option>
                         </Form.Select>
+                        <Button variant="secondary" onClick={handleClose}>
+                            キャンセル
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            onClick={handleClose}
+                        >
+                            追加
+                        </Button>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        キャンセル
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        追加
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );
