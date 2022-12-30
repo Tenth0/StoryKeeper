@@ -9,4 +9,6 @@ interface CategoryRepositoryInterface extends BaseRepositoryInterface {
     public function list();
 
     public function updateData(array $data, $id);
+
+    public function insertCategory($request);
 }

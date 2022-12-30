@@ -6,4 +6,6 @@ use App\Models\Category;
 
 interface CategoryServiceInterface {
     public function list();
+
+    public function insertCategory($request);
 }

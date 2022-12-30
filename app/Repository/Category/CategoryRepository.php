@@ -48,4 +48,20 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         // return $Category;
     }
 
+    public function insertCategory($request)
+    {
+
+        $validatedCategory = $request->validate([
+            'title' => 'required|string',
+            'color' => 'required|integer',
+            'created_at' => 'required',
+            'updated_at' => 'required',
+        ]);
+
+        $Category = Category::create($validatedCategory);
+
+        $Category->save();
+        return response()->json($Category, 201);
+    }   
+
 }

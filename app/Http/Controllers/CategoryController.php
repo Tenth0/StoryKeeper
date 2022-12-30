@@ -27,6 +27,12 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function insertCategory(CategoryRequest $request)
+    {
+        $category = $this->CategoryService->insertCategory($request);
+        return Inertia::render('index');
+    }
+
     public function create(CategoryRequest $request)
     {
         $insertCategory = Category::InsertCategory($request);
