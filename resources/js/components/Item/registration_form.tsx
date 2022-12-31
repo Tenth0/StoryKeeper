@@ -32,7 +32,7 @@ const RegistrationForm = () => {
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <Form.Group as={Row} className="mb-3" controlId="title">
+                <Form.Group as={Row} className="mb-3" controlId="file">
                     <Form.Label column sm="2">
                         ファイル
                     </Form.Label>
