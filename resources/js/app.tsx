@@ -4,6 +4,7 @@ import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from 'react-dom/client';
+import { RecoilRoot } from 'recoil';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -18,7 +19,9 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         createRoot(container).render(
-            <App {...props} />
+            <RecoilRoot>
+                <App {...props} />
+            </RecoilRoot>
         );
     },
 });
