@@ -4,15 +4,21 @@ import InputForm from "./input_form";
 import Cards from "./cards";
 
 const HomeBody = () => {
-    const Margin = styled.div`
+    const FormMargin = styled.div`
         margin: 16px;
+    `;
+    const CardsMargin = styled.div`
+        margin-left: 16px;
+        margin-right: 16px;
     `;
     return (
         <>
-            <Margin>
+            <FormMargin>
                 <InputForm />
-            </Margin>
-            <Cards />
+            </FormMargin>
+            <CardsMargin>
+                <Cards />
+            </CardsMargin>
         </>
     );
 };
