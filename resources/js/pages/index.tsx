@@ -1,27 +1,14 @@
 import React from 'react'
-import InputForm from '@/components/input_form';
 import NavigationBar from '@/components/navigation_bar';
-import PaginationBar from '@/components/pagination_bar';
-import Cards from '@/components/cards';
-import styled from 'styled-components';
+import HomeBody from '@/components/Home/home_body';
+import HomeFooter from '@/components/Home/home_footer';
 
 const index = () => {
-  const Form = styled(InputForm)`
-    margin: 16px;
-  `;
-
-  const Pagination = styled(PaginationBar)`
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-  `;
-
   return (
     <>
       <NavigationBar />
-      <Form />
-      <Cards />
-      <Pagination />
+      <HomeBody />
+      <HomeFooter />
     </>
   );
 }
