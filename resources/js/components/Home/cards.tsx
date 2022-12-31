@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 const Cards = () => {
   return (
     <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col>
+          {Array.from({ length: 4 }).map((i, idx:number) => (
+            <Col key={idx}>
               <Card>
                 <Card.Body>
                   <Card.Title>タイトル</Card.Title>
