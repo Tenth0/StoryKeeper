@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import NavigationBar from '@/components/navigation_bar';
 import HomeBody from '@/components/Home/home_body';
 import HomeFooter from '@/components/Home/home_footer';
@@ -7,9 +7,10 @@ import { itemsState } from '@/states/items';
 
 const index:React.FC = (props) => {
   const { items }:any = props
-  console.log(items)
   const setItems = useSetRecoilState(itemsState);
-  setItems(items)
+  useEffect(() => {
+    setItems(items)
+  }, [])
   return (
     <>
       <NavigationBar />
