@@ -1,13 +1,11 @@
-import React,{ useRef } from "react";
+import React, { useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import styled from "styled-components";
 
 const RegistrationForm = () => {
-
     const titleRef = useRef<HTMLInputElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);
@@ -18,18 +16,18 @@ const RegistrationForm = () => {
         const selectCategory = event.currentTarget.category.value;
 
         const itemData = {
-            filename: fileRef.current?.value || '',
-            title: titleRef.current?.value || '',
+            filename: fileRef.current?.value || "",
+            title: titleRef.current?.value || "",
             category_id: selectCategory,
-            read_time: readTimeRef.current?.value || '',
-            comment: commentRef.current?.value || '',
-        }
-        itemData['category_id'] = Number(itemData['category_id'])
+            read_time: readTimeRef.current?.value || "",
+            comment: commentRef.current?.value || "",
+        };
+        itemData["category_id"] = Number(itemData["category_id"]);
         axios
             .post("/api/insert_item", itemData)
             .then((res) => console.log(res.data))
-            .catch((error) => console.error(error))
-    }
+            .catch((error) => console.error(error));
+    };
 
     return (
         <>
@@ -39,7 +37,11 @@ const RegistrationForm = () => {
                         ファイル
                     </Form.Label>
                     <Col sm="10">
-                        <Form.Control type="file" name="filename" ref={fileRef} />
+                        <Form.Control
+                            type="file"
+                            name="filename"
+                            ref={fileRef}
+                        />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3" controlId="title">
@@ -74,14 +76,27 @@ const RegistrationForm = () => {
                         読んだ日
                     </Form.Label>
                     <Col sm="10">
-                        <Form.Control type="date" name="read_time" ref={readTimeRef}/>
+                        <Form.Control
+                            type="date"
+                            name="read_time"
+                            ref={readTimeRef}
+                        />
                     </Col>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="comment">
                     <Form.Label>コメント</Form.Label>
-                    <Form.Control as="textarea" name="comment" rows={3} ref={commentRef}/>
+                    <Form.Control
+                        as="textarea"
+                        name="comment"
+                        rows={3}
+                        ref={commentRef}
+                    />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button
+                    variant="primary"
+                    type="submit"
+                    style={{ width: "100%" }}
+                >
                     追加
                 </Button>
             </Form>
