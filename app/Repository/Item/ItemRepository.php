@@ -23,7 +23,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         //     $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
         // }
         // return $data->orderBy('order')->get();
-        return $data;
+        return $data->get();
     }
 
     public function updateData(array $data, $id)

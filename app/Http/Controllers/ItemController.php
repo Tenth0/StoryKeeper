@@ -26,7 +26,7 @@ class ItemController extends Controller
         ];
         
         return Inertia::render('index',[
-            'Items' => $this->ItemService->list($searchQuery),
+            'items' => $this->ItemService->list($searchQuery),
         ]);
     }
 
