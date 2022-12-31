@@ -18,15 +18,12 @@ const Cards : React.FC<{}> = () => {
             <Col key={idx}>
               <Card>
                 <Card.Body>
-                  <Card.Title>タイトル</Card.Title>
+                  <Card.Title>{item.title}</Card.Title>
                   <Card.Text>
-                    長いコメント
-                    This is a longer card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    {item.comment}
                   </Card.Text>
                   <Card.Footer>
-                    確認日時：2022/12/02
+                    {item.read_time}
                   </Card.Footer>
                 </Card.Body>
               </Card>
