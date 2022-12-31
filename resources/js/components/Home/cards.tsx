@@ -4,13 +4,17 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useRecoilValue } from 'recoil';
 import { itemsState } from '@/states/items';
+import { Item } from '@/types';
 
-const Cards = () => {
-  const items = useRecoilValue(itemsState)
-  console.log(items)
+const Cards : React.FC<{}> = () => {
+  const Items = useRecoilValue(itemsState)
+  console.log(Items)
+  if (!Array.isArray(Items)) {
+    return null
+  }
   return (
     <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((i, idx:number) => (
+          {Items.map((item:Item, idx:number) => (
             <Col key={idx}>
               <Card>
                 <Card.Body>
