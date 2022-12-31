@@ -6,11 +6,11 @@ import Cards from '@/components/cards';
 import styled from 'styled-components';
 
 const index = () => {
-  const Space = styled.div`
+  const Form = styled(InputForm)`
     margin: 16px;
   `;
 
-  const Pagination = styled.div`
+  const Pagination = styled(PaginationBar)`
     display: flex;
     justify-content: center;
     margin-top: 8px;
@@ -19,13 +19,9 @@ const index = () => {
   return (
     <>
       <NavigationBar />
-      <Space>
-        <InputForm />
-      </Space>
+      <Form />
       <Cards />
-      <Pagination>
-        <PaginationBar />
-      </Pagination>
+      <Pagination />
     </>
   );
 }
