@@ -2,8 +2,12 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { useRecoilValue } from 'recoil';
+import { itemsState } from '@/states/items';
 
 const Cards = () => {
+  const items = useRecoilValue(itemsState)
+  console.log(items)
   return (
     <Row xs={1} md={2} className="g-4">
           {Array.from({ length: 4 }).map((i, idx:number) => (
