@@ -4,8 +4,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import styled from "styled-components";
 
 const RegistrationForm = () => {
+
     const titleRef = useRef<HTMLInputElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);

@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryList from "@/components/category_list";
-import AddCategory from "@/components/add_category";
+import CategoryList from "@/components/Category/category_list";
+import AddCategory from "@/components/Category/add_category";
 import styled from "styled-components";
 
 const CategoryBody = () => {
@@ -10,12 +10,18 @@ const CategoryBody = () => {
         margin: 16px;
     `;
 
+    const Margin = styled.div`
+        margin: 0px 16px 8px 16px;
+    `;
+
     return (
         <>
-            <Flex >
+            <Flex>
                 <AddCategory />
             </Flex>
+            <Margin>
             <CategoryList />
+            </Margin>
         </>
     );
 };
