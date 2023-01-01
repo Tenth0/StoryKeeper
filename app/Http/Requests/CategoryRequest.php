@@ -28,4 +28,12 @@ class CategoryRequest extends FormRequest
             'color' => 'required|string',
         ];
     }
+    
+    public function attributes()
+    {
+        return [
+            'title' => 'カテゴリー名',
+            'color' => 'カラー',
+        ];
+    }
 }
