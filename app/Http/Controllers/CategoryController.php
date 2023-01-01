@@ -47,7 +47,7 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        Category::where('id', '=', $id)->delete();
+        $category = $this->CategoryService->deleteCategory($id);
         return redirect()->route('index')->with("create_success", __("Create success"));
     }
 }

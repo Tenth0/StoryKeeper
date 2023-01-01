@@ -37,4 +37,9 @@ class CategoryService implements CategoryServiceInterface {
     {
         return $data = $this->CategoryRepo->insertCategory($request);
     }
+    
+    public function deleteCategory($id)
+    {
+        return $this->CategoryRepo->delete($id);
+    }
 }
