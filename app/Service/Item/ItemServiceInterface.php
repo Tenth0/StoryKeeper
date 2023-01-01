@@ -8,4 +8,6 @@ interface ItemServiceInterface {
     public function list($searchQuery);
     
     public function insertItem($request);
+
+    public function deleteItem($request);
 }

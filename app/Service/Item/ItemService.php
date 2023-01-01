@@ -36,6 +36,10 @@ class ItemService implements ItemServiceInterface {
     public function insertItem($request)
     {
         $data = $this->ItemRepo->addItem($request);
+    }
 
+    public function deleteItem($id)
+    {
+        return $this->ItemRepo->delete($id);
     }
 }

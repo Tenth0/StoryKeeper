@@ -53,9 +53,12 @@ class ItemController extends Controller
         return redirect()->route('index')->with("create_success", __("Create success"));
     }
 
-    public function delete($id)
+    public function deleteItem(Request $request)
     {
-        Item::where('id', '=', $id)->delete();
-        return redirect()->route('index')->with("create_success", __("Create success"));
+        $id = $request->input('id');
+        if (!$this->ItemService->deleteItem($id)) {
+            return redirect()->route('itemList')->with("record_not_exist", __("Record not exist"));
+        }
+        return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 }
