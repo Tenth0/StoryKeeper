@@ -18,14 +18,14 @@ class ItemController extends Controller
         $this->ItemService = $ItemService;
     }
 
-    public function index(Request $request)
+    public function list(Request $request)
     {
         $searchQuery = [
             'search_text' => is_null($request->search_text) ? null : $request->search_text,
             'select_category' => is_null($request->category) ? null : $request->category,
         ];
         
-        return Inertia::render('index',[
+        return Inertia::render('itemList',[
             'items' => $this->ItemService->list($searchQuery),
         ]);
     }
@@ -50,7 +50,7 @@ class ItemController extends Controller
     public function update($id, UpdateItemRequest $request)
     {
         $updateUnit = Item::UpdateItem($id, $request);
-        return redirect()->route('index')->with("create_success", __("Create success"));
+        return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 
     public function deleteItem(Request $request)
