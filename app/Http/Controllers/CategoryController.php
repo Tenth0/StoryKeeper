@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $this->CategoryService = $CategoryService;
     }
 
-    public function index()
+    public function list()
     {
         return Inertia::render('category_table',[
             'categories' => $this->CategoryService->list(),
@@ -30,24 +30,26 @@ class CategoryController extends Controller
     public function insertCategory(CategoryRequest $request)
     {
         $category = $this->CategoryService->insertCategory($request);
-        return Inertia::render('index');
+        return Inertia::render('categoryList');
     }
 
     public function create(CategoryRequest $request)
     {
         $insertCategory = Category::InsertCategory($request);
-        return redirect()->route('index');
+        return redirect()->route('categoryList');
     }
     
     public function update($id, UpdateCategoryRequest $request)
     {
         $updateUnit = Category::UpdateCategory($id, $request);
-        return redirect()->route('index')->with("create_success", __("Create success"));
+        return redirect()->route('categoryList')->with("create_success", __("Create success"));
     }
 
     public function delete($id)
     {
-        $category = $this->CategoryService->deleteCategory($id);
-        return redirect()->route('index')->with("create_success", __("Create success"));
+        if (!$this->CategoryService->deleteCategory($id)) {
+            return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));
+        }
+        return redirect()->route('categoryList')->with("create_success", __("Create success"));
     }
 }
