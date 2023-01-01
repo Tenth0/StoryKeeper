@@ -23,6 +23,7 @@ return new class extends Migration
             $table->increments('order');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->boolean('is_favorite')->default(false);
         });
 
         Schema::create('categories', function (Blueprint $table) {
