@@ -10,7 +10,7 @@ import { Category } from "@/types";
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
-    const [show, setShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(
         null
     );
@@ -23,15 +23,15 @@ const CategoryList: React.FC = () => {
         return null;
     }
 
-    const handleClose = () => setShow(false);
-    const handleShow = (category: Category) => {
-        setShow(true);
+    const handleClose = () => setModalShow(false);
+    const handleModalShow = (category: Category) => {
+        setModalShow(true);
         setSelectedCategory(category);
     };
 
     const CategoryModal: React.FC = () => {
         return (
-            <Modal show={show} onHide={handleClose}>
+            <Modal ModalShow={modalShow} onHide={handleClose}>
                 <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
@@ -45,14 +45,14 @@ const CategoryList: React.FC = () => {
         );
     };
 
-    const renderCategoryRows = () => {
+    const CategoryTable = () => {
         return categories.map((category: Category, idx: number) => (
             <tr key={idx}>
                 <td width={"5%"}>{idx + 1}</td>
                 <td width={"5%"}>
                     <Button
                         variant="secondary"
-                        onClick={() => handleShow(category)}
+                        onClick={() => handleModalShow(category)}
                     >
                         <BsFillTrashFill />
                     </Button>
@@ -74,7 +74,7 @@ const CategoryList: React.FC = () => {
                         <th>カラー</th>
                     </tr>
                 </thead>
-                <tbody>{renderCategoryRows()}</tbody>
+                <tbody>{CategoryTable()}</tbody>
             </Table>
             <CategoryModal />
         </>
