@@ -4,8 +4,7 @@ import CategoryBody from '@/components/Category/category_body';
 import { useSetRecoilState } from 'recoil';
 import { categoriesState } from '../states/categories';
 
-const CategoryTable:React.FC = (props) => {
-  const { categories }:any = props;
+const CategoryTable:React.FC = ({categories}:any) => {
   const setCategories = useSetRecoilState(categoriesState);
   useEffect(() => {
     setCategories(categories)
