@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import styled from "styled-components";
 
 const AddCategory = () => {
     const [show, setShow] = useState(false);
