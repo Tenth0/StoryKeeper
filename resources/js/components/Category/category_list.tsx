@@ -6,14 +6,13 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
+import axios from 'axios';
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
     const [modalShow, setModalShow] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-        null
-    );
+    const [selectedCategory, setSelectedCategory] = useState<number>();
 
     useEffect(() => {
         console.log(categories);
@@ -23,21 +22,28 @@ const CategoryList: React.FC = () => {
         return null;
     }
 
-    const handleClose = () => setModalShow(false);
-    const handleModalShow = (category: Category) => {
+    const deleteCategory = () => {
+      setModalShow(false);
+      axios
+        .post("/category_table/delete_category", {id:selectedCategory})
+        .then((res) => console.log(res.data))
+        .catch((error) => console.error(error));
+    }
+
+    const handleModalShow = (id: number) => {
         setModalShow(true);
-        setSelectedCategory(category);
+        setSelectedCategory(id);
     };
 
     const CategoryModal: React.FC = () => {
         return (
-            <Modal ModalShow={modalShow} onHide={handleClose}>
+            <Modal show={modalShow} onHide={() => setModalShow(false)}>
                 <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={() => setModalShow(false)}>
                         キャンセル
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={deleteCategory}>
                         削除
                     </Button>
                 </Modal.Footer>
@@ -52,7 +58,7 @@ const CategoryList: React.FC = () => {
                 <td width={"5%"}>
                     <Button
                         variant="secondary"
-                        onClick={() => handleModalShow(category)}
+                        onClick={() => handleModalShow(category.id)}
                     >
                         <BsFillTrashFill />
                     </Button>

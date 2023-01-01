@@ -45,7 +45,7 @@ class CategoryController extends Controller
         return redirect()->route('categoryList')->with("create_success", __("Create success"));
     }
 
-    public function delete($id)
+    public function deleteCategory($id)
     {
         if (!$this->CategoryService->deleteCategory($id)) {
             return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));

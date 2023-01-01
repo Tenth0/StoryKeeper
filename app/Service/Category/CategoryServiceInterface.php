@@ -8,4 +8,6 @@ interface CategoryServiceInterface {
     public function list();
 
     public function insertCategory($request);
+
+    public function deleteCategory($id);
 }
