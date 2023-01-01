@@ -3,22 +3,31 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
+    const setCategories = useSetRecoilState(categoriesState);
+    const [show, setShow] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+        null
+    );
+
     useEffect(() => {
         console.log(categories);
     }, [categories]);
+
     if (!Array.isArray(categories)) {
         return null;
     }
-    const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (category: Category) => {
+        setShow(true);
+        setSelectedCategory(category);
+    };
 
     const CategoryModal: React.FC = () => {
         return (
@@ -41,7 +50,10 @@ const CategoryList: React.FC = () => {
             <tr key={idx}>
                 <td width={"5%"}>{idx + 1}</td>
                 <td width={"5%"}>
-                    <Button variant="secondary" onClick={handleShow}>
+                    <Button
+                        variant="secondary"
+                        onClick={() => handleShow(category)}
+                    >
                         <BsFillTrashFill />
                     </Button>
                 </td>
@@ -68,4 +80,5 @@ const CategoryList: React.FC = () => {
         </>
     );
 };
+
 export default CategoryList;
