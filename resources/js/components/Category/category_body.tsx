@@ -20,7 +20,7 @@ const CategoryBody = () => {
                 <AddCategory />
             </Flex>
             <Margin>
-            <CategoryList />
+                <CategoryList />
             </Margin>
         </>
     );

@@ -3,8 +3,16 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BsFillTrashFill } from "react-icons/bs";
+import { useRecoilValue } from 'recoil';
+import { categoriesState } from '../../states/categories';
+import { Category } from '../../types';
 
 const CategoryList:React.FC = () => {
+    const Categories = useRecoilValue(categoriesState)
+    console.log(Categories)
+    if (!Array.isArray(Categories)) {
+      return null
+    }
     const [show, setShow] = useState(false)
 
     const handleClose = () => setShow(false)
