@@ -10,6 +10,7 @@ use App\Http\Resources\CategoryResource;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Laravel\Ui\Presets\React;
 
 class CategoryController extends Controller
 {
@@ -45,8 +46,9 @@ class CategoryController extends Controller
         return redirect()->route('categoryList')->with("create_success", __("Create success"));
     }
 
-    public function deleteCategory($id)
+    public function deleteCategory(Request $request)
     {
+        $id = $request->input('id');
         if (!$this->CategoryService->deleteCategory($id)) {
             return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));
         }
