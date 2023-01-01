@@ -31,4 +31,12 @@ class ItemRequest extends FormRequest
             'read_time' => 'nullable|date',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'タイトル',
+            'category_id' => 'カテゴリー',
+        ];
+    }
 }
