@@ -7,8 +7,7 @@ import axios from "axios";
 const AddCategory = () => {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [errors,setErrors] = useState<{title: string; color: string}>({});
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -23,17 +22,23 @@ const AddCategory = () => {
         
         axios
             .post("/category_table/insert_category", categoryData)
-            .then((res) => console.log(res.data))
-            .catch((error) => console.error(error));
+            .then(() => {
+                setShow(false)
+                setErrors({title:'',color:''})
+            })
+            .catch((error) => setErrors({
+                title: error.response.data.errors.title,
+                color: error.response.data.errors.color,
+            }))
     };
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" onClick={() => setShow(true)}>
                 カテゴリー追加
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
@@ -50,6 +55,7 @@ const AddCategory = () => {
                                 placeholder="カテゴリー名を入力してください"
                                 autoFocus
                             />
+                            {errors.title && <p>{errors.title}</p>}
                         </Form.Group>
                         <Form.Label htmlFor="selectColor">色</Form.Label>
                         <Form.Select id="selectColor" name="color">
@@ -62,13 +68,13 @@ const AddCategory = () => {
                             <option value="Danger">黄</option>
                             <option value="Warning">赤</option>
                         </Form.Select>
-                        <Button variant="secondary" onClick={handleClose}>
+                            {errors.color && <p>{errors.color}</p>}
+                        <Button variant="secondary" onClick={() => setShow(false)}>
                             キャンセル
                         </Button>
                         <Button
                             type="submit"
                             variant="primary"
-                            onClick={handleClose}
                         >
                             追加
                         </Button>
