@@ -31,6 +31,9 @@ const CategoryList: React.FC = () => {
     };
 
     const updateCategory = (id: number) => {
+        if (categoryTitles[id] === "") {
+            return;
+        }
         setEditTitle(null);
         const updatedCategory = categories.map((category) =>
             category.id === id
