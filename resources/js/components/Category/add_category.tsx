@@ -15,6 +15,10 @@ const AddCategory = () => {
         color: red;
     `;
 
+    const ButtonFlex = styled.div`
+        margin-top: 8px;
+    `;
+
     const [show, setShow] = useState(false)
 
     const [errors, setErrors] = useState<{ title: string; color: string }>({});
@@ -89,15 +93,17 @@ const AddCategory = () => {
                         {errors.color && (
                             <ErrorMessage>{errors.color}</ErrorMessage>
                         )}
-                        <Button
-                            variant="secondary"
-                            onClick={() => setShow(false)}
-                        >
-                            キャンセル
-                        </Button>
-                        <Button type="submit" variant="primary">
-                            追加
-                        </Button>
+                        <ButtonFlex>
+                            <Button
+                                variant="secondary"
+                                onClick={() => setShow(false)}
+                                >
+                                キャンセル
+                            </Button>
+                            <Button type="submit" variant="primary">
+                                追加
+                            </Button>
+                        </ButtonFlex>
                     </Form>
                 </Modal.Body>
             </Modal>
