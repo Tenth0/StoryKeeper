@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Repository\Item\ItemRepositoryInterface;
 use App\Repository\Category\CategoryRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CategoryService implements CategoryServiceInterface {
 
@@ -41,5 +42,12 @@ class CategoryService implements CategoryServiceInterface {
     public function deleteCategory($id)
     {
         return $this->CategoryRepo->delete($id);
+    }
+
+    public function updatedCategory($id,$title)
+    {
+        $data = $this->CategoryRepo->update($id,$title);
+        Log::debug($data);
+        return $data;
     }
 }

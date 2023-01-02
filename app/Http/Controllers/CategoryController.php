@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Laravel\Ui\Presets\React;
 
@@ -40,10 +41,16 @@ class CategoryController extends Controller
         return redirect()->route('categoryList');
     }
     
-    public function update($id, UpdateCategoryRequest $request)
+    public function updateCategory(UpdateCategoryRequest $request)
     {
-        $updateUnit = Category::UpdateCategory($id, $request);
-        return redirect()->route('categoryList')->with("create_success", __("Create success"));
+
+        $id = $request->input('id');
+        $title = $request->input('title');
+        // $color = $request->input('color',null);
+        if (!$this->CategoryService->updatedCategory($id,$title)) {
+            return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));
+        }
+        return redirect()->route('categoryList')->with("update_success", __("Update success"));
     }
 
     public function deleteCategory(Request $request)

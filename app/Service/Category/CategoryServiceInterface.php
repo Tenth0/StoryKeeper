@@ -10,4 +10,6 @@ interface CategoryServiceInterface {
     public function insertCategory($request);
 
     public function deleteCategory($id);
+
+    public function updatedCategory($id,$title);
 }

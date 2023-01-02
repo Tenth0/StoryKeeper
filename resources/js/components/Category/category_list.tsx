@@ -40,7 +40,7 @@ const CategoryList: React.FC = () => {
         // 型
         setCategories(Object.values(updatedCategory));
         axios
-        .post("/categories/update", { id: id,title: categoryTitles[id], })
+        .post("/categories/update", { id: id,title: categoryTitles[id] })
         .then((res) => console.log(res.data))
         .catch((error) => console.error(error))
     };
