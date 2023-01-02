@@ -6,6 +6,11 @@ import axios from "axios";
 import styled from "styled-components";
 
 const AddCategory = () => {
+
+    const ErrorMessage = styled.p`
+        color:red;
+    `;
+
     const [show, setShow] = useState(false);
 
     const [errors,setErrors] = useState<{title: string; color: string}>({});
@@ -56,7 +61,7 @@ const AddCategory = () => {
                                 placeholder="カテゴリー名を入力してください"
                                 autoFocus
                             />
-                            {errors.title && <p>{errors.title}</p>}
+                            {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
                         </Form.Group>
                         <Form.Label htmlFor="selectColor">色</Form.Label>
                         <Form.Select id="selectColor" name="color">
@@ -69,7 +74,7 @@ const AddCategory = () => {
                             <option value="Danger">黄</option>
                             <option value="Warning">赤</option>
                         </Form.Select>
-                            {errors.color && <p>{errors.color}</p>}
+                            {errors.color && <ErrorMessage>{errors.color}</ErrorMessage>}
                         <Button variant="secondary" onClick={() => setShow(false)}>
                             キャンセル
                         </Button>
