@@ -7,13 +7,14 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
     const [modalShow, setModalShow] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<number>();
-
+    const { t } = useTranslation()
     useEffect(() => {
         console.log(categories)
     }, [categories])
@@ -70,7 +71,7 @@ const CategoryList: React.FC = () => {
                     </Button>
                 </td>
                 <td>{category.title}</td>
-                <td>{category.color}</td>
+                <td>{t(`color.${category.color}`)}</td>
             </tr>
         ))
     }
