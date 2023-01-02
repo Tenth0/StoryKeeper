@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'required' => ':attributeを入力してください',
-    'category_id.required' => ':attributeを選択してください'
+    'required' => ':attributeが入力されていません',
+    'category_id.required' => ':attributeを選択されていません'
 ];

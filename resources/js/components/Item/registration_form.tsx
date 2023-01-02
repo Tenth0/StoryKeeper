@@ -11,15 +11,15 @@ const ErrorMessage = styled.p`
 `;
 
 const RegistrationForm = () => {
-    const [errors, setErrors] = useState<{ title: string }>({});
-    const titleRef = useRef<HTMLInputElement>(null);
-    const readTimeRef = useRef<HTMLInputElement>(null);
-    const commentRef = useRef<HTMLTextAreaElement>(null);
-    const fileRef = useRef<HTMLInputElement>(null);
+    const [errors, setErrors] = useState<{ title: string }>({})
+    const titleRef = useRef<HTMLInputElement>(null)
+    const readTimeRef = useRef<HTMLInputElement>(null)
+    const commentRef = useRef<HTMLTextAreaElement>(null)
+    const fileRef = useRef<HTMLInputElement>(null)
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const selectCategory = event.currentTarget.category.value;
+        event.preventDefault()
+        const selectCategory = event.currentTarget.category.value
 
         const itemData = {
             filename: fileRef.current?.value || "",
@@ -27,21 +27,21 @@ const RegistrationForm = () => {
             category_id: selectCategory,
             read_time: readTimeRef.current?.value || "",
             comment: commentRef.current?.value || "",
-        };
-        itemData.category_id = Number(itemData.category_id);
+        }
+        itemData.category_id = Number(itemData.category_id)
 
         axios
             .post("/api/insert_item", itemData)
             .then((res) => {
-                setErrors({ title: "" });
+                setErrors({ title: "" })
             })
             .catch((error) => {
-                console.error(error);
+                console.error(error)
                 setErrors({
                     title: error.response.data.errors.title,
-                });
-            });
-    };
+                })
+            })
+    }
 
     return (
         <>
@@ -70,10 +70,10 @@ const RegistrationForm = () => {
                             autoFocus
                             ref={titleRef}
                         />
+                        {errors.title && (
+                            <ErrorMessage>{errors.title}</ErrorMessage>
+                        )}
                     </Col>
-                    {errors.title && (
-                        <ErrorMessage>{errors.title}</ErrorMessage>
-                    )}
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3" controlId="category">
                     <Form.Label column sm="2">
@@ -114,6 +114,6 @@ const RegistrationForm = () => {
                 </Button>
             </Form>
         </>
-    );
-};
-export default RegistrationForm;
+    )
+}
+export default RegistrationForm
