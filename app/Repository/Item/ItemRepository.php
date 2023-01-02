@@ -52,7 +52,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         return $Item;
         */
     }
-    public function addItem($request)
+    public function insertItem($request)
     {
 
         $validatedItem = $request->validate([
@@ -66,6 +66,8 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         $item = Item::create($validatedItem);
 
         $item->save();
-        return response()->json($item, 201);
+        return response()->json([
+            'title' => $item->title,
+        ],201);
     }   
 }

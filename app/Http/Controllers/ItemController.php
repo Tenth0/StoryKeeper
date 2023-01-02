@@ -30,9 +30,10 @@ class ItemController extends Controller
         ]);
     }
 
-    public function insertItem()
+    public function insertItem($request)
     {
-        return Inertia::render('insert_item');
+        $Item = $this->ItemService->insertItem($request);
+        return $Item;
     }
 
     public function create(ItemRequest $request)
