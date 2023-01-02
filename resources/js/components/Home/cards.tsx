@@ -17,8 +17,11 @@ const Cards: React.FC<{}> = () => {
             {items.map((item: Item, idx: number) => (
                 <Col key={idx}>
                     <Card>
-                        <Card.Body>
+                        <Card.Header>
                             <Card.Title>{item.title}</Card.Title>
+
+                        </Card.Header>
+                        <Card.Body>
                             <Card.Text>{item.comment}</Card.Text>
                             <Card.Footer>{item.read_time}</Card.Footer>
                         </Card.Body>

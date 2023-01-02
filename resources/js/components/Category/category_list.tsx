@@ -10,10 +10,10 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 const CategoryList: React.FC = () => {
-    const categories = useRecoilValue(categoriesState);
-    const setCategories = useSetRecoilState(categoriesState);
-    const [modalShow, setModalShow] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<number>();
+    const categories = useRecoilValue(categoriesState)
+    const setCategories = useSetRecoilState(categoriesState)
+    const [modalShow, setModalShow] = useState(false)
+    const [selectedCategory, setSelectedCategory] = useState<number>()
     const { t } = useTranslation()
     useEffect(() => {
         console.log(categories)
@@ -25,7 +25,7 @@ const CategoryList: React.FC = () => {
 
     const deleteCategory = () => {
         // 型
-        const newCategories: Category[] = categories.filter((category) => category.id !== selectedCategory);
+        const newCategories: Category[] = categories.filter((category) => category.id !== selectedCategory)
         setCategories(newCategories)
         setModalShow(false)
         axios
