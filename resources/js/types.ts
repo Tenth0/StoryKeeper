@@ -9,7 +9,10 @@ export type Item = {
 }
 
 export type Category = {
-    id:number,
-    title:string,
-    color:string,
-}
+    id: number;
+    title: string;
+    color: Color;
+  };
+  
+  export type Color = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | 'light';
+  

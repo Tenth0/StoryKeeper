@@ -4,11 +4,11 @@ import { useRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 import { useTranslation } from "react-i18next";
-import axios from 'axios';
+import axios from "axios";
 import HandleModalShow from "./category_delete";
 
 const CategoryList: React.FC = () => {
-    const [categories,setCategories] = useRecoilState(categoriesState);
+    const [categories, setCategories] = useRecoilState(categoriesState);
     const [editTitle, setEditTitle] = useState<number | null>(null);
     const [categoryTitles, setCategoryTitles] = useState<
         Record<number, string>
@@ -30,21 +30,22 @@ const CategoryList: React.FC = () => {
         setCategoryTitles({ ...categoryTitles, [id]: newTitle });
     };
 
-    const updateCategory = (id:number) => {
-        setEditTitle(null)
+    const updateCategory = (id: number) => {
+        setEditTitle(null);
         const updatedCategory = categories.map((category) =>
-        category.id === id
-            ? { ...category, title: categoryTitles[id] }
-            : category
-    );
-        setCategories(Object.values(updatedCategory))
+            category.id === id
+                ? { ...category, title: categoryTitles[id] }
+                : category
+        );
+        setCategories: (newValue: Category[]) =>
+            void Object.values(updatedCategory);
         /*
         axios
         .post("/category_table/update_category", { id: id,title: categoryTitles[id], })
         .then((res) => console.log(res.data))
         .catch((error) => console.error(error))
         */
-    }
+    };
 
     return (
         <>
