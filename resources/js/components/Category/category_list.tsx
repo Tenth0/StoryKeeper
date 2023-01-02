@@ -18,19 +18,22 @@ const CategoryList: React.FC = () => {
     }
 
     const CategoryTable = () => {
-        return categories.map((category: Category, idx: number) => (
-            <tr key={category.id}>
-                <td width={"5%"}>{idx + 1}</td>
-                <td width={"5%"}>
-                    <HandleModalShow id={(category.id)}>
-
-                    </HandleModalShow>
-                </td>
-                <td>{category.title}</td>
-                <td>{t(`color.${category.color}`)}</td>
-            </tr>
-        ))
+        return (
+            <>
+                {categories.map((category: Category, idx: number) => (
+                    <tr key={category.id}>
+                        <td width={"5%"}>{idx + 1}</td>
+                        <td width={"5%"}>
+                            <HandleModalShow id={category.id} />
+                        </td>
+                        <td>{category.title}</td>
+                        <td>{t(`color.${category.color}`)}</td>
+                    </tr>
+                ))}
+            </>
+        )
     }
+    
 
     return (
         <>
