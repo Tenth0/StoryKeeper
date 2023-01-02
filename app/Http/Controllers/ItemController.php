@@ -36,16 +36,15 @@ class ItemController extends Controller
         return $Item;
     }
 
-    public function create(ItemRequest $request)
+    public function insertFormItem()
     {
-        $insertItem = Item::InsertItem($request);
-        return redirect()->route('insertItem');
+        return Inertia::render('insert_item');
     }
 
     public function store(Request $request)
     {
         $this->ItemService->insertItem($request);
-        return redirect()->route('insertItem')->with("create_success", __("Create success"));
+        return redirect()->route('insertFormItem')->with("create_success", __("Create success"));
     }
     
     public function update($id, UpdateItemRequest $request)
