@@ -37,13 +37,13 @@ class Item extends Model
     public function UpdateItem( $id , $request)
     {
         return self::where('id', '=', $id )->update([
-            'created_at' => date("Ymd"),
-            'updated_at' => date("His"),
             'title' => $request->title,
             'category_id' => $request->category_id,
             'filename' => $request->filename,
             'comment' => $request->comment,
             'read_time' => $request->read_time,
+            'created_at' => date("Ymd"),
+            'updated_at' => date("His"),
         ]);
     }
 

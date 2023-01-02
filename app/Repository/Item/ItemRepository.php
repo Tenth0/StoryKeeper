@@ -15,7 +15,16 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
     public function list($searchQuery)
     {
-        $data = $this->model->select('*');
+        $data = $this->model->select(
+            'id',
+            'title',
+            'category_id',
+            'filename',
+            'comment',
+            'read_time',
+            'order',
+            'is_favorite',
+        );
         // if (!empty($searchQuery['search_text'])) {
         //     $data = $data->where('title', 'LIKE', '%' . $searchQuery['search_text'] . '%');
         // }

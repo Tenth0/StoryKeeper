@@ -20,20 +20,20 @@ class Category extends Model
     public function InsertCategory($request)
     {
         return self::create([
-            'created_at' => date('Ymd'),
-            'updated_at' => date('Ymd'),
             'title' => $request->title,
             'color' => $request->color,
+            'created_at' => date('Ymd'),
+            'updated_at' => date('Ymd'),
         ]);
     }
 
     public function UpdateCategory( $id , $request)
     {
         return self::where('id', '=', $id )->update([
-            'created_at' => date("Ymd"),
-            'updated_at' => date("His"),
             'title' => $request->title,
             'color' => $request->color,
+            'created_at' => date("Ymd"),
+            'updated_at' => date("His"),
         ]);
     }
 
