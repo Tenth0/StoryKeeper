@@ -17,7 +17,7 @@ const CardsDelete = () => {
         setItems(newItems)
         setModalShow(false)
         axios
-            .post("/Item_table/delete_Item", { id: selectedItem })
+            .post("/item_list/delete_item", { id: selectedItem })
             .then((res) => console.log(res.data))
             .catch((error) => console.error(error))
     }

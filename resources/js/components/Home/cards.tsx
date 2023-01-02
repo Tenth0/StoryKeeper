@@ -2,6 +2,8 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/esm/Button";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
@@ -18,8 +20,16 @@ const Cards: React.FC<{}> = () => {
                 <Col key={idx}>
                     <Card>
                         <Card.Header>
-                            <Card.Title>{item.title}</Card.Title>
-
+                            <Row xs={2} md={2} className="g-4">
+                                <Card.Title>{item.title}</Card.Title>
+                                <Button
+                                    variant="light"
+                                    //onClick={() => handleModalShow(category.id)}
+                                >
+                                    <BsHeart />
+                                    <BsHeartFill />
+                                </Button>
+                            </Row>
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>{item.comment}</Card.Text>
