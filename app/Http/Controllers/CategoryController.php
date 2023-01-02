@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function insertCategory(CategoryRequest $request)
     {
         $category = $this->CategoryService->insertCategory($request);
-        return Inertia::render('categoryList');
+        return $category;
     }
 
     public function create(CategoryRequest $request)
