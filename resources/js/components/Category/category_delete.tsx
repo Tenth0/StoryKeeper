@@ -20,7 +20,7 @@ const CategoryModal: React.FC<{
         setCategories(newCategories)
         setModalShow(false)
         axios
-            .post("/category_table/delete_category", { id: selectedCategory })
+            .post("/categories/delete", { id: selectedCategory })
             .then((res) => console.log(res.data))
             .catch((error) => console.error(error))
     }

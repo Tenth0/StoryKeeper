@@ -37,14 +37,12 @@ const CategoryList: React.FC = () => {
                 ? { ...category, title: categoryTitles[id] }
                 : category
         );
-        setCategories: (newValue: Category[]) =>
-            void Object.values(updatedCategory);
-        /*
+        // 型
+        setCategories(Object.values(updatedCategory));
         axios
-        .post("/category_table/update_category", { id: id,title: categoryTitles[id], })
+        .post("/categories/update", { id: id,title: categoryTitles[id], })
         .then((res) => console.log(res.data))
         .catch((error) => console.error(error))
-        */
     };
 
     return (

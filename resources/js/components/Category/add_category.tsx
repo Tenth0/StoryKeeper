@@ -37,7 +37,7 @@ const AddCategory = () => {
         };
 
         axios
-            .post("/category_table/insert_category", categoryData)
+            .post('/categories/insert', categoryData)
             .then((res) => {
                 setShow(false);
                 setErrors({ title: "", color: "" });
