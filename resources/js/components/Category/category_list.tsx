@@ -15,29 +15,28 @@ const CategoryList: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<number>();
 
     useEffect(() => {
-        console.log(categories);
-    }, [categories]);
+        console.log(categories)
+    }, [categories])
 
     if (!Array.isArray(categories)) {
-        return null;
+        return null
     }
 
     const deleteCategory = () => {
         // 型
-        setCategories(
-            categories.filter((item) => item.id !== selectedCategory)
-        );
-        setModalShow(false);
+        const newCategories: Category[] = categories.filter((category) => category.id !== selectedCategory);
+        setCategories(newCategories)
+        setModalShow(false)
         axios
             .post("/category_table/delete_category", { id: selectedCategory })
             .then((res) => console.log(res.data))
-            .catch((error) => console.error(error));
-    };
-
+            .catch((error) => console.error(error))
+    }
+    
     const handleModalShow = (id: number) => {
-        setModalShow(true);
-        setSelectedCategory(id);
-    };
+        setModalShow(true)
+        setSelectedCategory(id)
+    }
 
     const CategoryModal: React.FC = () => {
         return (
@@ -55,8 +54,8 @@ const CategoryList: React.FC = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        );
-    };
+        )
+    }
 
     const CategoryTable = () => {
         return categories.map((category: Category, idx: number) => (
@@ -73,8 +72,8 @@ const CategoryList: React.FC = () => {
                 <td>{category.title}</td>
                 <td>{category.color}</td>
             </tr>
-        ));
-    };
+        ))
+    }
 
     return (
         <>
@@ -91,7 +90,7 @@ const CategoryList: React.FC = () => {
             </Table>
             <CategoryModal />
         </>
-    );
-};
+    )
+}
 
-export default CategoryList;
+export default CategoryList

@@ -6,41 +6,46 @@ import axios from "axios";
 import styled from "styled-components";
 import { categoriesState } from "@/states/categories";
 import { useSetRecoilState, useRecoilValue } from "recoil";
+import { Category } from "@/types";
 
 const AddCategory = () => {
-    const categories = useRecoilValue(categoriesState);
-    const setCategories = useSetRecoilState(categoriesState);
-    const ErrorMessage = styled.p `color: red;`;
+    const categories = useRecoilValue(categoriesState)
+    const setCategories = useSetRecoilState(categoriesState)
+    const ErrorMessage = styled.p`
+        color: red;
+    `;
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false)
 
     const [errors, setErrors] = useState<{ title: string; color: string }>({});
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const title = event.currentTarget.title;
-        const color = event.currentTarget.color;
+        const title = event.currentTarget.title
+        const color = event.currentTarget.color
 
         const categoryData = {
             title: (title as any).value,
             color: (color as HTMLSelectElement).value,
-        };
+        }
 
         axios
             .post("/category_table/insert_category", categoryData)
             .then((res) => {
-                setShow(false);
-                setErrors({ title: "", color: "" });
-                setCategories([...categories, res.data]);
+                setShow(false)
+                setErrors({ title: "", color: "" })
+                // 型
+                const newCategories: Category[] = [...categories, res.data]
+                setCategories(newCategories)
             })
             .catch((error) =>
                 setErrors({
                     title: error.response.data.errors.title,
                     color: error.response.data.errors.color,
                 })
-            );
-    };
+            )
+    }
 
     return (
         <>
@@ -96,7 +101,7 @@ const AddCategory = () => {
                 </Modal.Body>
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default AddCategory;
+export default AddCategory
