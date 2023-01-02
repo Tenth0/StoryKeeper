@@ -1,4 +1,12 @@
 {
-    "hello": "hello",
-    "goodbye": "goodbye"
-  }
+    "color": {
+        "Light":"White",
+        "Dark":"Black",
+        "Secondary":"Gray",
+        "Primary":"Blue",
+        "Info":"Light Blue",
+        "Success":"Green",
+        "Danger":"Yellow",
+        "Warning":"Red"
+    }
+}
