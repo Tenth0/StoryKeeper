@@ -31,7 +31,7 @@ class ItemController extends Controller
         ]);
     }
 
-    public function insertItem(Request $request)
+    public function insertItem(ItemRequest $request)
     {
         $Item = $this->ItemService->insertItem($request);
         return $Item;

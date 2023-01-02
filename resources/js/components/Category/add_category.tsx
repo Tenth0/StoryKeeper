@@ -26,6 +26,7 @@ const AddCategory = () => {
         const color = event.currentTarget.color
 
         const categoryData = {
+            // 型
             title: (title as any).value,
             color: (color as HTMLSelectElement).value,
         }
