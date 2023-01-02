@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
@@ -8,6 +8,10 @@ import HandleModalShow from "./category_delete";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
+    const [editTitle, setEditTitle] = useState<number | null>(null);
+    const [categoryTitles, setCategoryTitles] = useState<
+        Record<number, string>
+    >({});
     const { t } = useTranslation();
     useEffect(() => {
         console.log(categories);
@@ -16,6 +20,14 @@ const CategoryList: React.FC = () => {
     if (!Array.isArray(categories)) {
         return null;
     }
+
+    const changeTitle = (
+        id: number,
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const newTitle = event.target.value;
+        setCategoryTitles({ ...categoryTitles, [id]: newTitle });
+    };
 
     return (
         <>
@@ -35,7 +47,25 @@ const CategoryList: React.FC = () => {
                             <td width={"5%"}>
                                 <HandleModalShow id={category.id} />
                             </td>
-                            <td>{category.title}</td>
+                            <td
+                                onDoubleClick={() => setEditTitle(category.id)}
+                                onBlur={() => setEditTitle(null)}
+                            >
+                                {editTitle === category.id ? (
+                                    <input
+                                        type="text"
+                                        value={
+                                            categoryTitles[category.id] ||
+                                            category.title
+                                        }
+                                        onChange={(event) =>
+                                            changeTitle(category.id, event)
+                                        }
+                                    ></input>
+                                ) : (
+                                    category.title
+                                )}
+                            </td>
                             <td>{t(`color.${category.color}`)}</td>
                         </tr>
                     ))}
