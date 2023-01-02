@@ -1,0 +1,12 @@
+{
+    "hello": "こんにちは",
+    "goodbye": "さようなら",
+    "Light":"白色",
+    "Dark":"黒色",
+    "Secondary":"灰色",
+    "Primary":"青色",
+    "Info":"水色",
+    "Success":"緑色",
+    "Danger":"黄色",
+    "Warning":"赤色"
+}
