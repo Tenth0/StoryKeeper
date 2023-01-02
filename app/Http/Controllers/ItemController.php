@@ -7,6 +7,7 @@ use App\Http\Requests\ItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Service\Item\ItemServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -30,7 +31,7 @@ class ItemController extends Controller
         ]);
     }
 
-    public function insertItem($request)
+    public function insertItem(Request $request)
     {
         $Item = $this->ItemService->insertItem($request);
         return $Item;
