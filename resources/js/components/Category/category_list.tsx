@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue,useSetRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 import axios from 'axios';
@@ -23,6 +23,8 @@ const CategoryList: React.FC = () => {
     }
 
     const deleteCategory = () => {
+        // 型
+        setCategories(categories.filter(item => item.id !== selectedCategory))
       setModalShow(false);
       axios
         .post("/category_table/delete_category", {id:selectedCategory})
@@ -53,7 +55,7 @@ const CategoryList: React.FC = () => {
 
     const CategoryTable = () => {
         return categories.map((category: Category, idx: number) => (
-            <tr key={idx}>
+            <tr key={category.id}>
                 <td width={"5%"}>{idx + 1}</td>
                 <td width={"5%"}>
                     <Button

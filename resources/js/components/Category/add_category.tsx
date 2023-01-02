@@ -4,9 +4,11 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import styled from "styled-components";
+import { categoriesState } from "@/states/categories";
+import { useSetRecoilState } from 'recoil';
 
 const AddCategory = () => {
-
+    const setCategories = useSetRecoilState(categoriesState);
     const ErrorMessage = styled.p`
         color:red;
     `;
