@@ -31,10 +31,13 @@ class Category extends Model
 
     public function updateCategory($request)
     {
-        return self::where('id', '=', $request->id )->update([
-            'title' => $request->title,
-            'color' => $request->color,
-            'updated_at' => Carbon::now()->format('Ymd'),
-        ]);
+        $category = self::find($request->id);
+        if ($category) {
+            $category->title = $request->title;
+            $category->color = $request->color;
+            $category->updated_at = Carbon::now()->format('Ymd');
+            $category->save();
+        }
+        return $category;
     }
 }

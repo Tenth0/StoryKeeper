@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         $id = $request->input('id');
         $title = $request->input('title');
-        // $color = $request->input('color',null);
+        $color = $request->input('color',null);
         if (!$this->CategoryService->updatedCategory($id,$title)) {
             return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));
         }

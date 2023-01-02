@@ -54,9 +54,9 @@ class CategoryService implements CategoryServiceInterface {
             if(!$category) {
                 return null;
             }
-
-            $category->saveWithTimestamps();
-            
+            $category->title = $title;
+            $category->save();
+            DB::commit();
             return $category;
         } catch(Exception $e) {
             Log::error('カテゴリー更新時にエラーが発生しました');
