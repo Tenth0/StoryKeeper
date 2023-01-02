@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ModelTrait;
 
 class Item extends Model
 {
     use HasFactory;
+    use ModelTrait;
     protected $table = 'items';
     public $primaryKey = 'id';
     public $timestamps = true;

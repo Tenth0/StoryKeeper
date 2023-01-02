@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ModelTrait;
 
 class Category extends Model
 {
     use HasFactory;
+    use ModelTrait;
     public $primaryKey = 'id';
     public $timestamps = true;
     protected $table = 'categories';

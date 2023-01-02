@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Repository\Item\ItemRepositoryInterface;
 use App\Repository\Category\CategoryRepositoryInterface;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -46,8 +47,23 @@ class CategoryService implements CategoryServiceInterface {
 
     public function updatedCategory($id,$title)
     {
-        $data = $this->CategoryRepo->update($id,$title);
-        Log::debug($data);
-        return $data;
+        try {
+            DB::beginTransaction();
+            
+            $category = Category::select('*')->where('id',$id)->first();
+            if(!$category) {
+                return null;
+            }
+
+            $category->saveWithTimestamps();
+            
+            return $category;
+        } catch(Exception $e) {
+            Log::error('カテゴリー更新時にエラーが発生しました');
+            Log::error($e);
+            DB::rollBack();
+
+            return null;
+        }
     }
 }
