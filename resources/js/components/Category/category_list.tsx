@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { BsFillTrashFill } from "react-icons/bs";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
+import HandleModalShow from "./category_delete";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState)
@@ -25,12 +22,9 @@ const CategoryList: React.FC = () => {
             <tr key={category.id}>
                 <td width={"5%"}>{idx + 1}</td>
                 <td width={"5%"}>
-                    <Button
-                        variant="secondary"
-                        onClick={() => handleModalShow(category.id)}
-                    >
-                        <BsFillTrashFill />
-                    </Button>
+                    <HandleModalShow id={(category.id)}>
+
+                    </HandleModalShow>
                 </td>
                 <td>{category.title}</td>
                 <td>{t(`color.${category.color}`)}</td>
@@ -51,7 +45,6 @@ const CategoryList: React.FC = () => {
                 </thead>
                 <tbody>{CategoryTable()}</tbody>
             </Table>
-            <CategoryModal />
         </>
     )
 }
