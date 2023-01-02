@@ -8,7 +8,6 @@ use App\Repository\Item\ItemRepositoryInterface;
 use App\Repository\Category\CategoryRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
-
 class CategoryService implements CategoryServiceInterface {
 
     private $ItemRepo;
@@ -35,7 +34,8 @@ class CategoryService implements CategoryServiceInterface {
 
     public function insertCategory($request)
     {
-        return $data = $this->CategoryRepo->insertCategory($request);
+        $category = $this->CategoryRepo->insertCategory($request);
+        return $category;
     }
     
     public function deleteCategory($id)
