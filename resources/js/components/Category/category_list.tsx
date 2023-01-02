@@ -11,9 +11,6 @@ import { useTranslation } from "react-i18next";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState)
-    const setCategories = useSetRecoilState(categoriesState)
-    const [modalShow, setModalShow] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState<number>()
     const { t } = useTranslation()
     useEffect(() => {
         console.log(categories)
@@ -21,41 +18,6 @@ const CategoryList: React.FC = () => {
 
     if (!Array.isArray(categories)) {
         return null
-    }
-
-    const deleteCategory = () => {
-        // 型
-        const newCategories: Category[] = categories.filter((category) => category.id !== selectedCategory)
-        setCategories(newCategories)
-        setModalShow(false)
-        axios
-            .post("/category_table/delete_category", { id: selectedCategory })
-            .then((res) => console.log(res.data))
-            .catch((error) => console.error(error))
-    }
-    
-    const handleModalShow = (id: number) => {
-        setModalShow(true)
-        setSelectedCategory(id)
-    }
-
-    const CategoryModal: React.FC = () => {
-        return (
-            <Modal show={modalShow} onHide={() => setModalShow(false)}>
-                <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        variant="secondary"
-                        onClick={() => setModalShow(false)}
-                    >
-                        キャンセル
-                    </Button>
-                    <Button variant="primary" onClick={deleteCategory}>
-                        削除
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        )
     }
 
     const CategoryTable = () => {
