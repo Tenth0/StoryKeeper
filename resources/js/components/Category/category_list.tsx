@@ -3,10 +3,10 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useRecoilValue,useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
-import axios from 'axios';
+import axios from "axios";
 
 const CategoryList: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
@@ -24,13 +24,15 @@ const CategoryList: React.FC = () => {
 
     const deleteCategory = () => {
         // 型
-        setCategories(categories.filter(item => item.id !== selectedCategory))
-      setModalShow(false);
-      axios
-        .post("/category_table/delete_category", {id:selectedCategory})
-        .then((res) => console.log(res.data))
-        .catch((error) => console.error(error));
-    }
+        setCategories(
+            categories.filter((item) => item.id !== selectedCategory)
+        );
+        setModalShow(false);
+        axios
+            .post("/category_table/delete_category", { id: selectedCategory })
+            .then((res) => console.log(res.data))
+            .catch((error) => console.error(error));
+    };
 
     const handleModalShow = (id: number) => {
         setModalShow(true);
@@ -42,7 +44,10 @@ const CategoryList: React.FC = () => {
             <Modal show={modalShow} onHide={() => setModalShow(false)}>
                 <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setModalShow(false)}>
+                    <Button
+                        variant="secondary"
+                        onClick={() => setModalShow(false)}
+                    >
                         キャンセル
                     </Button>
                     <Button variant="primary" onClick={deleteCategory}>

@@ -5,17 +5,16 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import styled from "styled-components";
 import { categoriesState } from "@/states/categories";
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
 const AddCategory = () => {
+    const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
-    const ErrorMessage = styled.p`
-        color:red;
-    `;
+    const ErrorMessage = styled.p `color: red;`;
 
     const [show, setShow] = useState(false);
 
-    const [errors,setErrors] = useState<{title: string; color: string}>({});
+    const [errors, setErrors] = useState<{ title: string; color: string }>({});
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,17 +26,20 @@ const AddCategory = () => {
             title: (title as any).value,
             color: (color as HTMLSelectElement).value,
         };
-        
+
         axios
             .post("/category_table/insert_category", categoryData)
-            .then(() => {
-                setShow(false)
-                setErrors({title:'',color:''})
+            .then((res) => {
+                setShow(false);
+                setErrors({ title: "", color: "" });
+                setCategories([...categories, res.data]);
             })
-            .catch((error) => setErrors({
-                title: error.response.data.errors.title,
-                color: error.response.data.errors.color,
-            }))
+            .catch((error) =>
+                setErrors({
+                    title: error.response.data.errors.title,
+                    color: error.response.data.errors.color,
+                })
+            );
     };
 
     return (
@@ -63,7 +65,9 @@ const AddCategory = () => {
                                 placeholder="カテゴリー名を入力してください"
                                 autoFocus
                             />
-                            {errors.title && <ErrorMessage>{errors.title}</ErrorMessage>}
+                            {errors.title && (
+                                <ErrorMessage>{errors.title}</ErrorMessage>
+                            )}
                         </Form.Group>
                         <Form.Label htmlFor="selectColor">色</Form.Label>
                         <Form.Select id="selectColor" name="color">
@@ -76,14 +80,16 @@ const AddCategory = () => {
                             <option value="Danger">黄</option>
                             <option value="Warning">赤</option>
                         </Form.Select>
-                            {errors.color && <ErrorMessage>{errors.color}</ErrorMessage>}
-                        <Button variant="secondary" onClick={() => setShow(false)}>
+                        {errors.color && (
+                            <ErrorMessage>{errors.color}</ErrorMessage>
+                        )}
+                        <Button
+                            variant="secondary"
+                            onClick={() => setShow(false)}
+                        >
                             キャンセル
                         </Button>
-                        <Button
-                            type="submit"
-                            variant="primary"
-                        >
+                        <Button type="submit" variant="primary">
                             追加
                         </Button>
                     </Form>
