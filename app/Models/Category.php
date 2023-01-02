@@ -33,7 +33,7 @@ class Category extends Model
             'title' => $request->title,
             'color' => $request->color,
             'created_at' => date("Ymd"),
-            'updated_at' => date("His"),
+            'updated_at' => date("Ymd"),
         ]);
     }
 
