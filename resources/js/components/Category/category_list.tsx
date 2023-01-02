@@ -75,7 +75,10 @@ const CategoryList: React.FC = () => {
                             </td>
                             <td
                                 onDoubleClick={() => setEditTitle(category.id)}
-                                onBlur={() => {isChangeTitle && updateCategory(category.id)}}
+                                onBlur={() => {isChangeTitle 
+                                    ? updateCategory(category.id)
+                                    : setEditTitle(null);
+                                }}
                             >
                                 {editTitle === category.id ? (
                                     <input
