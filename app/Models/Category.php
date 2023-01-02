@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\ModelTrait;
+use Carbon\Carbon;
 
 class Category extends Model
 {
@@ -14,29 +15,26 @@ class Category extends Model
     public $timestamps = true;
     protected $table = 'categories';
     protected $fillable = [
-        'id',
         'title',
         'color'
     ];
 
-    public function InsertCategory($request)
+    public function insertCategory($request)
     {
         return self::create([
             'title' => $request->title,
             'color' => $request->color,
-            'created_at' => date('Ymd'),
-            'updated_at' => date('Ymd'),
+            'created_at' => Carbon::now()->format('Ymd'),
+            'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }
 
-    public function UpdateCategory( $id , $request)
+    public function updateCategory($request)
     {
-        return self::where('id', '=', $id )->update([
+        return self::where('id', '=', $request->id )->update([
             'title' => $request->title,
             'color' => $request->color,
-            'created_at' => date("Ymd"),
-            'updated_at' => date("Ymd"),
+            'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }
-
 }

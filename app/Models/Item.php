@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\ModelTrait;
+use Carbon\Carbon;
 
 class Item extends Model
 {
@@ -26,13 +27,13 @@ class Item extends Model
     public function InsertItem($request)
     {
         return self::create([
-            'created_at' => date('Ymd'),
-            'updated_at' => date('Ymd'),
             'filename' => $request->filename,
             'title' => $request->title,
             'category_id' => $request->category_id,
             'read_time' => $request->read_time,
             'comment' => $request->comment,
+            'created_at' => Carbon::now()->format('Ymd'),
+            'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }
 
@@ -44,8 +45,8 @@ class Item extends Model
             'filename' => $request->filename,
             'comment' => $request->comment,
             'read_time' => $request->read_time,
-            'created_at' => date("Ymd"),
-            'updated_at' => date("His"),
+            'created_at' => Carbon::now()->format('Ymd'),
+            'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }
 
