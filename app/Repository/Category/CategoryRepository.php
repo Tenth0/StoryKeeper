@@ -48,9 +48,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
         $category->save();
         return response()->json([
+            'id' => $category->id,
             'title' => $category->title,
             'color' => $category->color,
-            'id' => $category->id,
         ],201);
     }   
 
