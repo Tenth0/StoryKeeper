@@ -39,7 +39,7 @@ const ItemModal: React.FC<{
     )
 }
 
-const HandleModalShow: React.FC<{ id: number }> = ({ id }) => {
+const DeleteItem: React.FC<{ id: number }> = ({ id }) => {
   const [modalShow, setModalShow] = useState(false)
   const handleShowModal = () => {
       setModalShow(true)
@@ -58,4 +58,4 @@ const HandleModalShow: React.FC<{ id: number }> = ({ id }) => {
   )
 }
 
-export default HandleModalShow
+export default DeleteItem

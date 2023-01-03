@@ -8,7 +8,7 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
-import HandleModalShow from './cards_delete';
+import DeleteItem from './cards_delete';
 
 const Cards: React.FC<{}> = () => {
     const items = useRecoilValue(itemsState);
@@ -27,7 +27,7 @@ const Cards: React.FC<{}> = () => {
                             <Card.Title>{item.title}</Card.Title>
                             <Space>
                                 <Row xs={2} md={2} className="g-4">
-                                <HandleModalShow id={item.id} />
+                                <DeleteItem id={item.id} />
                                 <Button
                                 variant="danger"
                                         //onClick={() => handleModalShow(category.id)}
