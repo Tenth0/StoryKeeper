@@ -5,33 +5,38 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
+import styled from "styled-components";
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
 import HandleModalShow from './cards_delete';
 
 const Cards: React.FC<{}> = () => {
     const items = useRecoilValue(itemsState);
-    console.log(items);
     if (!Array.isArray(items)) {
         return null;
     }
+    const Space = styled.div`
+        padding:4px;
+    `;
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: Item, idx: number) => (
                 <Col key={idx}>
                     <Card>
                         <Card.Header>
-                            <Row xs={2} md={2} className="g-4">
-                                <Card.Title>{item.title}</Card.Title>
+                            <Card.Title>{item.title}</Card.Title>
+                            <Space>
+                                <Row xs={2} md={2} className="g-4">
+                                <HandleModalShow id={item.id} />
                                 <Button
-                                    variant="light"
-                                    //onClick={() => handleModalShow(category.id)}
-                                >
-                                    <HandleModalShow id={item.id}/>
-                                    <BsHeart />
-                                    <BsHeartFill />
+                                variant="danger"
+                                        //onClick={() => handleModalShow(category.id)}
+                                        >
+                                        <BsHeart />
+                                        <BsHeartFill />
                                 </Button>
-                            </Row>
+                                </Row>
+                            </Space>
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>{item.comment}</Card.Text>
