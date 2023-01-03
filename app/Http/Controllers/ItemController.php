@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Service\Item\ItemServiceInterface;
+use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -13,10 +14,13 @@ use Inertia\Inertia;
 class ItemController extends Controller
 {
     private $ItemService;
+    
+    private $CategoryService;
 
-    public function __construct(ItemServiceInterface $ItemService)
+    public function __construct(ItemServiceInterface $ItemService,CategoryServiceInterface $CategoryService)
     {
         $this->ItemService = $ItemService;
+        $this->CategoryService = $CategoryService;
     }
 
     public function list(Request $request)
@@ -28,9 +32,10 @@ class ItemController extends Controller
         
         return Inertia::render('index',[
             'items' => $this->ItemService->list($searchQuery),
+            'categories' => $this->CategoryService->list(),
         ]);
     }
-
+    
     public function insertItem(ItemRequest $request)
     {
         $Item = $this->ItemService->insertItem($request);
@@ -39,7 +44,9 @@ class ItemController extends Controller
 
     public function insertFormItem()
     {
-        return Inertia::render('insert_item');
+        return Inertia::render('insert_item',[
+            'categories' => $this->CategoryService->list(),
+        ]);
     }
 
     public function store(Request $request)

@@ -46,18 +46,6 @@ const RegistrationForm = () => {
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <Form.Group as={Row} className="mb-3" controlId="file">
-                    <Form.Label column sm="2">
-                        ファイル
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control
-                            type="file"
-                            name="filename"
-                            ref={fileRef}
-                        />
-                    </Col>
-                </Form.Group>
                 <Form.Group as={Row} className="mb-3" controlId="title">
                     <Form.Label column sm="2">
                         タイトル
@@ -73,6 +61,18 @@ const RegistrationForm = () => {
                         {errors.title && (
                             <ErrorMessage>{errors.title}</ErrorMessage>
                         )}
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} className="mb-3" controlId="file">
+                    <Form.Label column sm="2">
+                        ファイル
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            type="file"
+                            name="filename"
+                            ref={fileRef}
+                        />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3" controlId="category">
