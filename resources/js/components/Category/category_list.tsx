@@ -10,7 +10,7 @@ import HandleModalShow from "./category_delete";
 const CategoryList: React.FC = () => {
     const [categories, setCategories] = useRecoilState(categoriesState);
     const [editTitle, setEditTitle] = useState<number | null>(null);
-    const [isChangeTitle,setIsChangeTitle] = useState<boolean>(false);
+    const [isChangeTitle, setIsChangeTitle] = useState<boolean>(false);
     const [categoryTitles, setCategoryTitles] = useState<
         Record<number, string>
     >({});
@@ -28,10 +28,10 @@ const CategoryList: React.FC = () => {
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         const newTitle = event.target.value;
-        if(newTitle === categoryTitles[id]) {
+        if (newTitle === categoryTitles[id]) {
             setIsChangeTitle(false);
         }
-        if(newTitle !== categoryTitles[id] ) {
+        if (newTitle !== categoryTitles[id]) {
             setIsChangeTitle(true);
         }
         setCategoryTitles({ ...categoryTitles, [id]: newTitle });
@@ -76,9 +76,10 @@ const CategoryList: React.FC = () => {
                             </td>
                             <td
                                 onDoubleClick={() => setEditTitle(category.id)}
-                                onBlur={() => {isChangeTitle 
-                                    ? updateCategory(category.id)
-                                    : setEditTitle(null);
+                                onBlur={() => {
+                                    isChangeTitle
+                                        ? updateCategory(category.id)
+                                        : setEditTitle(null);
                                 }}
                             >
                                 {editTitle === category.id ? (

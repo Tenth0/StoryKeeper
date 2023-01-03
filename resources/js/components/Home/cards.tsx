@@ -7,6 +7,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
+import HandleModalShow from './cards_delete';
 
 const Cards: React.FC<{}> = () => {
     const items = useRecoilValue(itemsState);
@@ -26,6 +27,7 @@ const Cards: React.FC<{}> = () => {
                                     variant="light"
                                     //onClick={() => handleModalShow(category.id)}
                                 >
+                                    <HandleModalShow id={item.id}/>
                                     <BsHeart />
                                     <BsHeartFill />
                                 </Button>

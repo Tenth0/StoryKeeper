@@ -26,7 +26,7 @@ const CategoryModal: React.FC<{
     }
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
-            <Modal.Body>このカテゴリーを削除しますか？</Modal.Body>
+            <Modal.Body>このアイテムを削除しますか？</Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => setModalShow(false)}>
                     キャンセル
