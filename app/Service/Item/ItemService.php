@@ -58,11 +58,14 @@ class ItemService implements ItemServiceInterface {
             DB::beginTransaction();
             $id = $request->input('id');
             $isFavorite = $request->input('isFavorite');
-            if(!empty($isFavorite)){ 
-                $item = Item::where('id',$id)->update(['is_favorite' => 0]);
+            $item = Item::find($id);
+            if($item['is_favorite']) { 
+                $item->is_favorite = 0;
             } else {
-                $item = Item::where('id',$id)->update(['is_favorite' => 1]);
+                $item->is_favorite = 1;
             }
+            Log::debug($item);
+            $item->save();
             DB::commit();
             return $item;
         } catch(Exception $e) {

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Service\Item\ItemServiceInterface;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -76,9 +77,7 @@ class ItemController extends Controller
 
     public function changeIsFavorite(Request $request)
     {
-        if (!$this->ItemService->changeIsFavorite($request)) {
-            return redirect()->route('itemList')->with("record_not_exist", __("Record not exist"));
-        }
-        return redirect()->route('itemList')->with("changeIsFavorite_success", __("changeIsFavorite success"));
+        $item = $this->ItemService->changeIsFavorite($request);
+        return $item;
     }
 }

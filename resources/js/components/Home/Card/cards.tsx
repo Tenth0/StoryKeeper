@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import styled from "styled-components";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from 'recoil';
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
 import DeleteItem from './cards_delete';
@@ -15,21 +15,28 @@ const Cards: React.FC<{}> = () => {
     const Space = styled.div`
         padding:4px;
     `;
-    const items = useRecoilValue(itemsState);
+    const [items,setItems] = useRecoilState(itemsState);
     if (!Array.isArray(items)) {
         return null;
     }
-
+    
     const changeIsFavorite = (id:number,isFavorite:boolean) => {
         axios.post("/items/change_isFavorite", { 
             id: id,
             isFavorite: isFavorite
         })
-        .then((res) => console.log(res.data))
+        .then((changeIsFavoriteItem) => {
+            const newItems = items.map(item => {
+                if (item.id === changeIsFavoriteItem.data.id) {
+                  return changeIsFavoriteItem.data;
+                } else {
+                  return item;
+                }
+            });
+            setItems(newItems);
+        })
         .catch((error) => console.error(error))
     }
-
-    console.log(items)
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: Item, idx: number) => (
