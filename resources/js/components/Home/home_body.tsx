@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import InputForm from "./input_form";
-import Cards from "./cards";
+import Cards from "@/components/Card/cards";
 
 const HomeBody = () => {
     const FormMargin = styled.div`
