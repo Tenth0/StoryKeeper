@@ -9,6 +9,7 @@ import { useRecoilValue } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item } from "@/types";
 import DeleteItem from './cards_delete';
+import axios from "axios";
 
 const Cards: React.FC<{}> = () => {
     const Space = styled.div`
@@ -18,6 +19,16 @@ const Cards: React.FC<{}> = () => {
     if (!Array.isArray(items)) {
         return null;
     }
+
+    const changeIsFavorite = (id:number,isFavorite:boolean) => {
+        axios.post("/items/{id}/change_isFavorite", { 
+            id: id,
+            isFavorite: isFavorite
+        })
+        .then((res) => console.log(res.data))
+        .catch((error) => console.error(error))
+    }
+
     console.log(items)
     const [isFavorite,setIsFavorite] = useState(false);
     return (
@@ -32,7 +43,7 @@ const Cards: React.FC<{}> = () => {
                                 <DeleteItem id={item.id} />
                                 <Button
                                 variant="danger"
-                                        //onClick={() => handleModalShow(category.id)}
+                                onClick={() => changeIsFavorite(item.id,item.favorite)}
                                 >
                                 {
                                     item.favorite 

@@ -26,9 +26,9 @@ const InputForm: React.FC = () => {
         titleKeyword +
         "&select_category=" +
         selectCategoryId
-        ).then((items) => {
-          setItems(items.data)
-        });
+        )
+        .then((items) => setItems(items.data))
+        .catch((error) => console.error(error));
     };
 
     return (
