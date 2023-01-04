@@ -9,7 +9,8 @@ import { Category } from "@/types";
 import axios from "axios";
 
 const InputForm: React.FC = () => {
-    const categories = useRecoilValue(categoriesState);
+  const categories = useRecoilValue(categoriesState);
+  const setItems = useSetRecoilState(itemsState);
     if (!Array.isArray(categories)) {
         return null;
     }
@@ -26,9 +27,7 @@ const InputForm: React.FC = () => {
         "&select_category=" +
         selectCategoryId
         ).then((items) => {
-          const setItems = useSetRecoilState(itemsState);
-          console.log(items);
-          setItems(items)
+          setItems(items.data)
         });
     };
 
