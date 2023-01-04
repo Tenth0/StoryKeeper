@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -18,6 +18,8 @@ const Cards: React.FC<{}> = () => {
     if (!Array.isArray(items)) {
         return null;
     }
+    console.log(items)
+    const [isFavorite,setIsFavorite] = useState(false);
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: Item, idx: number) => (
@@ -31,9 +33,12 @@ const Cards: React.FC<{}> = () => {
                                 <Button
                                 variant="danger"
                                         //onClick={() => handleModalShow(category.id)}
-                                        >
-                                        <BsHeart />
-                                        <BsHeartFill />
+                                >
+                                {
+                                    item.favorite 
+                                    ? <BsHeartFill />
+                                    : <BsHeart />
+                                }
                                 </Button>
                                 </Row>
                             </Space>
