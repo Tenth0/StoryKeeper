@@ -22,7 +22,8 @@ const Cards: React.FC<{}> = () => {
 
     const changeIsFavorite = (id:number,isFavorite:boolean) => {
         axios.post("/items/change_isFavorite", { 
-            id: id
+            id: id,
+            isFavorite: isFavorite
         })
         .then((res) => console.log(res.data))
         .catch((error) => console.error(error))
@@ -44,7 +45,7 @@ const Cards: React.FC<{}> = () => {
                                 onClick={() => changeIsFavorite(item.id,item.favorite)}
                                 >
                                 {
-                                    item.favorite 
+                                    item.is_favorite 
                                     ? <BsHeartFill />
                                     : <BsHeart />
                                 }

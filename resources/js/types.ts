@@ -6,7 +6,7 @@ export type Item = {
     comment:string,
     read_time:string,
     order:number,
-    favorite:boolean,
+    is_favorite:boolean,
 }
 
 export type Category = {
