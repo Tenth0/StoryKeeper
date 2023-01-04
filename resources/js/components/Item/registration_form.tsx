@@ -50,7 +50,8 @@ const RegistrationForm = () => {
                 setErrors({
                     title: error.response.data.errors.title,
                 });
-            });
+            }
+        );
     };
 
     return (
