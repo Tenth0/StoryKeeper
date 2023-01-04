@@ -5,7 +5,9 @@ namespace App\Service\Item;
 use App\Models\Item;
 
 interface ItemServiceInterface {
-    public function list($searchQuery);
+    public function list();
+    
+    public function searchList($searchQuery);
     
     public function insertItem($request);
 

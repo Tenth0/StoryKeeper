@@ -14,7 +14,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         return Item::class;
     }
 
-    public function list($searchQuery)
+    public function searchList($searchQuery)
     {
         $data = $this->model->select(
             'id',

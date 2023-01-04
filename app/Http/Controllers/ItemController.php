@@ -22,17 +22,22 @@ class ItemController extends Controller
         $this->CategoryService = $CategoryService;
     }
 
-    public function list(Request $request)
+    public function list()
+    {
+        return Inertia::render('index',[
+            'items' => $this->ItemService->list(),
+            'categories' => $this->CategoryService->list(),
+        ]);
+    }
+    public function searchList(Request $request)
     {
         $searchQuery = [
             'title_keyword' => is_null($request->title_keyword) ? null : $request->title_keyword,
             'select_category' => is_null($request->select_category) ? null : $request->select_category,
         ];
+        $items = $this->ItemService->searchList($searchQuery);
         
-        return Inertia::render('index',[
-            'items' => $this->ItemService->list($searchQuery),
-            'categories' => $this->CategoryService->list(),
-        ]);
+        return $items;
     }
     
     public function insertItem(ItemRequest $request)

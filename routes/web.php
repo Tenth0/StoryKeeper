@@ -13,6 +13,7 @@ use App\Http\Controllers\CategoryController;
 
 /* Item */
 Route::get('/', [ItemController::class,'list'])->name('itemList');
+Route::get('/search', [ItemController::class,'searchList'])->name('searchItemList');
 Route::post('/items/delete', [ItemController::class,'deleteItem'])->name('delete_category');
 Route::get('/insert_item', [ItemController::class,'insertFormItem'])->name('insertFormItem');
 Route::post('/api/insert_item', [ItemController::class,'insertItem'])->name('insertItem');

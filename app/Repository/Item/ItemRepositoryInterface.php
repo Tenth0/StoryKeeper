@@ -6,7 +6,7 @@ use App\Repository\BaseRepositoryInterface;
 
 interface ItemRepositoryInterface extends BaseRepositoryInterface 
 {
-    public function list($searchQuery);
+    public function searchList($searchQuery);
 
     public function insertItem($request);
 
