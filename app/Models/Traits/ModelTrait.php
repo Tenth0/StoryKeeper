@@ -21,7 +21,7 @@ trait ModelTrait
             $this->{$this->update_date} = $date->format('Ymd');
         }
     
-        if( $timestamp ){
+        if( $timestamp ) {
             $this->{$timestamp} = $value;
         }
     

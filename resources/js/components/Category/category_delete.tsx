@@ -8,22 +8,22 @@ import { Category } from "@/types";
 import { categoriesState } from "../../states/categories";
 
 const CategoryModal: React.FC<{
-    modalShow: boolean
-    setModalShow: (show: boolean) => void
-    selectedCategory: number
+    modalShow: boolean;
+    setModalShow: (show: boolean) => void;
+    selectedCategory: number;
 }> = ({ modalShow, setModalShow, selectedCategory }) => {
-    const [categories, setCategories] = useRecoilState(categoriesState)
+    const [categories, setCategories] = useRecoilState(categoriesState);
     const handleDeleteCategory = () => {
         const newCategories: Category[] = categories.filter(
             (category) => category.id !== selectedCategory
-        )
-        setCategories(newCategories)
-        setModalShow(false)
+        );
+        setCategories(newCategories);
+        setModalShow(false);
         axios
             .post("/categories/delete", { id: selectedCategory })
             .then((res) => console.log(res.data))
-            .catch((error) => console.error(error))
-    }
+            .catch((error) => console.error(error));
+    };
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
             <Modal.Body>このアイテムを削除しますか？</Modal.Body>
@@ -36,26 +36,26 @@ const CategoryModal: React.FC<{
                 </Button>
             </Modal.Footer>
         </Modal>
-    )
-}
+    );
+};
 
 const HandleModalShow: React.FC<{ id: number }> = ({ id }) => {
-  const [modalShow, setModalShow] = useState(false)
-  const handleShowModal = () => {
-      setModalShow(true)
-  }
-  return (
-    <>
-      <Button onClick={handleShowModal}>
-          <BsFillTrashFill />
-      </Button>
-      <CategoryModal
-          modalShow={modalShow}
-          setModalShow={setModalShow}
-          selectedCategory={id}
-      />
-    </>
-  )
-}
+    const [modalShow, setModalShow] = useState(false);
+    const handleShowModal = () => {
+        setModalShow(true);
+    };
+    return (
+        <>
+            <Button onClick={handleShowModal}>
+                <BsFillTrashFill />
+            </Button>
+            <CategoryModal
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+                selectedCategory={id}
+            />
+        </>
+    );
+};
 
-export default HandleModalShow
+export default HandleModalShow;

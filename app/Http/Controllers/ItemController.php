@@ -26,7 +26,7 @@ class ItemController extends Controller
     public function list(Request $request)
     {
         $searchQuery = [
-            'search_text' => is_null($request->search_text) ? null : $request->search_text,
+            'search_title' => is_null($request->search_text) ? null : $request->search_text,
             'select_category' => is_null($request->category) ? null : $request->category,
         ];
         

@@ -12,8 +12,8 @@ const CategoryTable:React.FC = ({categories}:any) => {
 
   return (
     <>
-        <NavigationBar />
-        <CategoryBody />
+      <NavigationBar />
+      <CategoryBody />
     </>
   );
 }

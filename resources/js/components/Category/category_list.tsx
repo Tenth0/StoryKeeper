@@ -15,9 +15,6 @@ const CategoryList: React.FC = () => {
         Record<number, string>
     >({});
     const { t } = useTranslation();
-    useEffect(() => {
-        console.log(categories);
-    }, [categories]);
 
     if (!Array.isArray(categories)) {
         return null;
