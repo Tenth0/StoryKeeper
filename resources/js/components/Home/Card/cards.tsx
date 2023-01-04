@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -21,16 +21,14 @@ const Cards: React.FC<{}> = () => {
     }
 
     const changeIsFavorite = (id:number,isFavorite:boolean) => {
-        axios.post("/items/{id}/change_isFavorite", { 
-            id: id,
-            isFavorite: isFavorite
+        axios.post("/items/change_isFavorite", { 
+            id: id
         })
         .then((res) => console.log(res.data))
         .catch((error) => console.error(error))
     }
 
     console.log(items)
-    const [isFavorite,setIsFavorite] = useState(false);
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: Item, idx: number) => (

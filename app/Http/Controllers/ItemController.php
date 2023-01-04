@@ -73,4 +73,12 @@ class ItemController extends Controller
         }
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
+
+    public function changeIsFavorite(Request $request)
+    {
+        if (!$this->ItemService->changeIsFavorite($request)) {
+            return redirect()->route('itemList')->with("record_not_exist", __("Record not exist"));
+        }
+        return redirect()->route('itemList')->with("changeIsFavorite_success", __("changeIsFavorite success"));
+    }
 }

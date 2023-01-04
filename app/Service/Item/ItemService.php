@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
 use App\Repository\Item\ItemRepositoryInterface;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -49,5 +50,22 @@ class ItemService implements ItemServiceInterface {
     public function deleteItem($id)
     {
         return $this->ItemRepo->delete($id);
+    }
+    
+    public function changeIsFavorite($request)
+    {
+        try {
+            DB::beginTransaction();
+            $id = $request->input('id');
+            $item = Item::where('id',$id)->update('isFavorite','!isFavorite')->first();
+            $item->save();
+            DB::commit();
+            return $item;
+        } catch(Exception $e) {
+            Log::error('お気に入り更新時にエラーが発生しました');
+            Log::error($e);
+            DB::rollBack();
+            return null;
+        }
     }
 }
