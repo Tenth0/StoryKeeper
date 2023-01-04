@@ -15,8 +15,6 @@ const Index: React.FC<{}> = ({ items, categories }: any) => {
         setItems(items);
         setCategories(categories);
     }, [items,categories]);
-    const categoryList = useRecoilValue(categoriesState);
-    console.log(categoryList);
     return (
         <>
             <NavigationBar />
