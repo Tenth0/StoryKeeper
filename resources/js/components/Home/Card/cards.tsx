@@ -26,7 +26,7 @@ const Cards: React.FC<{}> = () => {
             isFavorite: isFavorite
         })
         .then((changeIsFavoriteItem) => {
-            const newItems = items.map(item => {
+            const newItems: Item[] = items.map((item:Item) => {
                 if (item.id === changeIsFavoriteItem.data.id) {
                   return changeIsFavoriteItem.data;
                 } else {
@@ -49,7 +49,7 @@ const Cards: React.FC<{}> = () => {
                                 <DeleteItem id={item.id} />
                                 <Button
                                 variant="danger"
-                                onClick={() => changeIsFavorite(item.id,item.favorite)}
+                                onClick={() => changeIsFavorite(item.id,item.is_favorite)}
                                 >
                                 {
                                     item.is_favorite 
