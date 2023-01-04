@@ -19,7 +19,8 @@ const RegistrationForm = () => {
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);
     const fileRef = useRef<HTMLInputElement>(null);
-    
+    const formRef = useRef<HTMLFormElement>(null);
+
     const categories = useRecoilValue(categoriesState);
     if (!Array.isArray(categories)) {
         return null;
@@ -42,6 +43,7 @@ const RegistrationForm = () => {
         .post("/api/insert_item", itemData)
             .then((res) => {
                 setErrors({ title: "" });
+                formRef.current?.reset();
             })
             .catch((error) => {
                 console.error(error);
@@ -53,7 +55,7 @@ const RegistrationForm = () => {
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
+            <Form ref={formRef} onSubmit={handleSubmit}>
                 <Form.Group as={Row} className="mb-3" controlId="title">
                     <Form.Label column sm="2">
                         タイトル
