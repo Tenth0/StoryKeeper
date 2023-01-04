@@ -5,43 +5,51 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import styled from "styled-components";
+import { Category } from "@/types";
+import { useRecoilValue } from "recoil";
+import { categoriesState } from "@/states/categories";
 
 const ErrorMessage = styled.p`
     color: red;
 `;
 
 const RegistrationForm = () => {
-    const [errors, setErrors] = useState<{ title: string }>({})
-    const titleRef = useRef<HTMLInputElement>(null)
-    const readTimeRef = useRef<HTMLInputElement>(null)
-    const commentRef = useRef<HTMLTextAreaElement>(null)
-    const fileRef = useRef<HTMLInputElement>(null)
+    const [errors, setErrors] = useState<{ title: string }>({ title: "" });
+    const titleRef = useRef<HTMLInputElement>(null);
+    const readTimeRef = useRef<HTMLInputElement>(null);
+    const commentRef = useRef<HTMLTextAreaElement>(null);
+    const fileRef = useRef<HTMLInputElement>(null);
+    
+    const categories = useRecoilValue(categoriesState);
+    if (!Array.isArray(categories)) {
+        return null;
+    }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        const selectCategory = event.currentTarget.category.value
-
+        event.preventDefault();
+        const selectCategory = event.currentTarget.category.value;
+        
         const itemData = {
             filename: fileRef.current?.value || "",
             title: titleRef.current?.value || "",
             category_id: selectCategory,
             read_time: readTimeRef.current?.value || "",
             comment: commentRef.current?.value || "",
-        }
-        itemData.category_id = Number(itemData.category_id)
-
+        };
+        itemData.category_id = Number(itemData.category_id);
+        
         axios
-            .post("/api/insert_item", itemData)
+        .post("/api/insert_item", itemData)
             .then((res) => {
-                setErrors({ title: "" })
+                setErrors({ title: "" });
             })
             .catch((error) => {
-                console.error(error)
+                console.error(error);
                 setErrors({
                     title: error.response.data.errors.title,
-                })
-            })
-    }
+                });
+            });
+    };
 
     return (
         <>
@@ -82,9 +90,11 @@ const RegistrationForm = () => {
                     <Col sm="10">
                         <Form.Control as="select" name="category">
                             <option value="0"></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {categories.map((category: Category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.title}
+                                </option>
+                            ))}
                         </Form.Control>
                     </Col>
                 </Form.Group>
@@ -114,6 +124,6 @@ const RegistrationForm = () => {
                 </Button>
             </Form>
         </>
-    )
-}
-export default RegistrationForm
+    );
+};
+export default RegistrationForm;

@@ -11,13 +11,13 @@ import { Item } from "@/types";
 import DeleteItem from './cards_delete';
 
 const Cards: React.FC<{}> = () => {
+    const Space = styled.div`
+        padding:4px;
+    `;
     const items = useRecoilValue(itemsState);
     if (!Array.isArray(items)) {
         return null;
     }
-    const Space = styled.div`
-        padding:4px;
-    `;
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: Item, idx: number) => (
