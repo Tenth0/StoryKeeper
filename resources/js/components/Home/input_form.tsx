@@ -2,8 +2,16 @@ import Col from 'react-bootstrap/Col';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { useRecoilValue } from "recoil";
+import { categoriesState } from "@/states/categories";
+import { Category } from "@/types";
 
-const InputForm:React.FC = () => {
+const InputForm: React.FC = () => {
+  const categories = useRecoilValue(categoriesState);
+  if (!Array.isArray(categories)) {
+      return null;
+  }
+  console.log(categories)
   return (
     <Row className="g-2">
       <Col md>
@@ -18,10 +26,9 @@ const InputForm:React.FC = () => {
         >
           <Form.Select aria-label="Floating label select example">
             <option></option>
-            <option value="1">漫画</option>
-            <option value="2">アニメ</option>
-            <option value="3">お菓子</option>
-            <option value="3">ごはん屋さん</option>
+            {categories.map((category: Category) => (
+              <option key={category.id}>{category.title}</option>
+            ))}
           </Form.Select>
         </FloatingLabel>
       </Col>
