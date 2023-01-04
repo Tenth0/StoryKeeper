@@ -1,3 +1,4 @@
+import React,{ useEffect, useState } from 'react';
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -11,58 +12,60 @@ import axios from "axios";
 const InputForm: React.FC = () => {
   const categories = useRecoilValue(categoriesState);
   const setItems = useSetRecoilState(itemsState);
-    if (!Array.isArray(categories)) {
-        return null;
-    }
-    
-    const searchRecord = () => {
-      const titleKeyword: string =
-      document.getElementById("title_keyword")!.value;
-      const selectCategory: string =
-      document.getElementById("select_category")!.value;
-      const selectCategoryId = selectCategory ? parseInt(selectCategory) : "";
-      axios.get(
-        "/search?title_keyword=" +
-        titleKeyword +
-        "&select_category=" +
-        selectCategoryId
-        )
-        .then((items) => setItems(items.data))
-        .catch((error) => console.error(error));
-    };
+  if (!Array.isArray(categories)) {
+    return null;
+  }
 
-    return (
-        <Row className="g-2">
-            <Col md>
-                <FloatingLabel label="タイトル">
-                    <Form.Control
-                        id="title_keyword"
-                        type="text"
-                        placeholder="例:ノーゲーム・ノーライフ、キングダム"
-                        onBlur={() => searchRecord()}
-                    />
-                </FloatingLabel>
-            </Col>
-            <Col md>
-                <FloatingLabel
-                    controlId="floatingSelectGrid"
-                    label="カテゴリー"
-                >
-                    <Form.Select
-                        id="select_category"
-                        onChange={() => searchRecord()}
-                    >
-                        <option></option>
-                        {categories.map((category: Category) => (
-                            <option key={category.id} value={category.id}>
-                                {category.title}
-                            </option>
-                        ))}
-                    </Form.Select>
-                </FloatingLabel>
-            </Col>
-        </Row>
-    );
+  const [titleKeyword, setTitleKeyword] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const searchRecord = async () => {
+    try {
+      const items = await axios.get(
+        '/search?title_keyword=' +
+          titleKeyword +
+          '&select_category=' +
+          selectedCategory
+      );
+      setItems(items.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    searchRecord();
+  }, [titleKeyword, selectedCategory]);
+
+  return (
+    <Row className='g-2'>
+      <Col md>
+        <FloatingLabel label='タイトル'>
+          <Form.Control
+            id='title_keyword'
+            type='text'
+            placeholder='例:ノーゲーム・ノーライフ、キングダム'
+            onBlur={() => setTitleKeyword(document.getElementById('title_keyword')!.value)}
+          />
+        </FloatingLabel>
+      </Col>
+      <Col md>
+        <FloatingLabel controlId='floatingSelectGrid' label='カテゴリー'>
+          <Form.Select
+            id='select_category'
+            onChange={() => setSelectedCategory(document.getElementById('select_category')!.value)}
+          >
+            <option></option>
+            {categories.map((category: Category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
+          </Form.Select>
+        </FloatingLabel>
+      </Col>
+    </Row>
+  );
 };
 
 export default InputForm;
