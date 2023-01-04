@@ -5,7 +5,7 @@ import Button from "react-bootstrap/esm/Button";
 import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { Item } from "@/types";
-import { itemsState } from "../../states/items";
+import { itemsState } from "@/states/items";
 
 const ItemModal: React.FC<{
     modalShow: boolean
