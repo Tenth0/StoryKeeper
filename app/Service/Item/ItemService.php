@@ -28,8 +28,10 @@ class ItemService implements ItemServiceInterface {
         $this->ItemRepo = $ItemRepo;
         $this->CategoryRepo = $CategoryRepo;
     }
-    public function list($searchQuery){
+    public function list($searchQuery)
+    {
         $data = $this->ItemRepo->list($searchQuery);
+
         return $data;
     }
 

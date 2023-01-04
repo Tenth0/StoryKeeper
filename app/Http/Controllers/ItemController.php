@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Service\Item\ItemServiceInterface;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -26,8 +25,8 @@ class ItemController extends Controller
     public function list(Request $request)
     {
         $searchQuery = [
-            'search_title' => is_null($request->search_text) ? null : $request->search_text,
-            'select_category' => is_null($request->category) ? null : $request->category,
+            'title_keyword' => is_null($request->title_keyword) ? null : $request->title_keyword,
+            'select_category' => is_null($request->select_category) ? null : $request->select_category,
         ];
         
         return Inertia::render('index',[

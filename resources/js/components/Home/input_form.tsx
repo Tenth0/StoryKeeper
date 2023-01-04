@@ -5,18 +5,29 @@ import Row from 'react-bootstrap/Row';
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
+import axios from 'axios';
 
 const InputForm: React.FC = () => {
   const categories = useRecoilValue(categoriesState);
   if (!Array.isArray(categories)) {
       return null;
   }
-  console.log(categories)
+
+  const searchRecord = () => {
+    const titleKeyword: string = document.getElementById('title_keyword')!.value;
+    const selectCategory: string = document.getElementById('select_category')!.value;
+    console.log(selectCategory)
+    const selectCategoryId = (selectCategory) ? parseInt(selectCategory) : "";
+    console.log(selectCategoryId)
+    axios.get('/?title_keyword=' + titleKeyword + '&select_category=' + selectCategoryId)
+  }
+  
+
   return (
     <Row className="g-2">
       <Col md>
-        <FloatingLabel controlId="floatingInputGrid" label="タイトル">
-          <Form.Control type="text" placeholder="example:漫画、アニメ" />
+        <FloatingLabel label="タイトル">
+          <Form.Control id="title_keyword" type="text" placeholder="例:ノーゲーム・ノーライフ、キングダム" onBlur={() => searchRecord()}/>
         </FloatingLabel>
       </Col>
       <Col md>
@@ -24,10 +35,10 @@ const InputForm: React.FC = () => {
           controlId="floatingSelectGrid"
           label="カテゴリー"
         >
-          <Form.Select aria-label="Floating label select example">
+          <Form.Select id="select_category" onChange={() => searchRecord()}>
             <option></option>
             {categories.map((category: Category) => (
-              <option key={category.id}>{category.title}</option>
+              <option key={category.id} value={category.id}>{category.title}</option>
             ))}
           </Form.Select>
         </FloatingLabel>

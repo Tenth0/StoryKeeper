@@ -5,6 +5,7 @@ namespace App\Repository\Item;
 use App\Models\Item;
 use App\Repository\BaseRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
@@ -25,14 +26,16 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
             'order',
             'is_favorite',
         );
-        // if (!empty($searchQuery['search_text'])) {
-        //     $data = $data->where('title', 'LIKE', '%' . $searchQuery['search_text'] . '%');
-        // }
-        // if (!empty($searchQuery['select_category'])) {
-        //     $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
-        // }
-        // return $data->orderBy('order')->get();
+        if (!empty($searchQuery['title_keyword'])) {
+            Log::debug($searchQuery['title_keyword']);
+            $data = $data->where('title', 'LIKE', '%' . $searchQuery['title_keyword'] . '%');
+        }
+        if (!empty($searchQuery['select_category'])) {
+            Log::debug($searchQuery['select_category']);
+            $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
+        }
         return $data->get();
+        // return $data->orderBy('order')->get();
     }
 
     public function updateData(array $data, $id)
