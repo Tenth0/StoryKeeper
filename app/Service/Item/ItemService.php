@@ -57,7 +57,6 @@ class ItemService implements ItemServiceInterface {
     public function searchList($searchQuery)
     {
         $data = $this->ItemRepo->searchList($searchQuery);
-        Log::debug($data);
         return $data;
     }
 
@@ -77,8 +76,19 @@ class ItemService implements ItemServiceInterface {
         try {
             DB::beginTransaction();
             $id = $request->input('id');
-            $isFavorite = $request->input('isFavorite');
-            $item = Item::find($id);
+            $item = Item::select(
+                'items.id',
+                'items.title',
+                'items.filename',
+                'items.comment',
+                'items.read_time',
+                'items.is_favorite',
+                'categories.title as category_title',
+                'categories.color',
+            )
+            ->where('items.is_delete',0)
+            ->leftJoin('categories','items.category_id','=','categories.id')
+            ->find($id);
             if($item['is_favorite']) { 
                 $item->is_favorite = 0;
             } else {
