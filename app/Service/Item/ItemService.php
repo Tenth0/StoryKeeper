@@ -35,7 +35,6 @@ class ItemService implements ItemServiceInterface {
             $item = Item::select(
                 'items.id',
                 'items.title',
-                'items.filename',
                 'items.comment',
                 'items.read_time',
                 'items.is_favorite',
@@ -79,7 +78,6 @@ class ItemService implements ItemServiceInterface {
             $item = Item::select(
                 'items.id',
                 'items.title',
-                'items.filename',
                 'items.comment',
                 'items.read_time',
                 'items.is_favorite',

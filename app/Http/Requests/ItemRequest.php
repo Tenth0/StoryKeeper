@@ -26,7 +26,6 @@ class ItemRequest extends FormRequest
         return [
             'title' => 'required|string',
             'category_id' => 'required|integer',
-            'filename' => 'nullable|string',
             'comment' => 'nullable|string',
             'read_time' => 'nullable|date',
         ];

@@ -7,7 +7,6 @@ export const itemsState = atom<Item>({
         id: 0,
         title: '',
         category_id: 0,
-        filename: '',
         comment: '',
         read_time: '',
         order: 0,

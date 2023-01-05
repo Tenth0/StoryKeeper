@@ -41,11 +41,19 @@ class ItemController extends Controller
         return $items;
     }
     
-    public function insertItem(ItemRequest $request)
+    public function insertItem(Request $request)
     {
-        $Item = $this->ItemService->insertItem($request);
+        $itemData = [
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'read_time' => $request->read_time,
+            'comment' => $request->comment,
+        ];
+    
+        $Item = $this->ItemService->insertItem($itemData); // 配列を create メソッドの引数として渡す
         return $Item;
     }
+    
 
     public function insertFormItem()
     {

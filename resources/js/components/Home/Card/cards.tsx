@@ -74,6 +74,5 @@ const Cards: React.FC<{}> = () => {
         </Row>
     );
 };
-// <Card.Img variant="top" src="/black.png"/>
 
 export default Cards;

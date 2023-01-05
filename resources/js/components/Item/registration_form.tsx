@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import styled from "styled-components";
+import fs from 'fs';
 import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
@@ -29,16 +30,14 @@ const RegistrationForm = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const selectCategory = event.currentTarget.category.value;
-        
+
         const itemData = {
-            filename: fileRef.current?.value || "",
             title: titleRef.current?.value || "",
             category_id: selectCategory,
             read_time: readTimeRef.current?.value || "",
             comment: commentRef.current?.value || "",
         };
         itemData.category_id = Number(itemData.category_id);
-        
         axios
         .post("/api/insert_item", itemData)
             .then((res) => {
@@ -56,7 +55,7 @@ const RegistrationForm = () => {
 
     return (
         <>
-            <Form ref={formRef} onSubmit={handleSubmit}>
+            <Form ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data" >
                 <Form.Group as={Row} className="mb-3" controlId="title">
                     <Form.Label column sm="2">
                         タイトル
@@ -72,18 +71,6 @@ const RegistrationForm = () => {
                         {errors.title && (
                             <ErrorMessage>{errors.title}</ErrorMessage>
                         )}
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3" controlId="file">
-                    <Form.Label column sm="2">
-                        ファイル
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control
-                            type="file"
-                            name="filename"
-                            ref={fileRef}
-                        />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3" controlId="category">

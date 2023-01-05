@@ -30,7 +30,6 @@ class UpdateItemRequest extends FormRequest
                 'id' =>'nullable|max:10|unique:items,id',
                 'title' => 'required|string',
                 'category_id' => 'required|integer',
-                'filename' => 'nullable|string',
                 'comment' => 'nullable|string',
                 'read_time' => 'nullable|date',
             ];
@@ -40,7 +39,6 @@ class UpdateItemRequest extends FormRequest
                 'id'       => ['nullable', 'max:10', 'unique:items,id,'.$this->id],
                 'title' => 'required|string',
                 'category_id' => 'required|integer',
-                'filename' => 'nullable|string',
                 'comment' => 'nullable|string',
                 'read_time' => 'nullable|date',
             ];

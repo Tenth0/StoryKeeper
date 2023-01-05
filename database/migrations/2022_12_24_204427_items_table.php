@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('category_id');
-            $table->string('filename')->nullable();
             $table->text('comment')->nullable();
             $table->date('read_time')->nullable();
             $table->increments('order');

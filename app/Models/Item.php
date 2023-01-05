@@ -18,7 +18,6 @@ class Item extends Model
         'id',
         'title',
         'category_id',
-        'filename',
         'read_time',
         'order',
         'comment'
@@ -27,7 +26,6 @@ class Item extends Model
     public function InsertItem($request)
     {
         return self::create([
-            'filename' => $request->filename,
             'title' => $request->title,
             'category_id' => $request->category_id,
             'read_time' => $request->read_time,
@@ -42,7 +40,6 @@ class Item extends Model
         return self::where('id', '=', $id )->update([
             'title' => $request->title,
             'category_id' => $request->category_id,
-            'filename' => $request->filename,
             'comment' => $request->comment,
             'read_time' => $request->read_time,
             'created_at' => Carbon::now()->format('Ymd'),

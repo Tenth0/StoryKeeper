@@ -19,7 +19,6 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         $data = $this->model->select(
             'items.id',
             'items.title',
-            'items.filename',
             'items.comment',
             'items.read_time',
             'items.is_favorite',
@@ -57,17 +56,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
     }
     public function insertItem($request)
     {
-
-        $validatedItem = $request->validate([
-            'title' => 'required|string',
-            'category_id' => 'required|integer',
-            'filename' => 'nullable|string',
-            'comment' => 'nullable|string',
-            'read_time' => 'nullable|date',
-        ]);
-
-        $item = Item::create($validatedItem);
-
+        $item = Item::create($request);
         $item->save();
         return response()->json([
             'title' => $item->title,
