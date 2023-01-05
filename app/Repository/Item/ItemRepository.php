@@ -25,13 +25,11 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
             'read_time',
             'order',
             'is_favorite',
-        );
+        )->where('is_delete',0);
         if (!empty($searchQuery['title_keyword'])) {
-            Log::debug($searchQuery['title_keyword']);
             $data = $data->where('title', 'LIKE', '%' . $searchQuery['title_keyword'] . '%');
         }
         if (!empty($searchQuery['select_category'])) {
-            Log::debug($searchQuery['select_category']);
             $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
         }
         return $data->get();
@@ -60,7 +58,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
         $validatedItem = $request->validate([
             'title' => 'required|string',
-            'category_id' => 'nullable|integer',
+            'category_id' => 'required|integer',
             'filename' => 'nullable|string',
             'comment' => 'nullable|string',
             'read_time' => 'nullable|date',

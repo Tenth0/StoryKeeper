@@ -31,8 +31,19 @@ class ItemService implements ItemServiceInterface {
     }
     public function list()
     {
-        $data = Item::all();
-        return $data;
+        try {
+            $item = Item::select('*')
+            ->where('items.is_delete',0)
+            ->leftJoin('categories','items.category_id','=','categories.id')
+            ->get();
+            Log::debug($item);
+            return $item;
+        } catch(Exception $e) {
+            Log::error('アイテムを取得できませんでした');
+            Log::error($e);
+            DB::rollBack();
+            return null;
+        }
     }
 
     public function searchList($searchQuery)
@@ -64,7 +75,6 @@ class ItemService implements ItemServiceInterface {
             } else {
                 $item->is_favorite = 1;
             }
-            Log::debug($item);
             $item->save();
             DB::commit();
             return $item;
