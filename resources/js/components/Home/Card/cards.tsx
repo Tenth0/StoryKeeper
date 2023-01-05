@@ -37,11 +37,15 @@ const Cards: React.FC<{}> = () => {
         })
         .catch((error) => console.error(error))
     }
+
     return (
         <Row xs={1} md={2} className="g-4">
             {items.map((item: CardData, idx: number) => (
                 <Col key={idx}>
-                    <Card>
+                    <Card
+                        bg={item.color.toLowerCase()}
+                        text={item.color.toLowerCase() === 'light' ? 'dark' : 'white'}
+                    >
                         <Card.Header>
                             <Card.Title>{item.title}</Card.Title>
                             <Space>
