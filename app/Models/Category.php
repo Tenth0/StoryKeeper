@@ -18,6 +18,7 @@ class Category extends Model
         'title',
         'color'
     ];
+    protected $hidden = ['created_at','updated_at','is_delete'];
 
     public function insertCategory($request)
     {

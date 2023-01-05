@@ -32,7 +32,16 @@ class ItemService implements ItemServiceInterface {
     public function list()
     {
         try {
-            $item = Item::select('*')
+            $item = Item::select(
+                'items.id',
+                'items.title',
+                'items.filename',
+                'items.comment',
+                'items.read_time',
+                'items.is_favorite',
+                'categories.title as category_title',
+                'categories.color',
+            )
             ->where('items.is_delete',0)
             ->leftJoin('categories','items.category_id','=','categories.id')
             ->get();
