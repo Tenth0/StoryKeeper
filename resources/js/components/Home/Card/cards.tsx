@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilState } from 'recoil';
 import { itemsState } from "@/states/items";
-import { Item } from "@/types";
+import { Item,CardData } from "@/types";
 import DeleteItem from './cards_delete';
 import axios from "axios";
 
@@ -39,7 +39,7 @@ const Cards: React.FC<{}> = () => {
     }
     return (
         <Row xs={1} md={2} className="g-4">
-            {items.map((item: Item, idx: number) => (
+            {items.map((item: CardData, idx: number) => (
                 <Col key={idx}>
                     <Card>
                         <Card.Header>

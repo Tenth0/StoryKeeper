@@ -17,20 +17,22 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
     public function searchList($searchQuery)
     {
         $data = $this->model->select(
-            'id',
-            'title',
-            'category_id',
-            'filename',
-            'comment',
-            'read_time',
-            'order',
-            'is_favorite',
-        )->where('is_delete',0);
+            'items.id',
+            'items.title',
+            'items.filename',
+            'items.comment',
+            'items.read_time',
+            'items.is_favorite',
+            'categories.title as category_title',
+            'categories.color',
+        )
+        ->leftJoin('categories','items.category_id','=','categories.id')
+        ->where('items.is_delete',0);
         if (!empty($searchQuery['title_keyword'])) {
-            $data = $data->where('title', 'LIKE', '%' . $searchQuery['title_keyword'] . '%');
+            $data = $data->where('items.title', 'LIKE', '%' . $searchQuery['title_keyword'] . '%');
         }
         if (!empty($searchQuery['select_category'])) {
-            $data = $data->where('category_id' , '=' , $searchQuery['select_category']);
+            $data = $data->where('categories.id' , '=' , $searchQuery['select_category']);
         }
         return $data->get();
         // return $data->orderBy('order')->get();

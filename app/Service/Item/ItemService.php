@@ -45,7 +45,6 @@ class ItemService implements ItemServiceInterface {
             ->where('items.is_delete',0)
             ->leftJoin('categories','items.category_id','=','categories.id')
             ->get();
-            Log::debug($item);
             return $item;
         } catch(Exception $e) {
             Log::error('アイテムを取得できませんでした');
@@ -58,6 +57,7 @@ class ItemService implements ItemServiceInterface {
     public function searchList($searchQuery)
     {
         $data = $this->ItemRepo->searchList($searchQuery);
+        Log::debug($data);
         return $data;
     }
 
