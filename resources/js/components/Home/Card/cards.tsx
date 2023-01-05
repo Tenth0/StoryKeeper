@@ -1,42 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import styled from "styled-components";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
-import { Item,CardData } from "@/types";
-import DeleteItem from './cards_delete';
+import { Item, CardData } from "@/types";
+import DeleteItem from "./cards_delete";
 import axios from "axios";
 
 const Cards: React.FC<{}> = () => {
-    const Space = styled.div`
-        padding:4px;
+    const Padding = styled.div`
+        padding: 4px;
     `;
-    const [items,setItems] = useRecoilState(itemsState);
+
+    const [items, setItems] = useRecoilState(itemsState);
+    const [editCommentId, setEditCommentId] = useState<number|null>(null);
+    const [isChangeComment,setIsChangeComment] = useState<boolean>(false);
+    const [itemComment, setItemComment] = useState<
+        Record<number, string>
+    >({});
     if (!Array.isArray(items)) {
         return null;
     }
-    
-    const changeIsFavorite = (id:number,isFavorite:boolean) => {
-        axios.post("/items/change_isFavorite", { 
-            id: id,
-            isFavorite: isFavorite
-        })
-        .then((changeIsFavoriteItem) => {
-            const newItems: Item[] = items.map((item:Item) => {
-                if (item.id === changeIsFavoriteItem.data.id) {
-                  return changeIsFavoriteItem.data;
-                } else {
-                  return item;
-                }
-            });
-            setItems(newItems);
-        })
-        .catch((error) => console.error(error))
-    }
+
+    const changeIsFavorite = (id: number) => {
+        axios
+            .post("/items/change_isFavorite", {
+                id: id,
+            })
+            .then((changeIsFavoriteItem) => {
+                const newItems: Item[] = items.map((item: Item) => {
+                    if (item.id === changeIsFavoriteItem.data.id) {
+                        return changeIsFavoriteItem.data;
+                    } else {
+                        return item;
+                    }
+                });
+                setItems(newItems);
+            })
+            .catch((error) => console.error(error));
+    };
+
+    const changeComment = (
+        id: number,
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const newComment = event.target.value;
+        if (newComment === itemComment[id]) {
+            setIsChangeComment(false);
+        } else {
+            setIsChangeComment(true);
+        }
+        setItemComment({ ...items, [id]: newComment });
+    };
+
+    const updateComment = (id: number) => {
+        if (itemComment[id] === "") {
+            return;
+        }
+        setEditCommentId(null);
+        setIsChangeComment(false);
+        const updatedComment = items.map((Comment) =>
+            Comment.id === id
+                ? { ...Comment, title: itemComment[id] }
+                : Comment
+        );
+        // 型
+        setItems(Object.values(updatedComment));
+        axios
+            .post("/items/update", { id: id, comment: itemComment[id] })
+            .then((res) => console.log(res.data))
+            .catch((error) => console.error(error));
+    };
 
     return (
         <Row xs={1} md={2} className="g-4">
@@ -44,30 +82,57 @@ const Cards: React.FC<{}> = () => {
                 <Col key={idx}>
                     <Card
                         bg={item.color.toLowerCase()}
-                        text={item.color.toLowerCase() === 'light' ? 'dark' : 'white'}
+                        text={
+                            item.color.toLowerCase() === "light"
+                                ? "dark"
+                                : "white"
+                        }
                     >
                         <Card.Header>
                             <Card.Title>{item.title}</Card.Title>
-                            <Space>
+                            <Padding>
                                 <Row xs={2} md={2} className="g-4">
-                                <DeleteItem id={item.id} />
-                                <Button
-                                variant="danger"
-                                onClick={() => changeIsFavorite(item.id,item.is_favorite)}
-                                >
-                                {
-                                    item.is_favorite 
-                                    ? <BsHeartFill />
-                                    : <BsHeart />
-                                }
-                                </Button>
+                                    <DeleteItem id={item.id} />
+                                    <Button
+                                        variant="danger"
+                                        onClick={() =>
+                                            changeIsFavorite(item.id)
+                                        }
+                                    >
+                                        {item.is_favorite ? (
+                                            <BsHeartFill />
+                                        ) : (
+                                            <BsHeart />
+                                        )}
+                                    </Button>
                                 </Row>
-                            </Space>
+                            </Padding>
                         </Card.Header>
-                        <Card.Body>
-                            <Card.Text>{item.comment}</Card.Text>
-                            <Card.Footer>{item.read_time}</Card.Footer>
-                        </Card.Body>
+                        <Padding>
+                            <Card.Body 
+                                onDoubleClick={() => setEditCommentId(item.id)}
+                                onBlur={() => {
+                                    isChangeComment
+                                        ? updateComment(item.id)
+                                        : setEditCommentId(null)
+                                }}
+                            >
+                                { editCommentId === item.id ? (
+                                    <textarea
+                                        value={
+                                            itemComment[item.id] !==
+                                            undefined
+                                                ? itemComment[item.id]
+                                                : item.comment
+                                        }
+                                        onChange={(event) => changeComment(item.id,event)}
+                                    ></textarea>
+                                ) : (
+                                    <Card.Text>{item.comment}</Card.Text>
+                                )}
+                            </Card.Body>
+                        </Padding>
+                        <Card.Footer>{item.read_time}</Card.Footer>
                     </Card>
                 </Col>
             ))}

@@ -41,7 +41,7 @@ class ItemController extends Controller
         return $items;
     }
     
-    public function insertItem(Request $request)
+    public function insertItem(ItemRequest $request)
     {
         $itemData = [
             'title' => $request->title,
