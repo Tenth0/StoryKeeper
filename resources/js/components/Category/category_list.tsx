@@ -40,13 +40,12 @@ const CategoryList: React.FC = () => {
         }
         setEditTitle(null);
         setIsChangeTitle(false);
-        const updatedCategory = categories.map((category) =>
-            category.id === id
-                ? { ...category, title: categoryTitles[id] }
-                : category
-        );
-        // 型
-        setCategories(Object.values(updatedCategory));
+        const updatedCategory = categories.map((category) => {
+            return category.id === id
+            ? { ...category, title: categoryTitles[id] }
+            : category;
+        });
+        setCategories(updatedCategory);
         axios
             .post("/categories/update", { id: id, title: categoryTitles[id] })
             .then((res) => console.log(res.data))

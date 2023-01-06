@@ -18,6 +18,7 @@ Route::post('/items/delete', [ItemController::class,'deleteItem'])->name('delete
 Route::post('/items/change_isFavorite', [ItemController::class,'changeIsFavorite'])->name('change_isFavorite');
 Route::get('/insert_item', [ItemController::class,'insertFormItem'])->name('insertFormItem');
 Route::post('/api/insert_item', [ItemController::class,'insertItem'])->name('insertItem');
+Route::post('/items/update', [ItemController::class,'update'])->name('update_item');
 
 /* Category */
 Route::get('/category_table', [CategoryController::class,'list'])->name('categoryList');

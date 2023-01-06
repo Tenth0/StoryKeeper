@@ -17,11 +17,9 @@ const Cards: React.FC<{}> = () => {
     `;
 
     const [items, setItems] = useRecoilState(itemsState);
-    const [editCommentId, setEditCommentId] = useState<number|null>(null);
-    const [isChangeComment,setIsChangeComment] = useState<boolean>(false);
-    const [itemComment, setItemComment] = useState<
-        Record<number, string>
-    >({});
+    const [editCommentId, setEditCommentId] = useState<number | null>(null);
+    const [isChangeComment, setIsChangeComment] = useState<boolean>(false);
+    const [itemComment, setItemComment] = useState<Record<number, string>>({});
     if (!Array.isArray(items)) {
         return null;
     }
@@ -46,7 +44,7 @@ const Cards: React.FC<{}> = () => {
 
     const changeComment = (
         id: number,
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         const newComment = event.target.value;
         if (newComment === itemComment[id]) {
@@ -63,23 +61,23 @@ const Cards: React.FC<{}> = () => {
         }
         setEditCommentId(null);
         setIsChangeComment(false);
-        const updatedComment = items.map((Comment) =>
-            Comment.id === id
-                ? { ...Comment, title: itemComment[id] }
-                : Comment
-        );
-        // 型
-        setItems(Object.values(updatedComment));
+        const updatedComment = items.map((Comment) => {
+            return Comment.id === id
+            ? { ...Comment, comment: itemComment[id] }
+            : Comment;
+        });
+        setItems(updatedComment);
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
             .then((res) => console.log(res.data))
             .catch((error) => console.error(error));
     };
+    console.log(111);
 
     return (
         <Row xs={1} md={2} className="g-4">
-            {items.map((item: CardData, idx: number) => (
-                <Col key={idx}>
+            {items.map((item) => (
+                <Col key={item.id}>
                     <Card
                         bg={item.color.toLowerCase()}
                         text={
@@ -109,23 +107,24 @@ const Cards: React.FC<{}> = () => {
                             </Padding>
                         </Card.Header>
                         <Padding>
-                            <Card.Body 
+                            <Card.Body
                                 onDoubleClick={() => setEditCommentId(item.id)}
                                 onBlur={() => {
                                     isChangeComment
                                         ? updateComment(item.id)
-                                        : setEditCommentId(null)
+                                        : setEditCommentId(null);
                                 }}
                             >
-                                { editCommentId === item.id ? (
+                                {editCommentId === item.id ? (
                                     <textarea
                                         value={
-                                            itemComment[item.id] !==
-                                            undefined
-                                                ? itemComment[item.id]
-                                                : item.comment
+                                            itemComment[item.id] === undefined
+                                            ? item.comment||""
+                                            : itemComment[item.id]
                                         }
-                                        onChange={(event) => changeComment(item.id,event)}
+                                        onChange={(
+                                            event: React.ChangeEvent<HTMLTextAreaElement>
+                                        ) => changeComment(item.id, event)}
                                     ></textarea>
                                 ) : (
                                     <Card.Text>{item.comment}</Card.Text>
