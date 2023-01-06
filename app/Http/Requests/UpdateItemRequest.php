@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateItemRequest extends FormRequest
 {
@@ -23,25 +24,10 @@ class UpdateItemRequest extends FormRequest
      */
     public function rules()
     {
-        //新規登録か更新かでコードの重複判定を分ける
-        if( empty( $this->id ) === TRUE ){
-            //新規
-            return [
-                'id' =>'nullable|max:10|unique:items,id',
-                'title' => 'required|string',
-                'category_id' => 'required|integer',
-                'comment' => 'nullable|string',
-                'read_time' => 'nullable|date',
-            ];
-          } else {
-            //更新（自身のレコードIDはバリデーションチェック時に除外指定）
-            return [
-                'id'       => ['nullable', 'max:10', 'unique:items,id,'.$this->id],
-                'title' => 'required|string',
-                'category_id' => 'required|integer',
-                'comment' => 'nullable|string',
-                'read_time' => 'nullable|date',
-            ];
-          }
+        return [
+            'id' =>'nullable|max:10|unique:items,id'
+            ,Rule::unique('items')->ignore($this->route()->parameter('item'))
+            ,'comment' => 'nullable|string'
+        ]; 
     }
 }

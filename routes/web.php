@@ -5,11 +5,17 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+/* Auth */
+Auth::routes();
+/*      */
 
 /* Item */
 Route::get('/', [ItemController::class,'list'])->name('itemList');

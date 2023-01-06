@@ -72,7 +72,7 @@ const Cards: React.FC<{}> = () => {
             .then((res) => console.log(res.data))
             .catch((error) => console.error(error));
     };
-    console.log(111);
+    console.log("再レンダリングされました");
 
     return (
         <Row xs={1} md={2} className="g-4">

@@ -1,3 +1,9 @@
+export type User = {
+    id : number
+    name: string
+    email: string
+}
+
 export type Item = {
     id:number,
     title:string,

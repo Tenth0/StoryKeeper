@@ -68,9 +68,9 @@ class ItemController extends Controller
         return redirect()->route('insertFormItem')->with("create_success", __("Create success"));
     }
     
-    public function update($id, UpdateItemRequest $request)
+    public function update(UpdateItemRequest $request)
     {
-        $updateUnit = Item::UpdateItem($id, $request);
+        $updateUnit = $this->ItemService->updateItem($request);
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 

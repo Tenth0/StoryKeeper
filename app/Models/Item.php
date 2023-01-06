@@ -35,14 +35,10 @@ class Item extends Model
         ]);
     }
 
-    public function UpdateItem( $id , $request)
+    public function UpdateItem( $request )
     {
-        return self::where('id', '=', $id )->update([
-            'title' => $request->title,
-            'category_id' => $request->category_id,
+        return self::where('id', '=', $request->id )->update([
             'comment' => $request->comment,
-            'read_time' => $request->read_time,
-            'created_at' => Carbon::now()->format('Ymd'),
             'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }

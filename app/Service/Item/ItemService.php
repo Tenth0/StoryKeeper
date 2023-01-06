@@ -102,4 +102,24 @@ class ItemService implements ItemServiceInterface {
             return null;
         }
     }
+    
+    public function updateItem($request)
+    {
+        DB::beginTransaction();
+        $id = $request->input('id');
+        $comment = $request->input('comment');
+        try {
+            $item = Item::find($id);
+            $item->comment = $comment;
+            $item->save();
+            DB::commit();
+            return $item;
+        } catch(Exception $e) {
+            Log::error('コメント編集中にエラーが発生しました');
+            Log::error($e);
+            DB::rollBack();
+            return null;
+        }
+
+    }
 }

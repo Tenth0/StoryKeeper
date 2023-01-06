@@ -14,4 +14,6 @@ interface ItemServiceInterface {
     public function deleteItem($request);
 
     public function changeIsFavorite($request);
+
+    public function updateItem($request);
 }
