@@ -18,6 +18,7 @@ const Cards: React.FC<{}> = () => {
 
     const [items, setItems] = useRecoilState(itemsState);
     const [editCommentId, setEditCommentId] = useState<number | null>(null);
+    // アイテムをダブルクリックしたときに空白にならないようにする
     const [isChangeComment, setIsChangeComment] = useState<boolean>(false);
     const [itemComment, setItemComment] = useState<Record<number, string>>({});
     if (!Array.isArray(items)) {
@@ -47,15 +48,18 @@ const Cards: React.FC<{}> = () => {
         event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
         let newComment:string = event.target.value;
-        if(!newComment) {
-            newComment = ""
-        }
         if (newComment === itemComment[id]) {
             setIsChangeComment(false);
         } else {
             setIsChangeComment(true);
         }
-        setItemComment({ ...items, [id]: newComment });
+        //setItemComment({ ...items, [id]: newComment });
+        setItemComment(prevItems => {
+            const newItems = { ...prevItems };
+            newItems[id] = newComment;
+            return newItems;
+        });
+          
     };
 
     const updateComment = (id: number) => {
@@ -69,7 +73,7 @@ const Cards: React.FC<{}> = () => {
         setItems(updatedComment);
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
-            .then((res) => console.log(res.data))
+            .then((res) => console.log())
             .catch((error) => console.error(error));
     };
     console.log("再レンダリングされました");
