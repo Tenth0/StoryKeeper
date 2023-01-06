@@ -46,7 +46,10 @@ const Cards: React.FC<{}> = () => {
         id: number,
         event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
-        const newComment = event.target.value;
+        let newComment:string = event.target.value;
+        if(!newComment) {
+            newComment = ""
+        }
         if (newComment === itemComment[id]) {
             setIsChangeComment(false);
         } else {
@@ -56,9 +59,6 @@ const Cards: React.FC<{}> = () => {
     };
 
     const updateComment = (id: number) => {
-        if (itemComment[id] === "") {
-            return;
-        }
         setEditCommentId(null);
         setIsChangeComment(false);
         const updatedComment = items.map((Comment) => {
@@ -118,8 +118,8 @@ const Cards: React.FC<{}> = () => {
                                 {editCommentId === item.id ? (
                                     <textarea
                                         value={
-                                            itemComment[item.id] === undefined
-                                            ? item.comment||""
+                                            itemComment[item.id] == undefined || itemComment[item.id] == "" || itemComment[item.id] == null
+                                            ? ""
                                             : itemComment[item.id]
                                         }
                                         onChange={(

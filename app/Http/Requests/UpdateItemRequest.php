@@ -25,8 +25,7 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' =>'nullable|max:10|unique:items,id'
-            ,Rule::unique('items')->ignore($this->route()->parameter('item'))
+            'id' =>'required|max:10'
             ,'comment' => 'nullable|string'
         ]; 
     }
