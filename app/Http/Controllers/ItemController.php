@@ -23,9 +23,14 @@ class ItemController extends Controller
         $this->CategoryService = $CategoryService;
     }
 
+    public function router()
+    {
+        return Inertia::render('index');
+    }
+
     public function list()
     {
-        return Inertia::render('index',[
+        return Inertia::render('items',[
             'items' => $this->ItemService->list(),
             'categories' => $this->CategoryService->list(),
         ]);

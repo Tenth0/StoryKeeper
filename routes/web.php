@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 /*      */
 
-/* Item */
 Route::get('/', [ItemController::class,'list'])->name('itemList');
-Route::get('/search', [ItemController::class,'searchList'])->name('searchItemList');
+
+/* Item */
+Route::get('/items', [ItemController::class,'list'])->name('itemList');
+Route::get('/items/search', [ItemController::class,'searchList'])->name('searchItemList');
 Route::post('/items/delete', [ItemController::class,'deleteItem'])->name('delete_category');
 Route::post('/items/change_isFavorite', [ItemController::class,'changeIsFavorite'])->name('change_isFavorite');
 Route::get('/insert_item', [ItemController::class,'insertFormItem'])->name('insertFormItem');

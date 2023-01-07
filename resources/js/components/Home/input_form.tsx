@@ -18,7 +18,7 @@ const InputForm: React.FC = () => {
   const searchRecord = async () => {
     try {
       const items = await axios.get(
-        '/search?title_keyword=' +
+        '/items/search?title_keyword=' +
           titleKeyword +
           '&select_category=' +
           selectedCategory
