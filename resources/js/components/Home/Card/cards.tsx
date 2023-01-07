@@ -4,12 +4,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import styled from "styled-components";
+import axios from "axios";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item, CardData } from "@/types";
 import DeleteItem from "./cards_delete";
-import axios from "axios";
 
 const Cards: React.FC<{}> = () => {
     const Padding = styled.div`
@@ -53,13 +53,7 @@ const Cards: React.FC<{}> = () => {
         } else {
             setIsChangeComment(true);
         }
-        //setItemComment({ ...items, [id]: newComment });
-        setItemComment(prevItems => {
-            const newItems = { ...prevItems };
-            newItems[id] = newComment;
-            return newItems;
-        });
-          
+        setItemComment({ ...items, [id]: newComment });
     };
 
     const updateComment = (id: number) => {
@@ -123,7 +117,7 @@ const Cards: React.FC<{}> = () => {
                                     <textarea
                                         value={
                                             itemComment[item.id] == undefined || itemComment[item.id] == "" || itemComment[item.id] == null
-                                            ? ""
+                                            ? item.comment
                                             : itemComment[item.id]
                                         }
                                         onChange={(
