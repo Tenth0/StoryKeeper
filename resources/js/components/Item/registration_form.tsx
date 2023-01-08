@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Form,Col,Row,Button }  from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
+import FormButtons from "./form_buttons";
 
 const ErrorMessage = styled.p`
     color: red;
@@ -15,7 +16,6 @@ const RegistrationForm = () => {
     const titleRef = useRef<HTMLInputElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);
-    const fileRef = useRef<HTMLInputElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
 
     const categories = useRecoilValue(categoriesState);
@@ -35,7 +35,7 @@ const RegistrationForm = () => {
         };
         itemData.category_id = Number(itemData.category_id);
         axios
-        .post("/api/insert_item", itemData)
+            .post("/api/insert_item", itemData)
             .then((res) => {
                 setErrors({ title: "" });
                 formRef.current?.reset();
@@ -45,13 +45,16 @@ const RegistrationForm = () => {
                 setErrors({
                     title: error.response.data.errors.title,
                 });
-            }
-        );
+            });
     };
 
     return (
         <>
-            <Form ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data" >
+            <Form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+            >
                 <Form.Group as={Row} className="mb-3" controlId="title">
                     <Form.Label column sm="2">
                         タイトル
@@ -105,9 +108,7 @@ const RegistrationForm = () => {
                         ref={commentRef}
                     />
                 </Form.Group>
-                <Button type="submit" variant="primary">
-                    送信
-                </Button>
+                <FormButtons />
             </Form>
         </>
     );
