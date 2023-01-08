@@ -65,7 +65,7 @@ class ItemController extends Controller
 
     public function insertFormItem()
     {
-        return Inertia::render('insert_item',[
+        return Inertia::render('InsertItem',[
             'categories' => $this->CategoryService->list(),
         ]);
     }
