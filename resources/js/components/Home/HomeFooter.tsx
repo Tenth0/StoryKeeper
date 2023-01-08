@@ -1,5 +1,5 @@
 import React from "react";
-import PaginationBar from "@/components/pagination_bar";
+import PaginationBar from "@/components/PaginationBar";
 import styled from "styled-components";
 
 const HomeFooter = () => {

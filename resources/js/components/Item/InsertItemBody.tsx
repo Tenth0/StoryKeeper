@@ -1,5 +1,5 @@
 import React from "react";
-import RegistrationForm from "./registration_form";
+import RegistrationForm from "./RegistrationForm";
 import styled from "styled-components";
 const InsertItemBody = () => {
     const Margin = styled.div`

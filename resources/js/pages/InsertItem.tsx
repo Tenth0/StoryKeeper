@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import InsertItemBody from "@/components/Item/insert_item_body";
+import InsertItemBody from "@/components/Item/InsertItemBody";
 import { useSetRecoilState } from "recoil";
 import { categoriesState } from "../states/categories";
 import { Category } from '../types';
-import NavigationBar from "@/components/navigation_bar";
+import NavigationBar from "@/components/NavigationBar";
 
 const InsertItem: React.FC<{}> = ({ categories }:any) => {  
     const setCategories = useSetRecoilState(categoriesState);

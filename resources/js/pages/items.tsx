@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import HomeBody from "@/components/Home/home_body";
-import HomeFooter from "@/components/Home/home_footer";
+import HomeBody from "@/components/Home/HomeBody";
+import HomeFooter from "@/components/Home/HomeFooter";
 import { useSetRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { categoriesState } from "@/states/categories";
-import NavigationBar from "@/components/navigation_bar";
+import NavigationBar from "@/components/NavigationBar";
 
 const Items: React.FC<{}> = ({ items, categories }: any) => {
     // 型

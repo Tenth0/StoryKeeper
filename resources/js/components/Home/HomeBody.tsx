@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
-import InputForm from "./input_form";
-import Cards from "@/components/Home/Card/cards";
+import InputForm from "./InputForm";
+import Cards from "@/components/Home/Card/Cards";
 
 const HomeBody = () => {
     const FormMargin = styled.div`

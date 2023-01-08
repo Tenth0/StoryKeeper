@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react'
-import NavigationBar from '@/components/navigation_bar'
-import CategoryBody from '@/components/Category/category_body';
+import NavigationBar from '@/components/NavigationBar'
+import CategoryBody from '@/components/Category/CategoryBody';
 import { useSetRecoilState } from 'recoil';
 import { categoriesState } from '../states/categories';
 

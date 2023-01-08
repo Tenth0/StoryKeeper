@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryList from "@/components/Category/category_list";
-import AddCategory from "@/components/Category/add_category";
+import CategoryList from "@/components/Category/CategoryList";
+import AddCategory from "@/components/Category/AddCategory";
 import styled from "styled-components";
 
 const CategoryBody = () => {

@@ -5,7 +5,7 @@ import { Form, Col, Row } from "react-bootstrap";
 import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
-import FormButtons from "./form_buttons";
+import FormButtons from "./FormButtons";
 
 const ErrorMessage = styled.p`
     color: red;

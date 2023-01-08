@@ -6,7 +6,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item, CardData } from "@/types";
-import DeleteItem from "./cards_delete";
+import DeleteItem from "./CardsDelete";
 
 const Cards: React.FC<{}> = () => {
     const Padding = styled.div`

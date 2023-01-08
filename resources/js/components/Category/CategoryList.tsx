@@ -5,7 +5,7 @@ import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import HandleModalShow from "./category_delete";
+import HandleModalShow from "./CategoryDelete";
 
 const CategoryList: React.FC = () => {
     const [categories, setCategories] = useRecoilState(categoriesState);
