@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import InsertItemBody from "@/components/Item/InsertItemBody";
 const InsertItem: React.FC = () => {
     return (
