@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 /*      */
 
-Route::get('/', [ItemController::class,'list'])->name('itemList');
+Route::get('/', [ItemController::class,'router'])->name('itemList');
 
 /* Item */
 Route::get('/items', [ItemController::class,'list'])->name('itemList');

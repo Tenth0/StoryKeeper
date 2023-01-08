@@ -18,7 +18,6 @@ const Items: React.FC<{}> = ({ items, categories }: any) => {
     }, [items, categories]);
     return (
         <>
-            <NavigationBar />
             <Link to="/insert_item">
                 <Button>
                     aaaaaaaaaa

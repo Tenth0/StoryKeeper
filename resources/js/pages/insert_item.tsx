@@ -12,7 +12,6 @@ const InsertItem: React.FC<{ categories: Category[] }> = ({ categories }:any) =>
     }, [categories]);
     return (
         <>
-            <NavigationBar />
             <InsertItemBody />
         </>
     );
