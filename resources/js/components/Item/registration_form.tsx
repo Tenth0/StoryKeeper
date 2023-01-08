@@ -1,11 +1,7 @@
 import React, { useState, useRef } from "react";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import styled from "styled-components";
-import fs from 'fs';
+import { Form,Col,Row,Button }  from "react-bootstrap";
 import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";

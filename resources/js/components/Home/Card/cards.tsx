@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/esm/Button";
+import { Card,Col,Row,Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -70,7 +67,6 @@ const Cards: React.FC<{}> = () => {
             .then((res) => console.log())
             .catch((error) => console.error(error));
     };
-    console.log("再レンダリングされました");
 
     return (
         <Row xs={1} md={2} className="g-4">

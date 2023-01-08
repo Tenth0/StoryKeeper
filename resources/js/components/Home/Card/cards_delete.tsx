@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/esm/Button";
+import { Modal,Button } from "react-bootstrap";
 import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { Item } from "@/types";

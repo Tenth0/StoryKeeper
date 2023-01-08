@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import { Col,FloatingLabel,Form,Row } from "react-bootstrap";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { itemsState } from "@/states/items";
