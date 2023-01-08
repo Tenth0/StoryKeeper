@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import NavigationBar from "@/components/navigation_bar";
 import HomeBody from "@/components/Home/home_body";
 import HomeFooter from "@/components/Home/home_footer";
 import { useSetRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { categoriesState } from "@/states/categories";
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import NavigationBar from "@/components/navigation_bar";
+
 
 const Items: React.FC<{}> = ({ items, categories }: any) => {
     // 型
@@ -18,11 +17,7 @@ const Items: React.FC<{}> = ({ items, categories }: any) => {
     }, [items, categories]);
     return (
         <>
-            <Link to="/insert_item">
-                <Button>
-                    aaaaaaaaaa
-                </Button>
-            </Link>
+            <NavigationBar />
             <HomeBody />
             <HomeFooter />
         </>

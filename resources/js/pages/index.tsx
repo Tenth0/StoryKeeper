@@ -8,7 +8,6 @@ import CategoryTable from "@/pages/category_table";
 const Index: React.FC<{}> = ({ items, categories }: any) => {
     return (
         <>
-            <NavigationBar />
             <Routes>
                 <Route path="/" element={<Items />} />
                 <Route path="/insert_item" element={<InsertItem categories={categories}/>} />
