@@ -20,14 +20,14 @@ const HomeBody = () => {
     `;
     return (
         <>
+            <FormMargin>
+                <InputForm />
+            </FormMargin>
             <AddButtonMargin>
                 <Link to="/insert_item">
                     <Button>アイテム追加</Button>
                 </Link>
             </AddButtonMargin>
-            <FormMargin>
-                <InputForm />
-            </FormMargin>
             <CardsMargin>
                 <Cards />
             </CardsMargin>

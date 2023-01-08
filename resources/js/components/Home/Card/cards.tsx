@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card,Col,Row,Button } from "react-bootstrap";
+import { Card, Col, Row, Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -44,7 +44,7 @@ const Cards: React.FC<{}> = () => {
         id: number,
         event: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
-        let newComment:string = event.target.value;
+        let newComment: string = event.target.value;
         if (newComment === itemComment[id]) {
             setIsChangeComment(false);
         } else {
@@ -58,8 +58,8 @@ const Cards: React.FC<{}> = () => {
         setIsChangeComment(false);
         const updatedComment = items.map((Comment) => {
             return Comment.id === id
-            ? { ...Comment, comment: itemComment[id] }
-            : Comment;
+                ? { ...Comment, comment: itemComment[id] }
+                : Comment;
         });
         setItems(updatedComment);
         axios
@@ -69,7 +69,7 @@ const Cards: React.FC<{}> = () => {
     };
 
     return (
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={2} xl={3} xxl={4} className="g-4">
             {items.map((item) => (
                 <Col key={item.id}>
                     <Card
@@ -112,9 +112,11 @@ const Cards: React.FC<{}> = () => {
                                 {editCommentId === item.id ? (
                                     <textarea
                                         value={
-                                            itemComment[item.id] == undefined || itemComment[item.id] == "" || itemComment[item.id] == null
-                                            ? item.comment
-                                            : itemComment[item.id]
+                                            itemComment[item.id] == undefined ||
+                                            itemComment[item.id] == "" ||
+                                            itemComment[item.id] == null
+                                                ? item.comment
+                                                : itemComment[item.id]
                                         }
                                         onChange={(
                                             event: React.ChangeEvent<HTMLTextAreaElement>
