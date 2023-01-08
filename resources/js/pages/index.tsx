@@ -1,31 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import NavigationBar from "@/components/navigation_bar";
-import HomeBody from "@/components/Home/home_body";
-import HomeFooter from "@/components/Home/home_footer";
-import { useSetRecoilState } from "recoil";
-import { itemsState } from "@/states/items";
-import { categoriesState } from "@/states/categories";
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import Items from "@/pages";
+import InsertItem from "@/pages";
+import CategoryTable from "@/pages";
 
-const Index: React.FC<{}> = ({ items, categories }: any) => {
-    // 型
-    const setItems = useSetRecoilState(itemsState);
-    const setCategories = useSetRecoilState(categoriesState);
-    useEffect(() => {
-        setItems(items);
-        setCategories(categories);
-    }, [items, categories]);
+const Index: React.FC<{}> = () => {
     return (
         <>
             <NavigationBar />
-            <Link to="/insert_item">
-                <Button>
-                    aaaaaaaaaa
-                </Button>
-            </Link>
-            <HomeBody />
-            <HomeFooter />
+            <Routes>
+                <Route path="/" element={<Items />} />
+                <Route path="/insert_item" element={<InsertItem />} />
+                <Route path="/category_table" element={<CategoryTable />} />
+            </Routes>
         </>
     );
 };

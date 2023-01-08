@@ -8,7 +8,7 @@ import { categoriesState } from "@/states/categories";
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-const Index: React.FC<{}> = ({ items, categories }: any) => {
+const Items: React.FC<{}> = ({ items, categories }: any) => {
     // 型
     const setItems = useSetRecoilState(itemsState);
     const setCategories = useSetRecoilState(categoriesState);
@@ -30,4 +30,4 @@ const Index: React.FC<{}> = ({ items, categories }: any) => {
     );
 };
 
-export default Index;
+export default Items;
