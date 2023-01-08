@@ -5,13 +5,13 @@ import Items from "@/pages/items";
 import InsertItem from "@/pages/insert_item";
 import CategoryTable from "@/pages/category_table";
 
-const Index: React.FC<{}> = () => {
+const Index: React.FC<{}> = ({ items, categories }: any) => {
     return (
         <>
             <NavigationBar />
             <Routes>
                 <Route path="/" element={<Items />} />
-                <Route path="/insert_item" element={<InsertItem />} />
+                <Route path="/insert_item" element={<InsertItem categories={categories}/>} />
                 <Route path="/category_table" element={<CategoryTable />} />
             </Routes>
         </>
