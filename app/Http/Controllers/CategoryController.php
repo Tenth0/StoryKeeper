@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
     public function list()
     {
-        return Inertia::render('category_table',[
+        return Inertia::render('CategoryTable',[
             'categories' => $this->CategoryService->list(),
         ]);
     }
