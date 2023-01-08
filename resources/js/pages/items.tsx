@@ -6,7 +6,6 @@ import { itemsState } from "@/states/items";
 import { categoriesState } from "@/states/categories";
 import NavigationBar from "@/components/navigation_bar";
 
-
 const Items: React.FC<{}> = ({ items, categories }: any) => {
     // 型
     const setItems = useSetRecoilState(itemsState);
