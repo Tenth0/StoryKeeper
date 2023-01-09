@@ -4,7 +4,7 @@ import { Nav,Navbar } from 'react-bootstrap';
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { LinkContainer } from 'react-router-bootstrap';
 
-const NavigationBar = () => {
+const NavigationBar:React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark">
     <Container>

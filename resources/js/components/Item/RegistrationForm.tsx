@@ -11,7 +11,7 @@ const ErrorMessage = styled.p`
     color: red;
 `;
 
-const RegistrationForm = () => {
+const RegistrationForm:React.FC = () => {
     const [errors, setErrors] = useState<{ title: string }>({ title: "" });
     const titleRef = useRef<HTMLInputElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);

@@ -1,7 +1,7 @@
 import React from 'react'
 import Pagination from 'react-bootstrap/Pagination';
 
-const PaginationBar = () => {
+const PaginationBar:React.FC = () => {
     return (
         <Pagination>
           <Pagination.First />

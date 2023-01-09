@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 
-const AddCategory = () => {
+const AddCategory:React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
     const ErrorMessage = styled.p`

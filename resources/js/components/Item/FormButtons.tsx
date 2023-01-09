@@ -12,7 +12,7 @@ const CancelButtonMargin = styled.div`
     margin-right: 8px;
 `;
 
-const FormButtons = () => {
+const FormButtons:React.FC = () => {
     return (
         <ButtonMargin>
             <CancelButtonMargin>
