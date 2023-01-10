@@ -8,10 +8,12 @@ import { itemsState } from "@/states/items";
 import { Item, CardData } from "@/types";
 import DeleteItem from "./CardsDelete";
 
+// 外したらコメントを更新できるようになった
+const Padding = styled.div`
+    padding: 4px;
+`;
+
 const Cards: React.FC<{}> = () => {
-    const Padding = styled.div`
-        padding: 4px;
-    `;
 
     const [items, setItems] = useRecoilState(itemsState);
     const [editCommentId, setEditCommentId] = useState<number | null>(null);
@@ -28,7 +30,7 @@ const Cards: React.FC<{}> = () => {
                 id: id,
             })
             .then((changeIsFavoriteItem) => {
-                const newItems: Item[] = items.map((item: Item) => {
+                const newItems: Item[] = items.map((item: CardData) => {
                     if (item.id === changeIsFavoriteItem.data.id) {
                         return changeIsFavoriteItem.data;
                     } else {
@@ -50,7 +52,7 @@ const Cards: React.FC<{}> = () => {
         } else {
             setIsChangeComment(true);
         }
-        setItemComment({ ...items, [id]: newComment });
+        setItemComment({ ...itemComment, [id]: newComment });
     };
 
     const updateComment = (id: number) => {
