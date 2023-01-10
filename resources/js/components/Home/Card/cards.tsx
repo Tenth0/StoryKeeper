@@ -27,6 +27,7 @@ const Cards: React.FC<{}> = () => {
         return null;
     }
 
+    // お気に入りを帰る関数
     const changeIsFavorite = (id: number) => {
         axios
             .post("/items/change_isFavorite", {
@@ -107,7 +108,6 @@ const Cards: React.FC<{}> = () => {
                         </Card.Header>
                         <Padding>
                             <Card.Body
-                                onDoubleClick={() => setEditCommentId(item.id)}
                                 onBlur={() => {
                                     isChangeComment
                                         ? updateComment(item.id)
@@ -130,6 +130,7 @@ const Cards: React.FC<{}> = () => {
                                 ) : (
                                     <Card.Text>{item.comment}</Card.Text>
                                 )}
+                                <Button onClick={() => setEditCommentId(item.id)}>編集</Button>
                             </Card.Body>
                         </Padding>
                         <Card.Footer>{item.read_time}</Card.Footer>
