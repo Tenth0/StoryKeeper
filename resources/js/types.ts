@@ -12,7 +12,7 @@ export type Item = {
     read_time:string,
     order:number,
     is_favorite:boolean,
-}
+}[]
 
 export type Category = {
     id: number;
