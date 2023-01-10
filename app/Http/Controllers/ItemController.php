@@ -31,6 +31,7 @@ class ItemController extends Controller
         ]);
     }
 
+    // いらんかも
     public function list()
     {
         return Inertia::render('Items',[
@@ -51,11 +52,16 @@ class ItemController extends Controller
     
     public function insertItem(ItemRequest $request)
     {
+        $comment = $request->comment;
+        if($comment == null) {
+            $comment = "";
+        }
+
         $itemData = [
             'title' => $request->title,
             'category_id' => $request->category_id,
             'read_time' => $request->read_time,
-            'comment' => $request->comment,
+            'comment' => $comment,
         ];
     
         $Item = $this->ItemService->insertItem($itemData); // 配列を create メソッドの引数として渡す
@@ -78,7 +84,17 @@ class ItemController extends Controller
     
     public function update(UpdateItemRequest $request)
     {
-        $updateUnit = $this->ItemService->updateItem($request);
+        $comment = $request->comment;
+        if($comment == null) {
+            $comment = "";
+        }
+
+        $newComment = [
+            'id' => $request->id,
+            'comment' => $comment
+        ];
+
+        $updateUnit = $this->ItemService->updateItem($newComment);
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 

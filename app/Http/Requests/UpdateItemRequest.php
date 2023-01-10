@@ -25,8 +25,8 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' =>'required|max:10'
-            ,'comment' => 'nullable|string'
+            'id' =>'required|max:10',
+            'comment' => 'nullable|string'
         ]; 
     }
 }
