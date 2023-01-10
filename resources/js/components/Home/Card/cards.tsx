@@ -9,6 +9,9 @@ import { Item, CardData } from "@/types";
 import DeleteItem from "./CardsDelete";
 
 // 外したらコメントを更新できるようになった
+// styled.divで毎回divが作られているから
+// 毎回新しいHTML要素を作る
+// paddingより下の要素は毎回新しいDOMの要素に書き換えられる
 const Padding = styled.div`
     padding: 4px;
 `;
@@ -111,7 +114,7 @@ const Cards: React.FC<{}> = () => {
                                         : setEditCommentId(null);
                                 }}
                             >
-                                {editCommentId === item.id ? (
+                                { editCommentId === item.id ? (
                                     <textarea
                                         value={
                                             itemComment[item.id] == undefined ||

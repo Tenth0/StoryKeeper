@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { Item } from '../types';
+import { CardsData } from '../types';
 
-export const itemsState = atom<Item>({
+export const itemsState = atom<CardsData>({
     key: 'items',
     default: [{
         id: 0,
@@ -11,6 +11,8 @@ export const itemsState = atom<Item>({
         read_time: '',
         order: 0,
         is_favorite:false,
+        category_title: '',
+        color: 'light',
     }],
 })
   
