@@ -75,7 +75,7 @@ const Cards: React.FC<{}> = () => {
         setItems(updatedComment);
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
-            .then((res) => console.log())
+            .then()
             .catch((error) => console.error(error));
     };
 

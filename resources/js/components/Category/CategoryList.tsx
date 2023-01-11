@@ -54,7 +54,7 @@ const CategoryList: React.FC = () => {
         setCategories(updatedCategory);
         axios
             .post("/categories/update", { id: id, title: categoryTitles[id] })
-            .then((res) => console.log(res.data))
+            .then()
             .catch((error) => console.error(error));
     };
 

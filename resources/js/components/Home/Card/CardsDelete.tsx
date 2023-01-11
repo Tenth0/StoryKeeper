@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { Modal,Button } from "react-bootstrap";
 import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
-import { Item } from "@/types";
+import { ItemsType } from "@/types";
 import { itemsState } from "@/states/items";
 
 const ItemModal: React.FC<{
@@ -13,14 +13,14 @@ const ItemModal: React.FC<{
 }> = ({ modalShow, setModalShow, selectedItem }) => {
     const [items, setItems] = useRecoilState(itemsState)
     const handleDeleteItem = () => {
-        const newItems: Item[] = items.filter(
+        const newItems: ItemsType = items.filter(
             (item) => item.id !== selectedItem
         )
         setItems(newItems)
         setModalShow(false)
         axios
-            .post("/items/delete", { id: selectedItem })
-            .then((res) => console.log(res.data))
+            .post("/items/delete", { id : selectedItem })
+            .then()
             .catch((error) => console.error(error))
     }
     return (

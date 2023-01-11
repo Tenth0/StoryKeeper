@@ -21,7 +21,7 @@ const CategoryModal: React.FC<{
         setModalShow(false);
         axios
             .post("/categories/delete", { id: selectedCategory })
-            .then((res) => console.log(res.data))
+            .then()
             .catch((error) => console.error(error));
     };
     return (

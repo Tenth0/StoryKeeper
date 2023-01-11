@@ -10,9 +10,12 @@ const Pagination = styled.div`
 
 const HomeFooter:React.FC = () => {
     return (
+        <></>
+        /*
         <Pagination>
             <PaginationBar />
         </Pagination>
+        */
     );
 };
 
