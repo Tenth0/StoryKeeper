@@ -137,13 +137,16 @@ const Cards: React.FC<{}> = () => {
                                     <Card.Text>{item.comment}</Card.Text>
                                 )}
                             </Card.Body>
+                            <Flex>
+                                <Button
+                                    variant="secondary"
+                                    onClick={() => setEditCommentId(item.id)}
+                                >
+                                    <BsPencil />
+                                    コメント編集
+                                </Button>
+                            </Flex>
                         </Padding>
-                        <Flex>
-                            <Button variant="secondary" onClick={() => setEditCommentId(item.id)}>
-                                <BsPencil />
-                                コメント編集
-                            </Button>
-                        </Flex>
                         <Card.Footer>{item.read_time}</Card.Footer>
                     </Card>
                 </Col>

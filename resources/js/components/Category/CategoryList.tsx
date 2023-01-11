@@ -65,8 +65,7 @@ const CategoryList: React.FC = () => {
                     <tr>
                         <th>#</th>
                         <th>削除</th>
-                        <th>タイトル</th>
-                        <th></th>
+                        <th colSpan={2}>タイトル</th>
                         <th>カラー</th>
                     </tr>
                 </thead>
