@@ -13,7 +13,7 @@ const appName =
 
 const container = document.getElementById("app")!;
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => "StoryKeeper",
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.tsx`,

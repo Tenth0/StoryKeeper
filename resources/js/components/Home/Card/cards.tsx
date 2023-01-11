@@ -139,9 +139,9 @@ const Cards: React.FC<{}> = () => {
                             </Card.Body>
                         </Padding>
                         <Flex>
-                            <Button onClick={() => setEditCommentId(item.id)}>
+                            <Button variant="secondary" onClick={() => setEditCommentId(item.id)}>
                                 <BsPencil />
-                                編集
+                                コメント編集
                             </Button>
                         </Flex>
                         <Card.Footer>{item.read_time}</Card.Footer>

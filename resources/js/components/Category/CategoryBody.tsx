@@ -13,7 +13,6 @@ const Margin = styled.div`
     margin: 0px 16px 8px 16px;
 `;
 const CategoryBody:React.FC = () => {
-
     return (
         <>
             <Flex>

@@ -9,16 +9,17 @@ import styled from "styled-components";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 
+const ErrorMessage = styled.p`
+    color: red;
+`;
+
+const ButtonFlex = styled.div`
+    margin-top: 8px;
+`;
+
 const AddCategory:React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
-    const ErrorMessage = styled.p`
-        color: red;
-    `;
-
-    const ButtonFlex = styled.div`
-        margin-top: 8px;
-    `;
 
     const [show, setShow] = useState(false);
 
