@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsHeart, BsHeartFill, BsPencil } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item, CardData } from "@/types";
@@ -16,8 +16,13 @@ const Padding = styled.div`
     padding: 4px;
 `;
 
-const Cards: React.FC<{}> = () => {
+const Flex = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px;
+`;
 
+const Cards: React.FC<{}> = () => {
     const [items, setItems] = useRecoilState(itemsState);
     const [editCommentId, setEditCommentId] = useState<number | null>(null);
     // アイテムをダブルクリックしたときに空白にならないようにする
@@ -107,6 +112,7 @@ const Cards: React.FC<{}> = () => {
                             </Padding>
                         </Card.Header>
                         <Padding>
+                            <Row xs={1} md={2}></Row>
                             <Card.Body
                                 onBlur={() => {
                                     isChangeComment
@@ -114,7 +120,7 @@ const Cards: React.FC<{}> = () => {
                                         : setEditCommentId(null);
                                 }}
                             >
-                                { editCommentId === item.id ? (
+                                {editCommentId === item.id ? (
                                     <textarea
                                         value={
                                             itemComment[item.id] == undefined ||
@@ -130,9 +136,14 @@ const Cards: React.FC<{}> = () => {
                                 ) : (
                                     <Card.Text>{item.comment}</Card.Text>
                                 )}
-                                <Button onClick={() => setEditCommentId(item.id)}>編集</Button>
                             </Card.Body>
                         </Padding>
+                        <Flex>
+                            <Button onClick={() => setEditCommentId(item.id)}>
+                                <BsPencil />
+                                編集
+                            </Button>
+                        </Flex>
                         <Card.Footer>{item.read_time}</Card.Footer>
                     </Card>
                 </Col>
