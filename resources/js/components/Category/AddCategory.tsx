@@ -96,15 +96,15 @@ const AddCategory:React.FC = () => {
                             <ErrorMessage>{errors.color}</ErrorMessage>
                         )}
                         <ButtonFlex>
-                            <Row xs={2} md={2} className="g-4">
+                            <Row xs={1} md={2} className="g-4">
+                                <Button type="submit" variant="primary">
+                                    追加
+                                </Button>
                                 <Button
                                     variant="secondary"
                                     onClick={() => setShow(false)}
                                 >
                                     キャンセル
-                                </Button>
-                                <Button type="submit" variant="primary">
-                                    追加
                                 </Button>
                             </Row>
                         </ButtonFlex>

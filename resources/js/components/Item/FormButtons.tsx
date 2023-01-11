@@ -8,21 +8,21 @@ const ButtonMargin = styled.div`
     justify-content: flex-end;
     margin: 8px;
 `;
-const CancelButtonMargin = styled.div`
+const AddButtonMargin = styled.div`
     margin-right: 8px;
 `;
 
-const FormButtons:React.FC = () => {
+const FormButtons: React.FC = () => {
     return (
         <ButtonMargin>
-            <CancelButtonMargin>
-                <Link to="/">
-                    <Button variant="secondary">一覧に戻る</Button>
-                </Link>
-            </CancelButtonMargin>
-            <Button type="submit" variant="primary">
-                新規追加
-            </Button>
+            <AddButtonMargin>
+                <Button type="submit" variant="primary">
+                    新規追加
+                </Button>
+            </AddButtonMargin>
+            <Link to="/">
+                <Button variant="secondary">一覧に戻る</Button>
+            </Link>
         </ButtonMargin>
     );
 };

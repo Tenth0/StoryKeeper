@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
 import { useTranslation } from "react-i18next";
+import { Button, Table } from "react-bootstrap";
+import { BsPencil } from "react-icons/bs";
 import axios from "axios";
+import styled from "styled-components";
 import HandleModalShow from "./CategoryDelete";
+
+const Center = styled.div`
+    text-align: center;
+`;
 
 const CategoryList: React.FC = () => {
     const [categories, setCategories] = useRecoilState(categoriesState);
@@ -42,8 +48,8 @@ const CategoryList: React.FC = () => {
         setIsChangeTitle(false);
         const updatedCategory = categories.map((category) => {
             return category.id === id
-            ? { ...category, title: categoryTitles[id] }
-            : category;
+                ? { ...category, title: categoryTitles[id] }
+                : category;
         });
         setCategories(updatedCategory);
         axios
@@ -60,6 +66,7 @@ const CategoryList: React.FC = () => {
                         <th>#</th>
                         <th>削除</th>
                         <th>タイトル</th>
+                        <th></th>
                         <th>カラー</th>
                     </tr>
                 </thead>
@@ -71,7 +78,6 @@ const CategoryList: React.FC = () => {
                                 <HandleModalShow id={category.id} />
                             </td>
                             <td
-                                onDoubleClick={() => setEditTitle(category.id)}
                                 onBlur={() => {
                                     isChangeTitle
                                         ? updateCategory(category.id)
@@ -94,6 +100,19 @@ const CategoryList: React.FC = () => {
                                 ) : (
                                     category.title
                                 )}
+                            </td>
+                            <td width={"10%"}>
+                                <Center>
+                                    <Button
+                                        variant="black"
+                                        onClick={() =>
+                                            setEditTitle(category.id)
+                                        }
+                                    >
+                                        <BsPencil />
+                                        編集
+                                    </Button>
+                                </Center>
                             </td>
                             <td>{t(`color.${category.color}`)}</td>
                         </tr>
