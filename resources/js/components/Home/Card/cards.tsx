@@ -5,7 +5,7 @@ import axios from "axios";
 import { BsHeart, BsHeartFill, BsPencil } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
-import { Item, CardData } from "@/types";
+import { Item, CardData, ItemsType } from "@/types";
 import DeleteItem from "./CardsDelete";
 
 // 外したらコメントを更新できるようになった
@@ -39,7 +39,7 @@ const Cards: React.FC<{}> = () => {
                 id: id,
             })
             .then((changeIsFavoriteItem) => {
-                const newItems: Item[] = items.map((item: CardData) => {
+                const newItems: CardData[] = items.map((item: CardData) => {
                     if (item.id === changeIsFavoriteItem.data.id) {
                         return changeIsFavoriteItem.data;
                     } else {
