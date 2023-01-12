@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row, Toast } from "react-bootstrap";
 import { BsXCircle } from "react-icons/bs";
 
-const ToastError: React.FC = () => {
-    const [show, setShow] = useState(true);
+const ToastError: React.FC<boolean> = (show) => {
     return (
         <Row>
             <Col xs={6}>
                 <Toast
                     bg="danger"
-                    onClose={() => setShow(false)}
                     show={show}
                     delay={3000}
                     autohide
