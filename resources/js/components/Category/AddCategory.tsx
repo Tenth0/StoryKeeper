@@ -8,6 +8,8 @@ import Row from "react-bootstrap/esm/Row";
 import styled from "styled-components";
 import { categoriesState } from "@/states/categories";
 import { Category } from "@/types";
+import ToastSuccess from "../Toast/ToastSuccess";
+import ToastError from "../Toast/ToastError";
 
 const ErrorMessage = styled.p`
     color: red;
@@ -45,13 +47,15 @@ const AddCategory:React.FC = () => {
                 // 型
                 const newCategories: Category[] = [...categories, res.data];
                 setCategories(newCategories);
+                return (<ToastSuccess />);
             })
-            .catch((error) =>
+            .catch((error) =>{
                 setErrors({
                     title: error.response.data.errors.title,
                     color: error.response.data.errors.color,
-                })
-            );
+                });
+                return (<ToastError />);
+            });
     };
 
     return (

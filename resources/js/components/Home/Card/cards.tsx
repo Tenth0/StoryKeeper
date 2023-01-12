@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { Item, CardData, ItemsType } from "@/types";
 import DeleteItem from "./CardsDelete";
+import ToastError from "@/components/Toast/ToastError";
 
 // 外したらコメントを更新できるようになった
 // styled.divで毎回divが作られているから
@@ -76,7 +77,7 @@ const Cards: React.FC<{}> = () => {
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
             .then()
-            .catch((error) => console.error(error));
+            .catch(() => <ToastError />);
     };
 
     return (
@@ -123,11 +124,15 @@ const Cards: React.FC<{}> = () => {
                                 {editCommentId === item.id ? (
                                     <textarea
                                         value={
+                                            /*
+                                            item.comment == null || item.comment == "" || item.comment == undefined
+                                            ? ""
+                                            :   */
                                             itemComment[item.id] == undefined ||
-                                            itemComment[item.id] == "" ||
-                                            itemComment[item.id] == null
-                                                ? item.comment
-                                                : itemComment[item.id]
+                                                itemComment[item.id] == "" ||
+                                                itemComment[item.id] == null
+                                                    ? item.comment
+                                                    : itemComment[item.id]
                                         }
                                         onChange={(
                                             event: React.ChangeEvent<HTMLTextAreaElement>

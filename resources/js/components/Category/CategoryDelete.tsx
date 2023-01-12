@@ -6,6 +6,8 @@ import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { Category } from "@/types";
 import { categoriesState } from "../../states/categories";
+import ToastSuccess from "../Toast/ToastSuccess";
+import ToastError from "../Toast/ToastError";
 
 const CategoryModal: React.FC<{
     modalShow: boolean;
@@ -21,8 +23,8 @@ const CategoryModal: React.FC<{
         setModalShow(false);
         axios
             .post("/categories/delete", { id: selectedCategory })
-            .then()
-            .catch((error) => console.error(error));
+            .then(() => <ToastSuccess />)
+            .catch(() => <ToastError />);
     };
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>

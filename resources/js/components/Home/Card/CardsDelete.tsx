@@ -5,6 +5,8 @@ import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { ItemsType } from "@/types";
 import { itemsState } from "@/states/items";
+import ToastSuccess from "@/components/Toast/ToastSuccess";
+import ToastError from "@/components/Toast/ToastError";
 
 const ItemModal: React.FC<{
     modalShow: boolean
@@ -20,8 +22,8 @@ const ItemModal: React.FC<{
         setModalShow(false)
         axios
             .post("/items/delete", { id : selectedItem })
-            .then()
-            .catch((error) => console.error(error))
+            .then(() => <ToastSuccess />)
+            .catch(() => <ToastError />)
     }
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>

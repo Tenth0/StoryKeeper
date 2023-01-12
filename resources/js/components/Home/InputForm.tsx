@@ -5,6 +5,7 @@ import { categoriesState } from "@/states/categories";
 import { itemsState } from "@/states/items";
 import { Category } from "@/types";
 import axios from "axios";
+import ToastError from "../Toast/ToastError";
 
 const InputForm: React.FC = () => {
   const [titleKeyword, setTitleKeyword] = useState('');
@@ -22,7 +23,7 @@ const InputForm: React.FC = () => {
           );
       setItems(items.data);
     } catch (error) {
-      console.error(error);
+      return (<ToastError />)
     }
   };
   

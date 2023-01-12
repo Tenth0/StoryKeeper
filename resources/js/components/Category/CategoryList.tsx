@@ -8,6 +8,7 @@ import { BsPencil } from "react-icons/bs";
 import axios from "axios";
 import styled from "styled-components";
 import HandleModalShow from "./CategoryDelete";
+import ToastError from "../Toast/ToastError";
 
 const Center = styled.div`
     text-align: center;
@@ -55,7 +56,7 @@ const CategoryList: React.FC = () => {
         axios
             .post("/categories/update", { id: id, title: categoryTitles[id] })
             .then()
-            .catch((error) => console.error(error));
+            .catch(() => <ToastError />);
     };
 
     return (
