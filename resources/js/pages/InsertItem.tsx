@@ -3,7 +3,7 @@ import InsertItemBody from "@/components/Item/InsertItemBody";
 import { useSetRecoilState } from "recoil";
 import { categoriesState } from "../states/categories";
 import { Category } from '../types';
-import NavigationBar from "@/components/NavigationBar";
+import ReloadNavigationBar from "@/components/ReloadNavigationBar";
 
 const InsertItem: React.FC<{}> = ({ categories }:any) => {  
     if(categories) {
@@ -13,7 +13,7 @@ const InsertItem: React.FC<{}> = ({ categories }:any) => {
         }, [categories])
         return (
           <>
-            <NavigationBar />
+            <ReloadNavigationBar />
             <InsertItemBody />
           </>
         )
