@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Button, Col, Row, Toast } from "react-bootstrap";
+import { Col, Row, Toast } from "react-bootstrap";
 
 const ToastSuccess = () => {
+    const [show, setShow] = useState(true);
     return (
         <Row>
             <Col xs={6}>
                 <Toast
-                    delay={2000}
+                    onClose={() => setShow(false)}
+                    show={show}
+                    delay={3000}
+                    autohide
                 >
                     <Toast.Header>
                         <strong className="me-auto">Bootstrap</strong>
