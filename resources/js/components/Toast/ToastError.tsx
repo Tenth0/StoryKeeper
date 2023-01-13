@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Toast } from "react-bootstrap";
 import { BsXCircle } from "react-icons/bs";
 
-const ToastError: React.FC<boolean> = (show) => {
+const ToastError: React.FC<{show:boolean}> = ({show}) => {
     return (
         <Row>
             <Col xs={6}>

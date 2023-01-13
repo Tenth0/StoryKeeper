@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import InputForm from "./InputForm";
-import Cards from "@/components/Home/Card/Cards";
+import Cards from "@/components/Home/Card/cards";
 
 const FormMargin = styled.div`
     margin: 16px;

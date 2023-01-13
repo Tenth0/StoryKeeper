@@ -29,6 +29,8 @@ const Cards: React.FC<{}> = () => {
     // アイテムをダブルクリックしたときに空白にならないようにする
     const [isChangeComment, setIsChangeComment] = useState<boolean>(false);
     const [itemComment, setItemComment] = useState<Record<number, string>>({});
+    // トーストを表示させるステート
+    const [showToastError, setShowToastError] = useState<boolean>(false);
     if (!Array.isArray(items)) {
         return null;
     }
@@ -77,10 +79,15 @@ const Cards: React.FC<{}> = () => {
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
             .then()
-            .catch(() => <ToastError />);
+            .catch(() => {
+                setShowToastError(true);
+                setTimeout(() => setShowToastError(false), 3000);
+            });
     };
 
     return (
+        <>
+        <ToastError show={showToastError}/>
         <Row xs={1} md={2} xl={3} xxl={4} className="g-4">
             {items.map((item) => (
                 <Col key={item.id}>
@@ -107,7 +114,7 @@ const Cards: React.FC<{}> = () => {
                                             <BsHeartFill />
                                         ) : (
                                             <BsHeart />
-                                        )}
+                                            )}
                                     </Button>
                                 </Row>
                             </Padding>
@@ -117,36 +124,36 @@ const Cards: React.FC<{}> = () => {
                             <Card.Body
                                 onBlur={() => {
                                     isChangeComment
-                                        ? updateComment(item.id)
-                                        : setEditCommentId(null);
+                                    ? updateComment(item.id)
+                                    : setEditCommentId(null);
                                 }}
-                            >
+                                >
                                 {editCommentId === item.id ? (
                                     <textarea
-                                        value={
-                                            /*
-                                            item.comment == null || item.comment == "" || item.comment == undefined
-                                            ? ""
-                                            :   */
-                                            itemComment[item.id] == undefined ||
-                                                itemComment[item.id] == "" ||
-                                                itemComment[item.id] == null
-                                                    ? item.comment
-                                                    : itemComment[item.id]
-                                        }
-                                        onChange={(
-                                            event: React.ChangeEvent<HTMLTextAreaElement>
+                                    value={
+                                        /*
+                                        item.comment == null || item.comment == "" || item.comment == undefined
+                                        ? ""
+                                        :   */
+                                        itemComment[item.id] == undefined ||
+                                        itemComment[item.id] == "" ||
+                                        itemComment[item.id] == null
+                                        ? item.comment
+                                        : itemComment[item.id]
+                                    }
+                                    onChange={(
+                                        event: React.ChangeEvent<HTMLTextAreaElement>
                                         ) => changeComment(item.id, event)}
-                                    ></textarea>
-                                ) : (
-                                    <Card.Text>{item.comment}</Card.Text>
-                                )}
+                                        ></textarea>
+                                        ) : (
+                                            <Card.Text>{item.comment}</Card.Text>
+                                            )}
                             </Card.Body>
                             <Flex>
                                 <Button
                                     variant="secondary"
                                     onClick={() => setEditCommentId(item.id)}
-                                >
+                                    >
                                     <BsPencil />
                                     コメント編集
                                 </Button>
@@ -157,6 +164,7 @@ const Cards: React.FC<{}> = () => {
                 </Col>
             ))}
         </Row>
+        </>
     );
 };
 
