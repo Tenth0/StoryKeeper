@@ -51,8 +51,7 @@ const InputForm: React.FC = () => {
                             placeholder="例:ノーゲーム・ノーライフ、キングダム"
                             onBlur={() =>
                                 setTitleKeyword(
-                                    document.getElementById("title_keyword")!
-                                        .value
+                                    document.getElementById("title_keyword")!.value
                                 )
                             }
                         />

@@ -8,7 +8,6 @@ import { Category, CardsData } from '../types';
 import InsertItem from "@/pages/InsertItem";
 import CategoryTable from "@/pages/CategoryTable";
 import Items from "@/pages/Items";
-import ToastError from "@/components/Toast/ToastError";
 
 const Index: React.FC<{items:CardsData,categories:Category[]}> = ({ items,categories}) => {
     // 型
@@ -21,7 +20,6 @@ const Index: React.FC<{items:CardsData,categories:Category[]}> = ({ items,catego
     return (
         <>
             <NavigationBar />
-            <ToastError />
             <Routes>
                 <Route 
                     path="/" 
