@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;

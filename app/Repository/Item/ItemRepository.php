@@ -56,10 +56,17 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
     }
     public function insertItem($request)
     {
+        /*
+        if(!$request->category_id) {
+            $request->category_id = 0;
+        }
+        */
+
         $item = Item::create($request);
         $item->save();
         return response()->json([
             'title' => $item->title,
+            'category_id' => $item->category_id
         ],201);
     }   
 }

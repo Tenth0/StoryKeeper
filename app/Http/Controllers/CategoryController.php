@@ -9,9 +9,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
-use Laravel\Ui\Presets\React;
 
 class CategoryController extends Controller
 {
