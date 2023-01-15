@@ -14,7 +14,6 @@ const InputForm: React.FC = () => {
     const setItems = useSetRecoilState(itemsState);
     // トーストを表示させるステート
     const [showToastError, setShowToastError] = useState<boolean>(false);
-    const [showToastSuccess, setShowToastSuccess] = useState<boolean>(false);
 
     const searchRecord = async () => {
         try {
@@ -51,7 +50,7 @@ const InputForm: React.FC = () => {
                             placeholder="例:ノーゲーム・ノーライフ、キングダム"
                             onBlur={() =>
                                 setTitleKeyword(
-                                    document.getElementById("title_keyword")!.value
+                                    (document.getElementById("title_keyword") as HTMLInputElement).value
                                 )
                             }
                         />
@@ -66,8 +65,7 @@ const InputForm: React.FC = () => {
                             id="select_category"
                             onChange={() =>
                                 setSelectedCategory(
-                                    document.getElementById("select_category")!
-                                        .value
+                                    (document.getElementById("select_category") as HTMLSelectElement).value
                                 )
                             }
                         >
