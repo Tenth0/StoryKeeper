@@ -25,7 +25,7 @@ class ItemRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'category_id' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
             'comment' => 'nullable|string',
             'read_time' => 'nullable|date',
         ];
