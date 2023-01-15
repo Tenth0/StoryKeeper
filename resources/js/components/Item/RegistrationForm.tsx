@@ -6,19 +6,24 @@ import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import FormButtons from "./FormButtons";
+import ToastSuccess from '@/components/Toast/ToastSuccess';
+import ToastError from '@/components/Toast/ToastError';
 
 const ErrorMessage = styled.p`
     color: red;
 `;
 
-const RegistrationForm:React.FC = () => {
+const RegistrationForm: React.FC = () => {
     const [errors, setErrors] = useState<{ title: string }>({ title: "" });
     const titleRef = useRef<HTMLInputElement>(null);
     const readTimeRef = useRef<HTMLInputElement>(null);
     const commentRef = useRef<HTMLTextAreaElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
-
     const categories = useRecoilValue(categoriesState);
+    // トーストを表示させるステート
+    const [showToastError, setShowToastError] = useState<boolean>(false);
+    const [showToastSuccess, setShowToastSuccess] = useState<boolean>(false);
+    
     if (!Array.isArray(categories)) {
         return null;
     }
@@ -39,17 +44,23 @@ const RegistrationForm:React.FC = () => {
             .then((res) => {
                 setErrors({ title: "" });
                 formRef.current?.reset();
+                setShowToastSuccess(true);
+                setTimeout(() => setShowToastSuccess(false), 3000);
             })
             .catch((error) => {
-                console.error(error);
                 setErrors({
                     title: error.response.data.errors.title,
                 });
+                setShowToastError(true);
+                setTimeout(() => setShowToastError(false), 3000);
             });
     };
 
     return (
         <>
+            <ToastSuccess show={showToastSuccess} />
+            <ToastError show={showToastError} />
+
             <Form
                 ref={formRef}
                 onSubmit={handleSubmit}

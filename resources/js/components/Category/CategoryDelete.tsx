@@ -23,8 +23,6 @@ const CategoryModal: React.FC<{
         setModalShow(false);
         axios
             .post("/categories/delete", { id: selectedCategory })
-            .then(() => <ToastSuccess />)
-            .catch(() => <ToastError />);
     };
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>

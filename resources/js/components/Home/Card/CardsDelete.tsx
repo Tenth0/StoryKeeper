@@ -22,8 +22,6 @@ const ItemModal: React.FC<{
         setModalShow(false)
         axios
             .post("/items/delete", { id : selectedItem })
-            .then(() => <ToastSuccess />)
-            .catch(() => <ToastError />)
     }
     return (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>

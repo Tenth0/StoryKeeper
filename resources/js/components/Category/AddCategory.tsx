@@ -19,13 +19,17 @@ const ButtonFlex = styled.div`
     margin-top: 8px;
 `;
 
-const AddCategory:React.FC = () => {
+const AddCategory: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
 
     const [show, setShow] = useState(false);
 
     const [errors, setErrors] = useState<{ title: string; color: string }>({});
+
+    // トーストを表示させるステート
+    const [showToastError, setShowToastError] = useState<boolean>(false);
+    const [showToastSuccess, setShowToastSuccess] = useState<boolean>(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -40,21 +44,23 @@ const AddCategory:React.FC = () => {
         };
 
         axios
-            .post('/categories/insert', categoryData)
+            .post("/categories/insert", categoryData)
             .then((res) => {
                 setShow(false);
                 setErrors({ title: "", color: "" });
                 // 型
                 const newCategories: Category[] = [...categories, res.data];
                 setCategories(newCategories);
-                return (<ToastSuccess />);
+                setShowToastSuccess(true);
+                setTimeout(() => setShowToastSuccess(false), 3000);
             })
-            .catch((error) =>{
+            .catch((error) => {
                 setErrors({
                     title: error.response.data.errors.title,
                     color: error.response.data.errors.color,
                 });
-                return (<ToastError />);
+                setShowToastError(true);
+                setTimeout(() => setShowToastError(false), 3000);
             });
     };
 
@@ -63,6 +69,9 @@ const AddCategory:React.FC = () => {
             <Button variant="primary" onClick={() => setShow(true)}>
                 カテゴリー追加
             </Button>
+            
+            <ToastSuccess show={showToastSuccess}/>
+            <ToastError show={showToastError}/>
 
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>

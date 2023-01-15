@@ -22,6 +22,8 @@ const CategoryList: React.FC = () => {
         Record<number, string>
     >({});
     const { t } = useTranslation();
+    // トーストを表示させるステート
+    const [showToastError, setShowToastError] = useState<boolean>(false);  
 
     if (!Array.isArray(categories)) {
         return null;
@@ -56,11 +58,15 @@ const CategoryList: React.FC = () => {
         axios
             .post("/categories/update", { id: id, title: categoryTitles[id] })
             .then()
-            .catch(() => <ToastError />);
+            .catch(() => {
+                setShowToastError(true);
+                setTimeout(() => setShowToastError(false), 3000);
+            });
     };
 
     return (
         <>
+            <ToastError show={showToastError}/>
             <Table striped bordered hover>
                 <thead>
                     <tr>
