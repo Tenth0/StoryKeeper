@@ -106,8 +106,8 @@ class ItemService implements ItemServiceInterface {
     public function updateItem($request)
     {
         DB::beginTransaction();
-        $id = $request->input('id');
-        $comment = $request->input('comment');
+        $id = $request['id'];
+        $comment = $request['comment'];        
         try {
             $item = Item::find($id);
             $item->comment = $comment;
