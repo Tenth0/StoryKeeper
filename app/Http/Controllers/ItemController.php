@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Service\Item\ItemServiceInterface;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -31,14 +30,6 @@ class ItemController extends Controller
         ]);
     }
 
-    // いらんかも
-    public function list()
-    {
-        return Inertia::render('Items',[
-            'items' => $this->ItemService->list(),
-            'categories' => $this->CategoryService->list(),
-        ]);
-    }
     public function searchList(Request $request)
     {
         $searchQuery = [

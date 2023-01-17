@@ -5,7 +5,6 @@ namespace App\Repository\Item;
 use App\Models\Item;
 use App\Repository\BaseRepository;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
 
