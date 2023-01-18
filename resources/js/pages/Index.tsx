@@ -3,13 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { categoriesState } from "@/states/categories";
-import NavigationBar from "@/components/NavigationBar";
 import { Category, CardsData } from '../types';
+import NavigationBar from "@/components/NavigationBar";
 import InsertItem from "@/pages/InsertItem";
 import CategoryTable from "@/pages/CategoryTable";
 import Items from "@/pages/Items";
 
-const Index: React.FC<{items:CardsData,categories:Category[]}> = ({ items,categories}) => {
+const Index: React.FC<{items:CardsData|null,categories:Category[]|null}> = ({ items,categories}) => {
 
     const setItems = useSetRecoilState(itemsState);
     const setCategories = useSetRecoilState(categoriesState);
