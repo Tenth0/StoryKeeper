@@ -11,6 +11,7 @@ use \App\Repository\Item\ItemRepository;
 use \App\Repository\Item\ItemRepositoryInterface;
 use \App\Repository\Category\CategoryRepository;
 use \App\Repository\Category\CategoryRepositoryInterface;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 文字数の上限
+        Schema::defaultStringLength(191);
     }
 }
