@@ -13,6 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('color');
+            $table->timestamps();
+        });
+        
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -24,12 +31,6 @@ return new class extends Migration
             $table->boolean('is_favorite')->default(false);
         });
 
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('color');
-            $table->timestamps();
-        });
     }
 
     /**
