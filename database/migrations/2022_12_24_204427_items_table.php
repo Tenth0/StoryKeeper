@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->text('comment')->nullable();
             $table->date('read_time')->nullable();
-            $table->increments('order');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->boolean('is_favorite')->default(false);
