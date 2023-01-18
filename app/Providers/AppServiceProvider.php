@@ -12,6 +12,7 @@ use \App\Repository\Item\ItemRepositoryInterface;
 use \App\Repository\Category\CategoryRepository;
 use \App\Repository\Category\CategoryRepositoryInterface;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +38,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // 文字数の上限
         Schema::defaultStringLength(191);
+        if (config('app.env') === "production") {
+            URL::forceScheme('https');
+        }
     }
 }
