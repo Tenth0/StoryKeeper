@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.6",
+        "@types/axios": "^0.14.0",
         "@types/react-router-dom": "^5.3.3",
         "@types/react-toastify": "^4.1.0",
         "@types/recoil": "^0.0.9",
