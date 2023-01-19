@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "heroku-postbuild": "npm run build"
+        "heroku-postbuild": "vite build"
     },
     "devDependencies": {
         "@inertiajs/inertia-react": "^0.8.1",
