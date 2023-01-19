@@ -9,7 +9,7 @@ import InsertItem from "@/pages/InsertItem";
 import CategoryTable from "@/pages/CategoryTable";
 import Items from "@/pages/Items";
 
-const Index: React.FC<{items:CardsData|null,categories:Category[]|null}> = ({ items,categories}) => {
+const Index: React.FC<{items:CardsData,categories:Category[]}> = ({ items,categories}) => {
 
     const setItems = useSetRecoilState(itemsState);
     const setCategories = useSetRecoilState(categoriesState);

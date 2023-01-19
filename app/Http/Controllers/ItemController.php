@@ -30,6 +30,14 @@ class ItemController extends Controller
         ]);
     }
 
+    public function list()
+    {
+        return Inertia::render('Index',[
+            'items' => $this->ItemService->list(),
+            'categories' => $this->CategoryService->list(),
+        ]);
+    }
+
     public function searchList(Request $request)
     {
         $searchQuery = [
