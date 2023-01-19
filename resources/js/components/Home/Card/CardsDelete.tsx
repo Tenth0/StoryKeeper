@@ -7,6 +7,7 @@ import { ItemsType } from "@/types";
 import { itemsState } from "@/states/items";
 import ToastSuccess from "@/components/Toast/ToastSuccess";
 import ToastError from "@/components/Toast/ToastError";
+import { CardsData } from '../../../types';
 
 const ItemModal: React.FC<{
     modalShow: boolean
@@ -15,7 +16,7 @@ const ItemModal: React.FC<{
 }> = ({ modalShow, setModalShow, selectedItem }) => {
     const [items, setItems] = useRecoilState(itemsState)
     const handleDeleteItem = () => {
-        const newItems: ItemsType = items.filter(
+        const newItems: CardsData = items.filter(
             (item) => item.id !== selectedItem
         )
         setItems(newItems)

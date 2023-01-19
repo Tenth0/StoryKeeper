@@ -41,7 +41,7 @@ const Cards: React.FC<{}> = () => {
             .post("/items/change_isFavorite", {
                 id: id,
             })
-            .then((changeIsFavoriteItem) => {
+            .then((changeIsFavoriteItem:any) => {
                 const newItems: CardData[] = items.map((item: CardData) => {
                     if (item.id === changeIsFavoriteItem.data.id) {
                         return changeIsFavoriteItem.data;
@@ -51,7 +51,7 @@ const Cards: React.FC<{}> = () => {
                 });
                 setItems(newItems);
             })
-            .catch((error) => console.error(error));
+            .catch((error:any) => console.error(error));
     };
 
     const changeComment = (

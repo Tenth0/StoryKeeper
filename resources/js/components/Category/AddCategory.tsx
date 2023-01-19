@@ -25,7 +25,7 @@ const AddCategory: React.FC = () => {
 
     const [show, setShow] = useState(false);
 
-    const [errors, setErrors] = useState<{ title: string; color: string }>({});
+    const [errors, setErrors] = useState<{ title: string; color: string }>({title:"",color:""});
 
     // トーストを表示させるステート
     const [showToastError, setShowToastError] = useState<boolean>(false);
@@ -45,7 +45,7 @@ const AddCategory: React.FC = () => {
 
         axios
             .post("/categories/insert", categoryData)
-            .then((res) => {
+            .then((res:any) => {
                 setShow(false);
                 setErrors({ title: "", color: "" });
                 // 型
@@ -54,7 +54,7 @@ const AddCategory: React.FC = () => {
                 setShowToastSuccess(true);
                 setTimeout(() => setShowToastSuccess(false), 3000);
             })
-            .catch((error) => {
+            .catch((error:any) => {
                 setErrors({
                     title: error.response.data.errors.title,
                     color: error.response.data.errors.color,
