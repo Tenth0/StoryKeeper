@@ -4,9 +4,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
     root: process.cwd(),
-    build:{//この部分を追加
-      outDir:"./build"
-    },
     server:{
       host:'0.0.0.0'
     },
