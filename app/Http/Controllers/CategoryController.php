@@ -35,16 +35,14 @@ class CategoryController extends Controller
 
     public function create(CategoryRequest $request)
     {
-        $insertCategory = Category::InsertCategory($request);
+        Category::InsertCategory($request);
         return redirect()->route('categoryList');
     }
     
     public function updateCategory(UpdateCategoryRequest $request)
     {
-
         $id = $request->input('id');
         $title = $request->input('title');
-        $color = $request->input('color',null);
         if (!$this->CategoryService->updatedCategory($id,$title)) {
             return redirect()->route('categoryList')->with("record_not_exist", __("Record not exist"));
         }

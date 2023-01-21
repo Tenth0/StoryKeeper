@@ -93,7 +93,7 @@ class ItemController extends Controller
             'comment' => $comment
         ];
 
-        $updateUnit = $this->ItemService->updateItem($newComment);
+        $this->ItemService->updateItem($newComment);
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 
