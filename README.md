@@ -2,6 +2,8 @@
 
 過去に読んだ漫画やアニメなどを記録しておくプロダクトです。
 
+URL: https://storykeeper.herokuapp.com/
+
 ## 扱っている技術
 
 - React
