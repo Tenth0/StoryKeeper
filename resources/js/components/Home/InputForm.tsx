@@ -6,6 +6,12 @@ import { itemsState } from "@/states/items";
 import { Category } from "@/types";
 import axios from "axios";
 import ToastError from "../Toast/ToastError";
+import styled from 'styled-components';
+
+const FavoriteStyle = styled.div`
+    margin-top: 8px;
+    margin-left: 4px;
+`;
 
 const InputForm: React.FC = () => {
     const [titleKeyword, setTitleKeyword] = useState("");
@@ -79,6 +85,15 @@ const InputForm: React.FC = () => {
                     </FloatingLabel>
                 </Col>
             </Row>
+            <FavoriteStyle>
+            <Col md>
+                <Form.Check
+                    type="checkbox"
+                    id="favoriteCheck"
+                    label="お気に入り検索"                    
+                    />
+            </Col>
+            </FavoriteStyle>
         </>
     );
 };
