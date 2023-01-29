@@ -131,14 +131,10 @@ const Cards: React.FC<{}> = () => {
                                 {editCommentId === item.id ? (
                                     <textarea
                                     value={
-                                        /*
-                                        item.comment == null || item.comment == "" || item.comment == undefined
-                                        ? ""
-                                        :   */
                                         itemComment[item.id] == undefined ||
                                         itemComment[item.id] == "" ||
                                         itemComment[item.id] == null
-                                        ? item.comment
+                                        ? ""
                                         : itemComment[item.id]
                                     }
                                     onChange={(
@@ -152,7 +148,10 @@ const Cards: React.FC<{}> = () => {
                             <Flex>
                                 <Button
                                     variant="secondary"
-                                    onClick={() => setEditCommentId(item.id)}
+                                    onClick={() => {
+                                        setItemComment({ ...itemComment, [item.id]: item.comment });
+                                        setEditCommentId(item.id)
+                                    }}
                                     >
                                     <BsPencil />
                                     コメント編集
