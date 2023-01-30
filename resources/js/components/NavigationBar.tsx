@@ -1,7 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import { Nav,Navbar } from 'react-bootstrap';
-import { BsFillMoonStarsFill } from "react-icons/bs";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const imgStyle = {

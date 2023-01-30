@@ -1,13 +1,17 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import { Nav,Navbar } from 'react-bootstrap';
-import { BsFillMoonStarsFill } from "react-icons/bs";
+
+const imgStyle = {
+  width: '30%',
+  height: '50%',
+}
 
 const ReloadNavigationBar:React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark">
     <Container>
-      <Navbar.Brand href="/"><BsFillMoonStarsFill /></Navbar.Brand>
+    <Navbar.Brand><img src='./images/StoryKeeper.png' style={imgStyle}/></Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="/">アイテム一覧</Nav.Link>
         <Nav.Link href="/insert_item">アイテム追加</Nav.Link>
