@@ -32,38 +32,14 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         if (!empty($searchQuery['select_category'])) {
             $data = $data->where('categories.id' , '=' , $searchQuery['select_category']);
         }
-        if ($searchQuery['is_favorite'] == True ) {
+        if ($searchQuery['is_favorite'] == 'true') {
             $data = $data->where('items.is_favorite', '=' , True);
         }
         return $data->get();
-        // return $data->orderBy('order')->get();
     }
 
-    public function updateData(array $data, $id)
-    {
-        /*
-        $Item = $this->find($id);
-        unset($data['_token']);
-        if (!$Item) {
-            return null;
-        }
-        foreach ($data as $key => $value) {
-            $Item[$key] = $value;
-        }
-
-        $Item->plusSave();
-
-        return $Item;
-        */
-    }
     public function insertItem($request)
     {
-        /*
-        if(!$request->category_id) {
-            $request->category_id = 0;
-        }
-        */
-
         $item = Item::create($request);
         $item->save();
         return response()->json([

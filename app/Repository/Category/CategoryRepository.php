@@ -20,22 +20,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $data;
     }
 
-    public function updateData(array $data, $id)
-    {
-        // $Category = $this->find($id);
-        // unset($data['_token']);
-        // if (!$Category) {
-        //     return null;
-        // }
-        // foreach ($data as $key => $value) {
-        //     $Category[$key] = $value;
-        // }
-// 
-        // $Category->plusSave();
-// 
-        // return $Category;
-    }
-
     public function insertCategory($request)
     {
 
