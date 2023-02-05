@@ -43,6 +43,7 @@ class ItemController extends Controller
         $searchQuery = [
             'title_keyword' => is_null($request->title_keyword) ? null : $request->title_keyword,
             'select_category' => is_null($request->select_category) ? null : $request->select_category,
+            'is_favorite' => is_null($request->is_favorite) ? null : $request->is_favorite,
         ];
         $items = $this->ItemService->searchList($searchQuery);
         

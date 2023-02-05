@@ -32,6 +32,9 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         if (!empty($searchQuery['select_category'])) {
             $data = $data->where('categories.id' , '=' , $searchQuery['select_category']);
         }
+        if ($searchQuery['is_favorite'] == True ) {
+            $data = $data->where('items.is_favorite', '=' , True);
+        }
         return $data->get();
         // return $data->orderBy('order')->get();
     }
