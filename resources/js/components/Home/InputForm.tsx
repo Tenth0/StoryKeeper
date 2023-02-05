@@ -6,7 +6,7 @@ import { itemsState } from "@/states/items";
 import { Category } from "@/types";
 import axios from "axios";
 import ToastError from "../Toast/ToastError";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const FavoriteStyle = styled.div`
     margin-top: 8px;
@@ -20,14 +20,23 @@ const InputForm: React.FC = () => {
     const setItems = useSetRecoilState(itemsState);
     // トーストを表示させるステート
     const [showToastError, setShowToastError] = useState<boolean>(false);
+    // お気に入り検索を管理するステート
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
-    const searchRecord = async () => {
+    const searchRecord = async (changeFavorite = false) => {
+        if(changeFavorite) {
+            setIsFavorite(!isFavorite);
+        }
+
+        const checkFavorite:boolean = changeFavorite ? (!isFavorite) : isFavorite;
         try {
             const items = await axios.get(
                 "/items/search?title_keyword=" +
                     titleKeyword +
                     "&select_category=" +
-                    selectedCategory
+                    selectedCategory +
+                    "&is_favorite=" +
+                    checkFavorite
             );
             setItems(items.data);
         } catch (error) {
@@ -43,7 +52,6 @@ const InputForm: React.FC = () => {
     if (!Array.isArray(categories)) {
         return null;
     }
-
     return (
         <>
             <ToastError show={showToastError} />
@@ -56,7 +64,11 @@ const InputForm: React.FC = () => {
                             placeholder="例:ノーゲーム・ノーライフ、キングダム"
                             onBlur={() =>
                                 setTitleKeyword(
-                                    (document.getElementById("title_keyword") as HTMLInputElement).value
+                                    (
+                                        document.getElementById(
+                                            "title_keyword"
+                                        ) as HTMLInputElement
+                                    ).value
                                 )
                             }
                         />
@@ -71,7 +83,11 @@ const InputForm: React.FC = () => {
                             id="select_category"
                             onChange={() =>
                                 setSelectedCategory(
-                                    (document.getElementById("select_category") as HTMLSelectElement).value
+                                    (
+                                        document.getElementById(
+                                            "select_category"
+                                        ) as HTMLSelectElement
+                                    ).value
                                 )
                             }
                         >
@@ -86,16 +102,19 @@ const InputForm: React.FC = () => {
                 </Col>
             </Row>
             <FavoriteStyle>
-            <Col md>
-                <Form.Check
-                    type="checkbox"
-                    id="favoriteCheck"
-                    label="お気に入り検索"                    
+                <Col md>
+                    <Form.Check
+                        type="checkbox"
+                        id="favoriteCheck"
+                        label="お気に入り検索"
+                        checked={isFavorite}
+                        onClick={() => searchRecord(true)}
                     />
-            </Col>
+                </Col>
             </FavoriteStyle>
         </>
     );
+
 };
 
 export default InputForm;
