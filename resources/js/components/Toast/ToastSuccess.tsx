@@ -15,7 +15,7 @@ const ToastSuccess: React.FC<{show:boolean}> = ({show}) => {
                     <Toast.Header>
                         <strong>
                             <Toast.Body>
-                                <BsCheckCircle /> 成功しました
+                                <BsCheckCircle /> 追加しました
                             </Toast.Body>
                         </strong>
                     </Toast.Header>
