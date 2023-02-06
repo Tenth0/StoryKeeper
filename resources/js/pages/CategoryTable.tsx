@@ -8,7 +8,7 @@ const CategoryTable:React.FC<{}> = ({categories}:any) => {
   if(categories) {
     const setCategories = useSetRecoilState(categoriesState);
     useEffect(() => {
-      setCategories(categories)
+      setCategories(categories);
     }, [])
     return (
       <>
