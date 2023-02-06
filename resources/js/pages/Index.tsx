@@ -27,7 +27,7 @@ const Index: React.FC<{ items: CardsData; categories: Category[] }> = ({
     return (
         <>
             <FontRoboto>
-            <NavigationBar />
+                <NavigationBar />
                 <Routes>
                     <Route path="/" element={<Items />} />
                     <Route path="/insert_item" element={<InsertItem />} />

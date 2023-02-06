@@ -24,11 +24,13 @@ const InputForm: React.FC = () => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     const searchRecord = async (changeFavorite = false) => {
-        if(changeFavorite) {
+        if (changeFavorite) {
             setIsFavorite(!isFavorite);
         }
 
-        const checkFavorite:boolean = changeFavorite ? (!isFavorite) : isFavorite;
+        const checkFavorite: boolean = changeFavorite
+            ? !isFavorite
+            : isFavorite;
         try {
             const items = await axios.get(
                 "/items/search?title_keyword=" +
@@ -57,7 +59,7 @@ const InputForm: React.FC = () => {
             <ToastError show={showToastError} />
             <Row className="g-2">
                 <Col md>
-                    <FloatingLabel label="タイトル">
+                    <FloatingLabel label="タイトル" color="light">
                         <Form.Control
                             id="title_keyword"
                             type="text"
@@ -106,7 +108,14 @@ const InputForm: React.FC = () => {
                     <Form.Check
                         type="checkbox"
                         id="favoriteCheck"
-                        label="お気に入り検索"
+                        label={
+                            <label
+                                htmlFor="favoriteCheck"
+                                style={{ color: "white" }}
+                            >
+                                お気に入り検索
+                            </label>
+                        }
                         checked={isFavorite}
                         onClick={() => searchRecord(true)}
                     />
@@ -114,7 +123,6 @@ const InputForm: React.FC = () => {
             </FavoriteStyle>
         </>
     );
-
 };
 
 export default InputForm;

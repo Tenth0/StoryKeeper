@@ -14,6 +14,10 @@ const Center = styled.div`
     text-align: center;
 `;
 
+const FontWhiteColor = styled.div`
+    color:white;
+`;
+
 const CategoryList: React.FC = () => {
     const [categories, setCategories] = useRecoilState(categoriesState);
     const [editTitle, setEditTitle] = useState<number | null>(null);
@@ -70,18 +74,20 @@ const CategoryList: React.FC = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>削除</th>
-                        <th colSpan={2}>タイトル</th>
-                        <th>カラー</th>
+                        <th><FontWhiteColor>#</FontWhiteColor></th>
+                        <th><FontWhiteColor>削除</FontWhiteColor></th>
+                        <th colSpan={2}><FontWhiteColor>タイトル</FontWhiteColor></th>
+                        <th><FontWhiteColor>カラー</FontWhiteColor></th>
                     </tr>
                 </thead>
                 <tbody>
                     {categories.map((category: Category, idx: number) => (
                         <tr key={category.id}>
-                            <td width={"5%"}>{idx + 1}</td>
+                            <td width={"5%"}><FontWhiteColor>{idx + 1}</FontWhiteColor></td>
                             <td width={"5%"}>
-                                <HandleModalShow id={category.id} />
+                                <FontWhiteColor>
+                                    <HandleModalShow id={category.id} />
+                                </FontWhiteColor>
                             </td>
                             <td
                                 onBlur={() => {
@@ -92,20 +98,22 @@ const CategoryList: React.FC = () => {
                             >
                                 {editTitle === category.id ? (
                                     <input
-                                        type="text"
-                                        value={
-                                            categoryTitles[category.id] !==
-                                            undefined
-                                                ? categoryTitles[category.id]
-                                                : category.title
-                                        }
-                                        onChange={(event) =>
-                                            changeTitle(category.id, event)
-                                        }
+                                    type="text"
+                                    value={
+                                        categoryTitles[category.id] !==
+                                        undefined
+                                        ? categoryTitles[category.id]
+                                        : category.title
+                                    }
+                                    onChange={(event) =>
+                                        changeTitle(category.id, event)
+                                    }
                                     ></input>
-                                ) : (
-                                    category.title
-                                )}
+                                    ) : (
+                                    <FontWhiteColor>
+                                       { category.title }
+                                    </FontWhiteColor>
+                                        )}
                             </td>
                             <td width={"10%"}>
                                 <Center>
@@ -114,13 +122,15 @@ const CategoryList: React.FC = () => {
                                         onClick={() =>
                                             setEditTitle(category.id)
                                         }
-                                    >
+                                        >
+                                        <FontWhiteColor>
                                         <BsPencil />
                                         編集
+                                        </FontWhiteColor>
                                     </Button>
                                 </Center>
                             </td>
-                            <td>{t(`color.${category.color}`)}</td>
+                            <td><FontWhiteColor>{t(`color.${category.color}`)}</FontWhiteColor></td>
                         </tr>
                     ))}
                 </tbody>

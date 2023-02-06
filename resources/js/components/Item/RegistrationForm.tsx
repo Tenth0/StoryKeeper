@@ -6,11 +6,15 @@ import { Category } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import FormButtons from "./FormButtons";
-import ToastSuccess from '@/components/Toast/ToastSuccess';
-import ToastError from '@/components/Toast/ToastError';
+import ToastSuccess from "@/components/Toast/ToastSuccess";
+import ToastError from "@/components/Toast/ToastError";
 
 const ErrorMessage = styled.p`
     color: red;
+`;
+
+const WhiteColor = styled.div`
+    color: white;
 `;
 
 const RegistrationForm: React.FC = () => {
@@ -23,7 +27,7 @@ const RegistrationForm: React.FC = () => {
     // トーストを表示させるステート
     const [showToastError, setShowToastError] = useState<boolean>(false);
     const [showToastSuccess, setShowToastSuccess] = useState<boolean>(false);
-    
+
     if (!Array.isArray(categories)) {
         return null;
     }
@@ -61,66 +65,71 @@ const RegistrationForm: React.FC = () => {
             <ToastSuccess show={showToastSuccess} />
             <ToastError show={showToastError} />
 
-            <Form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                encType="multipart/form-data"
-            >
-                <Form.Group as={Row} className="mb-3" controlId="title">
-                    <Form.Label column sm="2">
-                        タイトル
-                    </Form.Label>
-                    <Col sm="10">
+            <WhiteColor>
+                <Form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    encType="multipart/form-data"
+                >
+                    <Form.Group as={Row} className="mb-3" controlId="title">
+                        <Form.Label column sm="2">
+                            タイトル
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control
+                                type="text"
+                                name="title"
+                                placeholder="タイトルを入力してください"
+                                autoFocus
+                                ref={titleRef}
+                            />
+                            {errors.title && (
+                                <ErrorMessage>{errors.title}</ErrorMessage>
+                            )}
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="category">
+                        <Form.Label column sm="2">
+                            カテゴリ－
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control as="select" name="category">
+                                <option value="0"></option>
+                                {categories.map((category: Category) => (
+                                    <option
+                                        key={category.id}
+                                        value={category.id}
+                                    >
+                                        {category.title}
+                                    </option>
+                                ))}
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="time">
+                        <Form.Label column sm="2">
+                            読んだ日
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control
+                                type="date"
+                                name="read_time"
+                                ref={readTimeRef}
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="comment">
+                        <Form.Label>コメント</Form.Label>
                         <Form.Control
-                            type="text"
-                            name="title"
-                            placeholder="タイトルを入力してください"
-                            autoFocus
-                            ref={titleRef}
+                            as="textarea"
+                            rows={3}
+                            name="comment"
+                            ref={commentRef}
                         />
-                        {errors.title && (
-                            <ErrorMessage>{errors.title}</ErrorMessage>
-                        )}
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3" controlId="category">
-                    <Form.Label column sm="2">
-                        カテゴリ－
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control as="select" name="category">
-                            <option value="0"></option>
-                            {categories.map((category: Category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.title}
-                                </option>
-                            ))}
-                        </Form.Control>
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3" controlId="time">
-                    <Form.Label column sm="2">
-                        読んだ日
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control
-                            type="date"
-                            name="read_time"
-                            ref={readTimeRef}
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="comment">
-                    <Form.Label>コメント</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        name="comment"
-                        ref={commentRef}
-                    />
-                </Form.Group>
-                <FormButtons />
-            </Form>
+                    </Form.Group>
+                    <FormButtons />
+                </Form>
+            </WhiteColor>
         </>
     );
 };
