@@ -117,7 +117,7 @@ const InputForm: React.FC = () => {
                             </label>
                         }
                         checked={isFavorite}
-                        onClick={() => searchRecord(true)}
+                        onChange={() => searchRecord(true)}
                     />
                 </Col>
             </FavoriteStyle>
