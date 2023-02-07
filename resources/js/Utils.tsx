@@ -23,8 +23,6 @@ const AnimationTransition = ({ children }: { children: ReactNode }) => {
                 animate="animate"
                 variants={routeAnimation}
                 className="relative bg-light w-full"
-                onAnimationStart={() => document.body.classList.add("overflow-hidden")}
-                onAnimationComplete={() => document.body.classList.remove("overflow-hidden")}
             >
                 {children}
             </motion.div>
