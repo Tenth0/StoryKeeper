@@ -15,6 +15,8 @@ const ErrorMessage = styled.p`
 
 const WhiteColor = styled.div`
     color: white;
+    margin-left : 16px;
+    margin-right: 16px;
 `;
 
 const RegistrationForm: React.FC = () => {
