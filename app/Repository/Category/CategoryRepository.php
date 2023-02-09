@@ -17,7 +17,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $data = $this->model
         ->select('id','title','color')
-        ->orderBy('id')
         ->get();
         return $data;
     }
