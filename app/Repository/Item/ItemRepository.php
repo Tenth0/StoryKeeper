@@ -24,7 +24,6 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
             'categories.title as category_title',
             'categories.color',
         )
-        ->orderBy('categories.id')
         ->leftJoin('categories','items.category_id','=','categories.id')
         ->where('items.is_delete',0);
         if (!empty($searchQuery['title_keyword'])) {
@@ -36,7 +35,7 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         if ($searchQuery['is_favorite'] == 'true') {
             $data = $data->where('items.is_favorite', '=' , True);
         }
-        return $data->get();
+        return $data->orderBy('categories.id')->get();
     }
 
     public function insertItem($request)
