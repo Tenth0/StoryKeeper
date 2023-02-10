@@ -23,6 +23,10 @@ const Flex = styled.div`
     margin: 8px;
 `;
 
+const DeleteBtnSize = styled.div`
+    margin: 16px;
+`;
+
 const Cards: React.FC<{}> = () => {
     const [items, setItems] = useRecoilState(itemsState);
     const [editCommentId, setEditCommentId] = useState<number | null>(null);
@@ -102,20 +106,21 @@ const Cards: React.FC<{}> = () => {
                         <Card.Header>
                             <Card.Title>{item.title}</Card.Title>
                             <Padding>
-                                <Row xs={2} md={2} className="g-4">
-                                    <DeleteItem id={item.id} />
+                                <Row xs={1} md={2} className="g-4">
                                     <Button
                                         variant="danger"
                                         onClick={() =>
                                             changeIsFavorite(item.id)
                                         }
                                     >
-                                        {item.is_favorite ? (
+                                        { item.is_favorite ? (
                                             <BsHeartFill />
-                                        ) : (
-                                            <BsHeart />
-                                            )}
+                                            ) : (
+                                                <BsHeart />
+                                            )
+                                        }
                                     </Button>
+                                    <DeleteItem id={item.id} />
                                 </Row>
                             </Padding>
                         </Card.Header>
