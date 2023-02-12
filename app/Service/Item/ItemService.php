@@ -131,8 +131,8 @@ class ItemService implements ItemServiceInterface {
             'comment' => $comment
         ];
         DB::beginTransaction();
-        $id = $request['id'];
-        $comment = $request['comment'];        
+        $id = $newComment['id'];
+        $comment = $newComment['comment'];        
         try {
             $item = Item::find($id);
             $item->comment = $comment;
