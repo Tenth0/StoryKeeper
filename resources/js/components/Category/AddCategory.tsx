@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { HTMLInputTypeAttribute, useState } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
@@ -34,27 +34,25 @@ const AddCategory: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const title = event.currentTarget.title;
+        const title = event.currentTarget.title as unknown;
         const color = event.currentTarget.color;
 
         const categoryData = {
-            // 型
-            title: (title as any).value,
+            title: (title as HTMLInputElement).value,
             color: (color as HTMLSelectElement).value,
         };
 
         axios
             .post("/categories/insert", categoryData)
-            .then((res:any) => {
+            .then((res) => {
                 setShow(false);
                 setErrors({ title: "", color: "" });
-                // 型
                 const newCategories: Category[] = [...categories, res.data];
                 setCategories(newCategories);
                 setShowToastSuccess(true);
                 setTimeout(() => setShowToastSuccess(false), 3000);
             })
-            .catch((error:any) => {
+            .catch((error) => {
                 setErrors({
                     title: error.response.data.errors.title,
                     color: error.response.data.errors.color,

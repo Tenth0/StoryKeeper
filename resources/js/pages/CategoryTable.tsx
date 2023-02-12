@@ -4,8 +4,9 @@ import { useSetRecoilState } from "recoil";
 import { categoriesState } from "../states/categories";
 import ReloadNavigationBar from "@/components/ReloadNavigationBar";
 import AnimationTransition from "../Utils";
+import { Category } from '../types';
 
-const CategoryTable: React.FC<{}> = ({ categories }: any) => {
+const CategoryTable: React.FC<{categories:Category[]}> = ({ categories }) => {
     if (categories) {
         const setCategories = useSetRecoilState(categoriesState);
         useEffect(() => {
