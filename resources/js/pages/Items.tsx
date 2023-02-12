@@ -1,6 +1,5 @@
 import React from "react";
 import HomeBody from "@/components/Home/HomeBody";
-import HomeFooter from "@/components/Home/HomeFooter";
 import AnimationTransition from "../Utils";
 
 const Items: React.FC = () => {
@@ -8,7 +7,6 @@ const Items: React.FC = () => {
         <>
             <AnimationTransition>
                 <HomeBody />
-                <HomeFooter />
             </AnimationTransition>
         </>
     );
