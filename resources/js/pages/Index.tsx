@@ -33,10 +33,10 @@ const Index: React.FC<{ items: CardsData; categories: Category[] }> = ({
                     <NavigationBar />
                     <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<Items />} />
-                        <Route path="/insert_item" element={<InsertItem categories={categories}/>} />
+                        <Route path="/insert_item" element={<InsertItem />} />
                         <Route
                             path="/category_table"
-                            element={<CategoryTable categories={categories} />}
+                            element={<CategoryTable />}
                         />
                     </Routes>
                 </AnimatePresence>

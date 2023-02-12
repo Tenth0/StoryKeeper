@@ -6,7 +6,7 @@ import ReloadNavigationBar from "@/components/ReloadNavigationBar";
 import AnimationTransition from "../Utils";
 import { Category } from '../types';
 
-const CategoryTable: React.FC<{categories:Category[]}> = ({ categories }) => {
+const CategoryTable: React.FC<{categories?:Category[]}> = ({ categories }) => {
     if (categories) {
         const setCategories = useSetRecoilState(categoriesState);
         useEffect(() => {
