@@ -40,31 +40,14 @@ class ItemController extends Controller
 
     public function searchList(Request $request)
     {
-        $searchQuery = [
-            'title_keyword' => is_null($request->title_keyword) ? null : $request->title_keyword,
-            'select_category' => is_null($request->select_category) ? null : $request->select_category,
-            'is_favorite' => is_null($request->is_favorite) ? null : $request->is_favorite,
-        ];
-        $items = $this->ItemService->searchList($searchQuery);
+        $items = $this->ItemService->searchList($request);
         
         return $items;
     }
     
     public function insertItem(ItemRequest $request)
     {
-        $comment = $request->comment;
-        if($comment == null) {
-            $comment = "";
-        }
-
-        $itemData = [
-            'title' => $request->title,
-            'category_id' => $request->category_id,
-            'read_time' => $request->read_time,
-            'comment' => $comment,
-        ];
-    
-        $Item = $this->ItemService->insertItem($itemData); // 配列を create メソッドの引数として渡す
+        $Item = $this->ItemService->insertItem($request); // 配列を create メソッドの引数として渡す
         return $Item;
     }
     
@@ -84,17 +67,8 @@ class ItemController extends Controller
     
     public function update(UpdateItemRequest $request)
     {
-        $comment = $request->comment;
-        if($comment == null) {
-            $comment = "";
-        }
 
-        $newComment = [
-            'id' => $request->id,
-            'comment' => $comment
-        ];
-
-        $this->ItemService->updateItem($newComment);
+        $this->ItemService->updateItem($request);
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
 

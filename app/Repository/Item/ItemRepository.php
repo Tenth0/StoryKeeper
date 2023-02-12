@@ -38,9 +38,9 @@ class ItemRepository extends BaseRepository implements ItemRepositoryInterface {
         return $data->orderBy('categories.id')->get();
     }
 
-    public function insertItem($request)
+    public function insertItem($itemData)
     {
-        $item = Item::create($request);
+        $item = Item::create($itemData);
         $item->save();
         return response()->json([
             'title' => $item->title,

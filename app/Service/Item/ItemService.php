@@ -53,15 +53,31 @@ class ItemService implements ItemServiceInterface {
         }
     }
 
-    public function searchList($searchQuery)
+    public function searchList($request)
     {
+        $searchQuery = [
+            'title_keyword' => is_null($request->title_keyword) ? null : $request->title_keyword,
+            'select_category' => is_null($request->select_category) ? null : $request->select_category,
+            'is_favorite' => is_null($request->is_favorite) ? null : $request->is_favorite,
+        ];
         $data = $this->ItemRepo->searchList($searchQuery);
         return $data;
     }
 
     public function insertItem($request)
     {
-        $data = $this->ItemRepo->insertItem($request);
+        $comment = $request->comment;
+        if($comment == null) {
+            $comment = "";
+        }
+
+        $itemData = [
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'read_time' => $request->read_time,
+            'comment' => $comment,
+        ];
+        $data = $this->ItemRepo->insertItem($itemData);
         return $data;
     }
 
@@ -105,6 +121,15 @@ class ItemService implements ItemServiceInterface {
     
     public function updateItem($request)
     {
+        $comment = $request->comment;
+        if($comment == null) {
+            $comment = "";
+        }
+
+        $newComment = [
+            'id' => $request->id,
+            'comment' => $comment
+        ];
         DB::beginTransaction();
         $id = $request['id'];
         $comment = $request['comment'];        
