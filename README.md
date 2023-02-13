@@ -94,11 +94,9 @@ BootstrapでReact-Routerを再現するライブラリ
 
 React-Bootstrapの仕様
 
-## 頑張ったところ
-
-コメントやカテゴリー名を変えられるところ
-
 ## 苦労したところ
+
+- コメントやカテゴリー名を変えられるところ
 
 - React-Bootstrapの拡張性
 
