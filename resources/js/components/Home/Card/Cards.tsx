@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import styled from "styled-components";
-import axios from "axios";
+import axios,{ AxiosResponse } from "axios";
 import { BsHeart, BsHeartFill, BsPencil } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
@@ -45,7 +45,7 @@ const Cards: React.FC<{}> = () => {
             .post("/items/change_isFavorite", {
                 id: id,
             })
-            .then((changeIsFavoriteItem) => {
+            .then((changeIsFavoriteItem: AxiosResponse<CardData>) => {
                 const newItems: CardData[] = items.map((item: CardData) => {
                     if (item.id === changeIsFavoriteItem.data.id) {
                         return changeIsFavoriteItem.data;
@@ -54,8 +54,7 @@ const Cards: React.FC<{}> = () => {
                     }
                 });
                 setItems(newItems);
-            })
-            .catch((error) => console.error(error));
+            });
     };
 
     const changeComment = (

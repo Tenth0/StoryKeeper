@@ -34,10 +34,7 @@ const Index: React.FC<{ items: CardsData; categories: Category[] }> = ({
                     <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<Items />} />
                         <Route path="/insert_item" element={<InsertItem />} />
-                        <Route
-                            path="/category_table"
-                            element={<CategoryTable />}
-                        />
+                        <Route path="/category_table" element={<CategoryTable />} />
                     </Routes>
                 </AnimatePresence>
             </FontRoboto>

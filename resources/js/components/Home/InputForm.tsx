@@ -3,10 +3,11 @@ import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { categoriesState } from "@/states/categories";
 import { itemsState } from "@/states/items";
-import { Category } from "@/types";
+import { Category, Item } from "@/types";
 import axios from "axios";
 import ToastError from "../Toast/ToastError";
 import styled from "styled-components";
+import AxiosResponse from 'axios';
 
 const FavoriteStyle = styled.div`
     margin-top: 8px;

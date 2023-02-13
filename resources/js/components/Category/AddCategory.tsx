@@ -1,6 +1,6 @@
 import React, { HTMLInputTypeAttribute, useState } from "react";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -44,7 +44,7 @@ const AddCategory: React.FC = () => {
 
         axios
             .post("/categories/insert", categoryData)
-            .then((res) => {
+            .then((res:AxiosResponse<Category>) => {
                 setShow(false);
                 setErrors({ title: "", color: "" });
                 const newCategories: Category[] = [...categories, res.data];
@@ -52,11 +52,13 @@ const AddCategory: React.FC = () => {
                 setShowToastSuccess(true);
                 setTimeout(() => setShowToastSuccess(false), 3000);
             })
-            .catch((error) => {
-                setErrors({
-                    title: error.response.data.errors.title,
-                    color: error.response.data.errors.color,
-                });
+            .catch((error:AxiosError<{ errors:{title:string,color:string} }>) => {
+                if (error.response) {
+                    setErrors({
+                        title: error.response.data.errors.title,
+                        color: error.response.data.errors.color,
+                    });
+                }
                 setShowToastError(true);
                 setTimeout(() => setShowToastError(false), 3000);
             });

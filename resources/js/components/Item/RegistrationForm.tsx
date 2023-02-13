@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import styled from "styled-components";
 import { Form, Col, Row } from "react-bootstrap";
 import { Category } from "@/types";
@@ -47,16 +47,18 @@ const RegistrationForm: React.FC = () => {
         itemData.category_id = Number(itemData.category_id);
         axios
             .post("/api/insert_item", itemData)
-            .then((res) => {
+            .then(() => {
                 setErrors({ title: "" });
                 formRef.current?.reset();
                 setShowToastSuccess(true);
                 setTimeout(() => setShowToastSuccess(false), 3000);
             })
-            .catch((error) => {
-                setErrors({
-                    title: error.response.data.errors.title,
-                });
+            .catch((error:AxiosError<{ errors:{title:string } }>) => {
+                if (error.response) {
+                    setErrors({
+                        title: error.response.data.errors.title,
+                    });
+                }
                 setShowToastError(true);
                 setTimeout(() => setShowToastError(false), 3000);
             });
