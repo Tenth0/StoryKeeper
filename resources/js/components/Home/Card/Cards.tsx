@@ -5,7 +5,7 @@ import axios,{ AxiosResponse } from "axios";
 import { BsHeart, BsHeartFill, BsPencil } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
-import { Item, CardData, ItemsType } from "@/types";
+import { CardData } from "@/types";
 import DeleteItem from "./CardsDelete";
 import ToastError from "@/components/Toast/ToastError";
 

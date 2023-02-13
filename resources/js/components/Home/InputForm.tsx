@@ -7,7 +7,6 @@ import { Category, Item } from "@/types";
 import axios from "axios";
 import ToastError from "../Toast/ToastError";
 import styled from "styled-components";
-import AxiosResponse from 'axios';
 
 const FavoriteStyle = styled.div`
     margin-top: 8px;

@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import { useSetRecoilState } from "recoil";
 import { itemsState } from "@/states/items";
 import { categoriesState } from "@/states/categories";
-import { Category, CardsData } from "../types";
+import { Category, CardData } from "../types";
 import NavigationBar from "@/components/NavigationBar";
 import InsertItem from "@/pages/InsertItem";
 import CategoryTable from "@/pages/CategoryTable";
@@ -15,7 +15,7 @@ const FontRoboto = styled.div`
     font-family: "Roboto";
 `;
 
-const Index: React.FC<{ items: CardsData; categories: Category[] }> = ({
+const Index: React.FC<{ items: CardData[]; categories: Category[] }> = ({
     items,
     categories,
 }) => {

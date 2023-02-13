@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { CardsData } from '../types';
+import { CardData } from '../types';
 
-export const itemsState = atom<CardsData>({
+export const itemsState = atom<CardData[]>({
     key: 'items',
     default: [{
         id: 0,
