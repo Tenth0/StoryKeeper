@@ -52,7 +52,7 @@ class ItemController extends Controller
     }
     
 
-    public function insertFormItem()
+    public function insertItemForm()
     {
         return Inertia::render('InsertItem',[
             'categories' => $this->CategoryService->list(),
@@ -62,7 +62,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->ItemService->insertItem($request);
-        return redirect()->route('insertFormItem')->with("create_success", __("Create success"));
+        return redirect()->route('insertItemForm')->with("create_success", __("Create success"));
     }
     
     public function update(UpdateItemRequest $request)
