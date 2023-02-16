@@ -14,5 +14,5 @@ export const itemsState = atom<CardData[]>({
         category_title: '',
         color: 'light',
     }],
-})
+});
   

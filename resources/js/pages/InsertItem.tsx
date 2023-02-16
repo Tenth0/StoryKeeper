@@ -8,6 +8,7 @@ import AnimationTransition from "../Utils";
 
 const InsertItem: React.FC<{ categories?:Category[] }> = ({ categories }) => {
     if (categories) {
+        // URL/InsertItemページでリダイレクトした場合
         const setCategories = useSetRecoilState(categoriesState);
         useEffect(() => {
             setCategories(categories);
@@ -18,7 +19,8 @@ const InsertItem: React.FC<{ categories?:Category[] }> = ({ categories }) => {
                 <InsertItemBody />
             </>
         );
-    }
+    };
+
     return (
         <>
             <AnimationTransition>

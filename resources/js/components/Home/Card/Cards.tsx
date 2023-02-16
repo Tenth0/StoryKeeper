@@ -9,24 +9,6 @@ import { CardData } from "@/types";
 import DeleteItem from "./CardsDelete";
 import ToastError from "@/components/Toast/ToastError";
 
-// 外したらコメントを更新できるようになった
-// styled.divで毎回divが作られているから
-// 毎回新しいHTML要素を作る
-// paddingより下の要素は毎回新しいDOMの要素に書き換えられる
-const Padding = styled.div`
-    padding: 4px;
-`;
-
-const Flex = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 8px;
-`;
-
-const DeleteBtnSize = styled.div`
-    margin: 16px;
-`;
-
 const Cards: React.FC<{}> = () => {
     const [items, setItems] = useRecoilState(itemsState);
     const [editCommentId, setEditCommentId] = useState<number | null>(null);
@@ -81,7 +63,7 @@ const Cards: React.FC<{}> = () => {
         setItems(updatedComment);
         axios
             .post("/items/update", { id: id, comment: itemComment[id] })
-            .then()
+            .then(() => {})
             .catch(() => {
                 setShowToastError(true);
                 setTimeout(() => setShowToastError(false), 3000);
@@ -170,5 +152,19 @@ const Cards: React.FC<{}> = () => {
         </>
     );
 };
+
+// 外したらコメントを更新できるようになった
+// styled.divで毎回divが作られているから
+// 毎回新しいHTML要素を作る
+// paddingより下の要素は毎回新しいDOMの要素に書き換えられる
+const Padding = styled.div`
+    padding: 4px;
+`;
+
+const Flex = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px;
+`;
 
 export default Cards;

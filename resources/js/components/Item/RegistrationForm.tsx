@@ -9,15 +9,6 @@ import FormButtons from "./FormButtons";
 import ToastSuccess from "@/components/Toast/ToastSuccess";
 import ToastError from "@/components/Toast/ToastError";
 
-const ErrorMessage = styled.p`
-    color: red;
-`;
-
-const WhiteColor = styled.div`
-    color: white;
-    margin-left : 16px;
-    margin-right: 16px;
-`;
 
 const RegistrationForm: React.FC = () => {
     const [errors, setErrors] = useState<{ title: string }>({ title: "" });
@@ -137,4 +128,15 @@ const RegistrationForm: React.FC = () => {
         </>
     );
 };
+
+const ErrorMessage = styled.p`
+    color: red;
+`;
+
+const WhiteColor = styled.div`
+    color: white;
+    margin-left : 16px;
+    margin-right: 16px;
+`;
+
 export default RegistrationForm;

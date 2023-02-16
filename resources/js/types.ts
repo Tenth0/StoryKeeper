@@ -2,7 +2,7 @@ export type User = {
     id : number
     name: string
     email: string
-}
+};
 
 export type Item = {
     id:number,
@@ -12,7 +12,7 @@ export type Item = {
     read_time:string,
     order:number,
     is_favorite:boolean,
-}
+};
 
 export type Category = {
     id: number;
@@ -32,5 +32,5 @@ export type CardData = {
     is_favorite:boolean,
     category_title: string,
     color: Color,
-}
+};
   

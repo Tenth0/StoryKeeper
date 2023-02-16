@@ -3,14 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const ButtonMargin = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 8px;
-`;
-const AddButtonMargin = styled.div`
-    margin-right: 8px;
-`;
 
 const FormButtons: React.FC = () => {
     return (
@@ -26,5 +18,15 @@ const FormButtons: React.FC = () => {
         </ButtonMargin>
     );
 };
+
+const ButtonMargin = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px;
+`;
+
+const AddButtonMargin = styled.div`
+    margin-right: 8px;
+`;
 
 export default FormButtons;

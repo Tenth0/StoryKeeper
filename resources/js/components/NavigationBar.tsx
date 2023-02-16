@@ -3,10 +3,6 @@ import Container from 'react-bootstrap/Container';
 import { Nav,Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const imgStyle = {
-  width: '30%',
-  height: '50%',
-}
 
 const NavigationBar:React.FC = () => {
   return (
@@ -29,6 +25,11 @@ const NavigationBar:React.FC = () => {
     </Container>
   </Navbar>
   )
+}
+
+const imgStyle = {
+  width: '30%',
+  height: '50%',
 }
 
 export default NavigationBar

@@ -11,21 +11,13 @@ import { Category } from "@/types";
 import ToastSuccess from "../Toast/ToastSuccess";
 import ToastError from "../Toast/ToastError";
 
-const ErrorMessage = styled.p`
-    color: red;
-`;
-
-const ButtonFlex = styled.div`
-    margin-top: 8px;
-`;
-
 const AddCategory: React.FC = () => {
     const categories = useRecoilValue(categoriesState);
     const setCategories = useSetRecoilState(categoriesState);
 
     const [show, setShow] = useState(false);
 
-    const [errors, setErrors] = useState<{ title: string; color: string }>({title:"",color:""});
+    const [errors, setErrors] = useState<{ title: string; color: string; }>({title:"",color:""});
 
     // トーストを表示させるステート
     const [showToastError, setShowToastError] = useState<boolean>(false);
@@ -127,5 +119,13 @@ const AddCategory: React.FC = () => {
         </>
     );
 };
+
+const ErrorMessage = styled.p`
+    color: red;
+`;
+
+const ButtonFlex = styled.div`
+    margin-top: 8px;
+`;
 
 export default AddCategory;

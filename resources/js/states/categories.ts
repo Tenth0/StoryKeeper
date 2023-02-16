@@ -8,4 +8,4 @@ export const categoriesState = atom<Category[]>({
         title: '',
         color: 'light',
     }]
-})
+});

@@ -2,11 +2,6 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import { Nav,Navbar } from 'react-bootstrap';
 
-const imgStyle = {
-  width: '30%',
-  height: '50%',
-}
-
 const ReloadNavigationBar:React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark">
@@ -20,6 +15,11 @@ const ReloadNavigationBar:React.FC = () => {
     </Container>
   </Navbar>
   )
+};
+
+const imgStyle = {
+  width: '30%',
+  height: '50%',
 }
 
 export default ReloadNavigationBar

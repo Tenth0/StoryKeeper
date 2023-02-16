@@ -10,14 +10,6 @@ import styled from "styled-components";
 import HandleModalShow from "./CategoryDelete";
 import ToastError from "../Toast/ToastError";
 
-const Center = styled.div`
-    text-align: center;
-`;
-
-const FontWhiteColor = styled.div`
-    color:white;
-`;
-
 const CategoryList: React.FC = () => {
     const [categories, setCategories] = useRecoilState(categoriesState);
     const [editTitle, setEditTitle] = useState<number | null>(null);
@@ -125,7 +117,7 @@ const CategoryList: React.FC = () => {
                                         >
                                         <FontWhiteColor>
                                         <BsPencil />
-                                        編集
+                                            編集
                                         </FontWhiteColor>
                                     </Button>
                                 </Center>
@@ -138,5 +130,13 @@ const CategoryList: React.FC = () => {
         </>
     );
 };
+
+const Center = styled.div`
+    text-align: center;
+`;
+
+const FontWhiteColor = styled.div`
+    color:white;
+`;
 
 export default CategoryList;

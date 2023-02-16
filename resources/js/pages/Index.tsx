@@ -11,14 +11,11 @@ import CategoryTable from "@/pages/CategoryTable";
 import Items from "@/pages/Items";
 import styled from "styled-components";
 
-const FontRoboto = styled.div`
-    font-family: "Roboto";
-`;
-
-const Index: React.FC<{ items: CardData[]; categories: Category[] }> = ({
+const Index: React.FC<{ items: CardData[]; categories: Category[]; }> = ({
     items,
     categories,
 }) => {
+    // URLを読み込んだ場合
     const location = useLocation();
     const setItems = useSetRecoilState(itemsState);
     const setCategories = useSetRecoilState(categoriesState);
@@ -41,5 +38,9 @@ const Index: React.FC<{ items: CardData[]; categories: Category[] }> = ({
         </>
     );
 };
+
+const FontRoboto = styled.div`
+    font-family: "Roboto";
+`;
 
 export default Index;

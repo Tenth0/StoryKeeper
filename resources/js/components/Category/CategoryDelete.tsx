@@ -6,8 +6,6 @@ import { BsFillTrashFill } from "react-icons/bs";
 import axios from "axios";
 import { Category } from "@/types";
 import { categoriesState } from "../../states/categories";
-import ToastSuccess from "../Toast/ToastSuccess";
-import ToastError from "../Toast/ToastError";
 
 const CategoryModal: React.FC<{
     modalShow: boolean;

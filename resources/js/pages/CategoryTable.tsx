@@ -8,6 +8,7 @@ import { Category } from '../types';
 
 const CategoryTable: React.FC<{categories?:Category[]}> = ({ categories }) => {
     if (categories) {
+        // URL/CategoryTableで再読み込みをした場合
         const setCategories = useSetRecoilState(categoriesState);
         useEffect(() => {
             setCategories(categories);
