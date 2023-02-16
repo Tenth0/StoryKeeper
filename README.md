@@ -1,4 +1,4 @@
-# StroyKeeper
+# StoryKeeper
 
 過去に読んだ漫画やアニメなどを記録しておくプロダクトです。
 
