@@ -9,6 +9,7 @@ use App\Service\Item\ItemServiceInterface;
 use App\Service\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ItemController extends Controller
 {
@@ -22,7 +23,7 @@ class ItemController extends Controller
         $this->CategoryService = $CategoryService;
     }
 
-    public function router()
+    public function router(): Response
     {
         return Inertia::render('Index',[
             'items' => $this->ItemService->list(),
@@ -30,7 +31,7 @@ class ItemController extends Controller
         ]);
     }
 
-    public function list()
+    public function list(): Response
     {
         return Inertia::render('Index',[
             'items' => $this->ItemService->list(),
@@ -67,7 +68,6 @@ class ItemController extends Controller
     
     public function update(UpdateItemRequest $request)
     {
-
         $this->ItemService->updateItem($request);
         return redirect()->route('itemList')->with("create_success", __("Create success"));
     }
