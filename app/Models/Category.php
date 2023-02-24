@@ -20,13 +20,4 @@ class Category extends Model
     ];
     protected $hidden = ['created_at','updated_at','is_delete'];
 
-    public function insertCategory($request)
-    {
-        return self::create([
-            'title' => $request->title,
-            'color' => $request->color,
-            'created_at' => Carbon::now()->format('Ymd'),
-            'updated_at' => Carbon::now()->format('Ymd'),
-        ]);
-    }
 }

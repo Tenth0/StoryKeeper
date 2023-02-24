@@ -33,12 +33,6 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function create(CategoryRequest $request)
-    {
-        Category::InsertCategory($request);
-        return redirect()->route('categoryList');
-    }
-    
     public function updateCategory(UpdateCategoryRequest $request)
     {
         $id = $request->input('id');
