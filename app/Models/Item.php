@@ -23,26 +23,6 @@ class Item extends Model
         'comment'
     ];
 
-    public function InsertItem($request)
-    {
-        return self::create([
-            'title' => $request->title,
-            'category_id' => $request->category_id,
-            'read_time' => $request->read_time,
-            'comment' => $request->comment,
-            'created_at' => Carbon::now()->format('Ymd'),
-            'updated_at' => Carbon::now()->format('Ymd'),
-        ]);
-    }
-
-    public function UpdateItem( $request )
-    {
-        return self::where('id', '=', $request->id )->update([
-            'comment' => $request->comment,
-            'updated_at' => Carbon::now()->format('Ymd'),
-        ]);
-    }
-
     /**
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

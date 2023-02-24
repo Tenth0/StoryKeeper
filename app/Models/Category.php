@@ -29,16 +29,4 @@ class Category extends Model
             'updated_at' => Carbon::now()->format('Ymd'),
         ]);
     }
-
-    public function updateCategory($request)
-    {
-        $category = self::find($request->id);
-        if ($category) {
-            $category->title = $request->title;
-            $category->color = $request->color;
-            $category->updated_at = Carbon::now()->format('Ymd');
-            $category->save();
-        }
-        return $category;
-    }
 }
