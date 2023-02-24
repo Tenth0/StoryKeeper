@@ -18,7 +18,7 @@ ReactとLaravelを連携させてみたかった
 
 - Laravel
 
-バックエンド:Laravel9
+バックエンド:Laravel 10.1.4
 
 - Vite
 
