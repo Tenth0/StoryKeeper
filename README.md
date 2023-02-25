@@ -14,11 +14,11 @@ ReactとLaravelを連携させてみたかった
 
 - React
 
-フロントエンド:React18
+フロントエンド:React18.2.0
 
 - Laravel
 
-バックエンド:Laravel 10.1.4
+バックエンド:Laravel10.1.4
 
 - Vite
 
